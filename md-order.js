@@ -26,6 +26,7 @@
   function clean(input,max=160){return String(input||'').trim().replace(/[\r\n\t]+/g,' ').slice(0,max);}
   function buildMessage(){
     const name=clean($('orderName').value,90);
+    const phone=clean($('orderPhone').value,25);
     const item=findProduct($('orderProduct').value);
     const qty=Number($('orderQty').value)||1;
     const details=[];
@@ -43,6 +44,7 @@
     const result=[
       'Olá, MD PHONE! Fiz uma solicitação pelo site.',
       'Nome: '+name,
+      'WhatsApp para retorno: '+phone,
       '',
       ...details,
       '',
