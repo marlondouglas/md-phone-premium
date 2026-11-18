@@ -124,3 +124,52 @@
 @media(prefers-reduced-motion:reduce){
  .md-assistant-trigger .md-avatar-chip{animation:none!important}
 }
+
+
+/* Assistente animado: só o personagem, sem aro ou fundo, flutuando ao rolar a página. */
+.site-header #headerContact,.mobile-nav .mobile-whatsapp-link{display:none!important}
+.md-assistant-trigger{
+ position:fixed!important;bottom:max(20px,env(safe-area-inset-bottom))!important;
+ right:clamp(12px,2vw,28px)!important;z-index:95!important;
+ display:flex!important;align-items:center!important;gap:8px!important;
+ min-height:72px!important;padding:7px 17px 7px 4px!important;
+ border:1px solid rgba(181,245,203,.20)!important;
+ border-radius:24px!important;background:rgba(9,35,23,.90)!important;
+ color:#effdf0!important;box-shadow:0 16px 46px rgba(0,0,0,.26)!important;
+ -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
+}
+.md-assistant-trigger::before{display:none!important}
+.md-assistant-trigger .md-avatar-chip{
+ display:block!important;width:79px!important;height:88px!important;flex:none!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;object-fit:contain!important;
+ filter:drop-shadow(0 7px 11px rgba(0,0,0,.24));
+ animation:mdAssistantFloat 4.2s ease-in-out infinite!important
+}
+.md-assistant-trigger .md-assistant-trigger-arrow{color:#a8edbe}
+.md-assistant-trigger:hover{transform:translateY(-3px)!important;border-color:#a8edbe!important}
+.md-assistant-intro img,.md-order-heading img{
+ object-fit:contain!important;border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important
+}
+.md-assistant-other,.md-assistant-trade{display:flex;flex-direction:column;gap:8px}
+.md-assistant-other[hidden],.md-assistant-trade[hidden]{display:none!important}
+.md-assistant-trade{padding:13px 14px 16px;margin-top:9px;background:rgba(197,235,204,.045);border:1px solid rgba(211,248,220,.19);border-radius:14px}
+.md-assistant-trade label{margin-top:4px!important}
+.md-assistant-trade input,.md-assistant-other input{
+ width:100%;box-sizing:border-box;min-height:47px;padding:11px 12px;
+ border-radius:11px;border:1px solid #527660;background:#193d2b;
+ color:#f4faf3;font:500 14px/1.45 'DM Sans',sans-serif
+}
+.md-assistant-trade input::placeholder,.md-assistant-other input::placeholder{color:#aac6b3}
+.md-assistant-trade-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.md-assistant-trade-grid>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.md-assistant-submit[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+@media(max-width:520px){
+ .md-assistant-trigger{min-height:60px!important;padding:5px 12px 5px 2px!important;bottom:max(12px,env(safe-area-inset-bottom))!important}
+ .md-assistant-trigger .md-avatar-chip{width:62px!important;height:72px!important}
+ .md-assistant-trade-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ .md-assistant-trigger .md-avatar-chip{animation:none!important}
+}
