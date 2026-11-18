@@ -43,6 +43,7 @@
     trigger.addEventListener('click',()=>{
       updateForm();
       if(!modal.open)modal.showModal();
+      modal.querySelector('.md-assistant-dialog-video')?.play()?.catch(()=>{});
       $('assistantModel').focus({preventScroll:true});
     });
     const header=$('headerAssistant'),mobile=$('mobileAssistantLink');
@@ -75,6 +76,16 @@
       if(reduced.addEventListener)reduced.addEventListener('change',tryPlay);
       document.addEventListener('visibilitychange',tryPlay);
       tryPlay();
+    }
+    const dialogVideo=modal.querySelector('.md-assistant-dialog-video');
+    const dialogAvatar=modal.querySelector('.md-assistant-intro');
+    if(dialogVideo&&dialogAvatar){
+      dialogVideo.addEventListener('playing',()=>dialogAvatar.classList.add('is-playing'));
+      dialogVideo.addEventListener('pause',()=>dialogAvatar.classList.remove('is-playing'));
+      dialogVideo.addEventListener('error',()=>dialogAvatar.classList.remove('is-playing'));
+      modal.addEventListener('close',()=>dialogVideo.pause());
+      modal.addEventListener('close',()=>dialogAvatar.classList.remove('is-playing'));
+      modal.addEventListener('toggle',()=>{if(modal.open)dialogVideo.play().catch(()=>{});});
     }
     $('assistantClose').addEventListener('click',()=>modal.close());
     form.addEventListener('submit',e=>e.preventDefault());
