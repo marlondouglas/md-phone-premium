@@ -1,0 +1,160 @@
+/* MD PHONE | Storefront Best Practices + Responsive Storefront
+   Enxuto, consistente e focado em aparelhos reais.
+   Ultima folha de estilos: sobrescreve cards do tema legado. */
+:root{--md-stage:#f8f9f7;--md-forest:#071b13;--md-surface:#10271d;--md-edge:#335b45;--md-mint:#cae9d0}
+#vitrine{background:linear-gradient(155deg,#081b12,#102c20 68%,#0b2117)!important}
+#vitrine .shell.section-gap{padding-top:76px!important;padding-bottom:75px!important}
+#products.products{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:18px!important;align-items:stretch;max-width:1250px;margin:22px auto 0
+}
+.md-family-card.product-card{
+ display:flex!important;min-width:0;flex-direction:column;
+ border:1px solid rgba(193,227,201,.19)!important;
+ border-radius:20px!important;background:#122c20!important;
+ box-shadow:0 13px 33px rgba(0,0,0,.13)!important;
+ transform:none!important;overflow:hidden
+}
+.md-family-card:hover{box-shadow:0 18px 38px rgba(0,0,0,.21)!important;border-color:#638c6c!important}
+.md-family-card .product-art,
+.md-family-card .product-art.dark,
+.md-family-card .md-family-art{
+ position:relative!important;height:242px!important;min-height:242px!important;
+ width:100%;padding:15px 18px 30px!important;
+ background:var(--md-stage)!important;border:0!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ overflow:hidden!important;isolation:isolate
+}
+.md-family-card .product-art:before,.md-family-card .product-art:after{display:none!important;content:none!important}
+.md-family-card .product-art img,.md-family-card .product-art.dark img,
+.md-family-card .md-family-art .catalog-device-photo{
+ display:block!important;position:relative!important;width:100%!important;height:100%!important;
+ max-width:210px!important;max-height:207px!important;
+ margin:auto!important;object-fit:contain!important;object-position:center!important;
+ filter:none!important;transform:none!important;mix-blend-mode:normal!important;
+ opacity:1!important;animation:none!important;transition:transform .22s ease!important
+}
+.md-family-card:hover .md-family-art img:not([hidden]){transform:scale(1.025)!important}
+.md-family-card img[hidden]{display:none!important}
+.md-family-card .art-label{
+ position:absolute!important;bottom:9px!important;left:12px!important;
+ color:#4b6c55!important;background:transparent!important;
+ font-size:9px!important;letter-spacing:.08em!important;
+ padding:0!important;max-width:90%!important;z-index:3
+}
+.md-family-card .product-body{
+ padding:21px 20px 22px!important;display:flex!important;flex-direction:column;
+ gap:0!important;flex:1;background:transparent!important
+}
+.md-card-topline{display:flex;justify-content:space-between;gap:10px;align-items:center;
+ color:#b6cebb;font:750 10px/1.3 'DM Sans',sans-serif;letter-spacing:.08em;margin:0 0 7px}
+.md-card-topline span:last-child{color:#a4c2ab;letter-spacing:0;font-weight:600}
+.md-family-card .product-name{
+ color:#f7fbf7!important;font-size:clamp(24px,2.4vw,30px)!important;
+ font-weight:790!important;line-height:1.14!important;letter-spacing:-.065em;
+ margin:0 0 5px!important;min-height:0!important
+}
+.md-card-model-details{font-size:12px;line-height:1.45;color:#c1d8c6!important;margin:0 0 13px}
+.md-variant-area{border-top:1px solid rgba(217,239,218,.12);padding-top:12px;margin:0 0 12px}
+.md-selector-title{display:block;color:#c2dbca;font-size:11px;line-height:1.4;font-weight:680;margin-bottom:8px}
+.md-variant-choices{display:flex;flex-wrap:wrap;gap:7px}
+.md-variant-choice{
+ display:inline-flex;align-items:center;gap:7px;
+ min-height:38px;max-width:100%;padding:7px 9px;
+ border:1px solid #43634d;border-radius:11px;background:#1b3a29;
+ color:#d9ebdc;font-size:11px;line-height:1.25;font-weight:680;
+ cursor:pointer;transition:background .18s,border-color .18s
+}
+.md-variant-choice:hover{background:#2b4b37;border-color:#95c79e}
+.md-variant-choice.selected{
+ background:#d9f2de;border-color:#d9f2de;color:#173b24;
+ box-shadow:inset 0 0 0 1px rgba(20,66,34,.09)
+}
+.md-color-dot{
+ display:inline-block;flex:none;width:17px;height:17px;border-radius:50%;
+ background:var(--unit-color);border:1px solid rgba(0,0,0,.23);
+ box-shadow:0 0 0 2px rgba(255,255,255,.4)
+}
+.md-condition-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b6e6bd;flex:none}
+.md-variant-choice.selected .md-condition-dot{background:#247b42}
+.md-unit-summary{
+ display:grid;gap:4px;padding:0 0 12px;font-size:11px;
+ line-height:1.4;color:#d3e3d6;min-height:43px
+}
+.md-unit-summary .md-unit-warning{color:#ffe0ca;font-weight:680}
+.md-price-request{
+ display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+ margin:auto 0 0;padding:10px 0 11px;border-top:1px solid rgba(216,239,220,.13);
+ font-size:11px;color:#bacfbd
+}
+.md-price-request strong{font-size:13px;color:#c9efd0;font-weight:780;white-space:nowrap}
+.md-family-card .product-actions{
+ display:grid!important;grid-template-columns:minmax(0,.76fr) minmax(0,1.3fr)!important;
+ gap:8px!important;padding:0!important;margin:0!important
+}
+.md-family-card .product-actions button{
+ width:100%!important;min-width:0!important;min-height:45px!important;
+ border-radius:11px!important;padding:9px 11px!important;
+ font-size:12px!important;line-height:1.2!important;white-space:normal;
+ font-weight:800!important
+}
+.md-family-card .product-button{
+ background:#203f2b!important;border:1px solid #5d8067!important;color:#edf7ef!important
+}
+.md-family-card .md-buy-button{
+ display:flex;align-items:center;justify-content:center;gap:5px;
+ border:0!important;background:#d2f0d8!important;color:#12351d!important;
+}
+.md-family-card .md-buy-button:hover{background:#effff0!important}
+.md-secondary-actions{
+ display:flex;justify-content:space-between;gap:10px;
+ padding:10px 0 0;min-height:36px
+}
+.md-family-card .md-secondary-actions button{
+ position:static!important;inset:auto!important;
+ min-height:36px!important;min-width:0!important;padding:4px 8px!important;
+ border:0!important;background:transparent!important;box-shadow:none!important;
+ color:#a9c2af!important;font-size:10px!important;font-weight:650!important;
+ transform:none!important;border-radius:8px!important
+}
+.md-family-card .md-secondary-actions button.is-active{color:#d9f6de!important}
+.md-family-card .md-secondary-actions button:hover{background:#244c34!important}
+.md-storefront-note{font-size:12px;color:#c4d9c8;line-height:1.5}
+.md-brand-steps{
+ padding:70px 0!important;background:linear-gradient(180deg,#081a12,#11291d)!important;
+ border-block:1px solid rgba(209,237,218,.09)
+}
+.md-brand-steps h2{font-size:clamp(35px,4.5vw,61px);line-height:1.08;margin:10px 0 32px;color:#f2fff2;letter-spacing:-.06em}
+.md-steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.md-step{
+ display:flex;flex-direction:column;gap:9px;border:1px solid rgba(209,237,218,.15);
+ border-radius:19px;padding:24px;background:#162f22
+}
+.md-step span{font-size:11px;letter-spacing:.11em;color:#a5d4af;font-weight:760}
+.md-step h3{color:#f4fdf6!important;font-size:20px;margin:0}
+.md-step p{color:#c5d6c9;margin:0;font-size:13px;line-height:1.6}
+.md-storefront-order-hint{
+ display:block;margin-top:16px;color:#abc6b3;font-size:11px;
+}
+@media(max-width:1000px){
+ #products.products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important}
+ .md-family-card .md-family-art{height:223px!important;min-height:223px!important}
+ .md-family-card .md-family-art img{max-height:188px!important}
+}
+@media(max-width:620px){
+ #vitrine .shell.section-gap{padding-top:48px!important}
+ #products.products{grid-template-columns:repeat(1,minmax(0,1fr))!important;gap:16px!important}
+ .md-family-card{width:100%;max-width:440px;margin:0 auto}
+ .md-family-card .product-art,.md-family-card .md-family-art,.md-family-card .product-art.dark{
+   height:230px!important;min-height:230px!important;padding:12px 17px 28px!important
+ }
+ .md-family-card .product-art img,.md-family-card .md-family-art img{max-height:194px!important;max-width:214px!important}
+ .md-family-card .product-body{padding:17px 17px 14px!important}
+ .md-family-card .product-name{font-size:27px!important}
+ .md-family-card .product-actions button{font-size:12px!important}
+ .md-card-model-details{margin-bottom:10px}
+ .md-variant-choice{min-height:42px;padding:8px 11px}
+ .md-steps-grid{grid-template-columns:1fr}
+ .md-brand-steps{padding:50px 0!important}
+}
+@media(prefers-reduced-motion:reduce){.md-family-card .product-art img{transition:none!important}}

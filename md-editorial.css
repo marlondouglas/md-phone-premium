@@ -1,0 +1,349 @@
+/* MD PHONE / Edition 05
+ * Derived from UI UX Pro Max original skill's E-commerce Luxury product
+ * guidelines + Bento Grid Showcase landing pattern + Apple Native Experience.
+ * Explicit restraint: genuine studio photos, consistent silhouettes, emerald brand,
+ * no carousels pretending to be videos, no synthetic phone renders.
+ */
+:root{--md-cream:#f7f8f6;--md-charcoal:#142019;--md-ink:#07170d;--md-pine:#071e12;--md-applegreen:#12945b;--md-frost:#f2f5f2;--md-paper:#ffffff;--md-stroke:#e1e8e2}
+body{background:var(--md-cream);color:var(--md-charcoal);font:450 16px/1.6 -apple-system,BlinkMacSystemFont,"DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Manrope","DM Sans",sans-serif;font-weight:735;letter-spacing:-.065em}
+.hero-frame,.hero-inner{min-height:704px}
+.site-header{background:rgba(6,29,16,.98);border-color:rgba(255,255,255,.06);color:#f5fff8}
+.site-header.is-scrolled{background:rgba(6,29,16,.96)}
+.site-header .logo span,.site-header .logo b{color:#f6fff7}
+.site-header .logo span b{font-weight:560;letter-spacing:.16em;font-size:.83em}
+.site-header .logo>img.brand-mark-original,.footer .logo>img.brand-mark-original{width:38px;height:45px;object-fit:contain;filter:none;flex:none}
+.site-header .desktop-nav a{color:#d5e6d9;font-weight:550;font-size:13px}
+.site-header .desktop-nav a:hover,.site-header .desktop-nav a.nav-current{color:#6ce2a5}
+.site-header .nav-chat{background:#f4f9f3;color:#123423;border:1px solid #f4f9f3}
+.site-header .nav-chat span{color:#0b7145}
+.site-header .nav-chat:hover{background:#d6f4e1;color:#082b18}
+.site-header .mobile-trigger{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.07)}
+.site-header .mobile-trigger i{background:#e4f4e9}
+.site-header .mobile-nav.open{background:#0b2516;border-top:1px solid rgba(255,255,255,.12)}
+.site-header .mobile-nav a{color:#ecfff0}
+.logo img{border:0}
+.ribbon{background:#03120a;border-color:#0c2b18;font-size:9px;letter-spacing:.12em}
+.hero-frame{overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#051b0f 0 54%,#f7faf7 54% 100%)}
+.hero-background,.hero-vignette{background:transparent!important;filter:none!important;animation:none!important}
+.hero-graphic,.hero-scroll{display:none!important}
+.hero-inner{padding:90px 0 100px;align-items:center;position:relative;z-index:3}
+.hero-content{width:52%;max-width:590px}
+.hero .overline{font-size:10px;letter-spacing:.18em;color:#a2dabc}
+.hero h1{font-size:clamp(62px,7.6vw,108px);letter-spacing:-.082em;line-height:1.06;font-weight:760;color:#fff;margin:23px 0}
+.hero h1 em{color:#79d99b;font-weight:740}
+.hero-content>p{max-width:480px;font-size:16px;line-height:1.76;color:#c8ddcd}
+.hero-buttons{margin-top:30px}
+.hero-buttons .button{border-radius:100px;font-size:13px;min-height:52px}
+.hero-buttons .button.lime{background:#eaf8ed;color:#102e1d;box-shadow:none}
+.hero-buttons .button.lime:hover{background:#d4eddb}
+.hero-buttons .button.ghost{border:1px solid #557964;background:transparent}
+.hero-micro{color:#aac2b0;font-size:9px;margin-top:45px}
+.hero-iphone{position:absolute;z-index:2;right:3.5%;top:9%;width:42%;height:81%;object-fit:contain;opacity:1;mask-image:none!important;mix-blend-mode:multiply;filter:none!important;transform:none!important;transition:none!important}
+.hero-frame:hover .hero-iphone{transform:none!important}
+.hero-feature{bottom:48px;right:5.5%;z-index:6;border-left:1px solid #bed1c1;color:#17432b}
+.hero-feature span,.hero-feature small{color:#64806b}
+.hero-feature strong{color:#10271a}
+.hero-editorial-note{display:none}
+.trust-bar{box-shadow:none;border-radius:0;border-color:var(--md-stroke);background:#fff;max-width:none;width:100%;padding-inline:max(24px,calc((100vw - 1250px)/2))}
+.trust-item{padding-block:21px}
+.trust-item strong{font-weight:680}
+.trust-symbol{background:#eef8f0;color:#16804d;border:none}
+.category-nav{border-color:#e6ebe7;box-shadow:none;background:#f8fbf9}
+.category-nav .cat-icon{background:#e8f3eb}
+.category-nav a:hover{background:#eff7f1}
+.editorial,.catalog-band>.shell,.video-area,.explore,.accessories{padding-block:98px}
+.section-title .eyebrow{color:#208b57;letter-spacing:.16em}
+.section-title h2,.title-line h2{letter-spacing:-.068em;font-weight:725}
+.section-title em,.title-line h2 em{color:#1d8653;font-weight:650}
+.story-card{border:1px solid #e0e8e2;box-shadow:none;border-radius:23px;min-height:580px}
+.story-card:hover{box-shadow:0 15px 42px rgba(5,27,11,.075);transform:translateY(-2px)}
+.story-dark{background:#ffffff!important;color:#17241b!important}
+.story-light{background:#ecf3ed!important;color:#132c1a!important}
+.story-dark .story-copy p,.story-light .story-copy p{color:#53685a;opacity:1}
+.story-dark .story-label,.story-light .story-label{color:#377d4e}
+.story-dark .story-copy a{color:#20613e}
+.story-copy{z-index:4}
+.story-dark .story-phone{mix-blend-mode:multiply;filter:none;object-fit:contain}
+.story-light .story-real-photo.apple-studio-story{mix-blend-mode:multiply;filter:none;object-fit:contain}
+.story-card .image-note{color:#698070}
+.catalog-band{background:#f8faf8}
+.products{gap:19px}
+.product-card{border:1px solid #e4eae5;box-shadow:none;background:#fff;border-radius:20px}
+.product-card:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(5,30,17,.07)}
+.product-art,.product-art.dark{background:#fff!important;min-height:335px;height:335px;padding:25px 21px 12px}
+.product-art img,.product-art.dark img{object-fit:contain;max-height:90%;max-width:94%;mix-blend-mode:multiply;filter:none!important;transform:none!important}
+.product-card:hover .product-art img{transform:scale(1.024)!important}
+.product-art .art-label,.product-art.dark .art-label{color:#63806c;background:#f8faf8;font-size:8px;border:0}
+.product-body{padding:20px 24px 24px}
+.product-name{font-size:22px;letter-spacing:-.052em}
+.product-button{background:#113c24}
+.tab.active,.tab[aria-pressed="true"]{background:#12462a!important;border-color:#12462a!important}
+.cinema{background:#f1f5f1!important;min-height:530px;border-top:1px solid #e3ebe4;border-bottom:1px solid #e3ebe4}
+.cinema-bg,.cinema-lights{display:none!important}
+.cinema:before{background:transparent!important}
+.cinema-text{color:#132b1b!important}
+.cinema-text h2{color:#102819;letter-spacing:-.075em;max-width:630px}
+.cinema-text h2 em{color:#228452}
+.cinema-text .eyebrow{color:#20814f}
+.cinema-text p{color:#5c7263;max-width:400px}
+.cinema-text .button.ghost{color:#173e27!important;background:transparent!important;border:1px solid #9bbfac!important}
+.cinema-product-image{right:1%;top:4%;height:91%;width:46%;mix-blend-mode:multiply;mask-image:none;filter:none;opacity:1}
+.cinema-footer{color:#6e8b75}
+.video-area .film-card{background:#fff;border:1px solid #e1e9e3;box-shadow:none}
+.md-photo-studio,.film-native-alt .md-photo-studio{background:#fff!important}
+.md-photo-studio:before,.md-photo-studio .md-motion-ring{display:none!important}
+.md-photo-studio .studio-iphone-image{mix-blend-mode:multiply;width:86%;left:7%;height:78%;top:0;animation:none!important;filter:none!important}
+.film-card:after{display:none!important}
+.film-content{position:absolute;z-index:5;left:30px;bottom:26px}
+.film-content small{color:#308457}
+.film-content strong{color:#142d1c;letter-spacing:-.054em}
+.film-content>span:last-child{color:#7b8a7f}
+.film-card{aspect-ratio:1.35}
+.model-atlas{box-shadow:none;background:#fff}
+.model-atlas-media{background:#f9fbf9}
+.model-atlas-media:before{display:none}
+.model-atlas-media img{filter:none;mix-blend-mode:multiply}
+.model-atlas-copy h3{font-size:clamp(40px,4vw,56px)}
+.android-section{background:#09271a}
+.android-brand-art{background:#103724;border:1px solid #376a4c;box-shadow:none;transform:none}
+.android-brand-art strong{font-weight:690}
+.access-card{box-shadow:none;border-radius:18px}
+.access-card:hover{box-shadow:0 10px 25px rgba(8,42,19,.07)}
+.grade,.faq-list details{box-shadow:none;border-color:#e2e9e3}
+.final-call{background:#092619}
+.footer{background:#05170c}
+@media(max-width:990px){
+ .hero-iphone{width:46%;right:0;opacity:1}
+ .hero-content{width:55%}
+ .hero h1{font-size:clamp(57px,7.4vw,84px)}
+ .hero-feature{display:none}
+}
+@media(max-width:790px){
+ .hero-frame{min-height:790px;background:linear-gradient(to bottom,#051b0f 0 53%,#f7faf7 53% 100%)}
+ .hero-inner{height:790px;min-height:790px;padding:52px 0 0;align-items:flex-start}
+ .hero-content{width:100%;max-width:620px}
+ .hero h1{font-size:clamp(54px,8vw,83px);max-width:640px;margin:18px 0}
+ .hero-content>p{max-width:520px}
+ .hero-iphone{width:84%;height:43%;right:8%;top:54%;opacity:1}
+ .hero-vignette{display:none}
+ .hero-buttons{flex-direction:row}
+ .hero-micro{margin-top:31px}
+ .story-card{min-height:540px}
+ .cinema-product-image{opacity:.55;right:-12%;width:60%}
+}
+@media(max-width:520px){
+ .site-header .logo span{font-size:17px}
+ .site-header .logo>img.brand-mark-original{width:32px;height:40px}
+ .hero-frame,.hero-inner{height:735px;min-height:735px}
+ .hero-frame{background:linear-gradient(to bottom,#051b0f 0 57%,#f7faf7 57% 100%)}
+ .hero-inner{padding-top:50px}
+ .hero .overline{font-size:9px}
+ .hero h1{font-size:clamp(51px,12.4vw,66px);line-height:1.07;margin:18px 0}
+ .hero-content>p{font-size:14px;line-height:1.6;max-width:350px}
+ .hero-buttons{flex-direction:row;align-items:center;gap:8px}
+ .hero-buttons .button{padding:12px 15px;font-size:11px;min-height:44px}
+ .hero-micro{margin-top:27px;font-size:8px;gap:8px}
+ .hero-iphone{width:94%;height:41%;right:3%;top:58%}
+ .section-gap,.editorial,.catalog-band>.shell,.video-area,.explore,.accessories{padding-block:68px}
+ .story-card{min-height:500px}
+ .story-dark .story-phone,.story-light .story-real-photo.apple-studio-story{width:84%;height:47%;right:-14%}
+ .product-art,.product-art.dark{height:302px;min-height:302px}
+ .cinema{min-height:460px}
+ .cinema-text h2{font-size:49px;max-width:350px}
+ .cinema-product-image{opacity:.2;width:82%;right:-36%;top:15%}
+ .film-card{aspect-ratio:1.03}
+ .film-content{left:20px;bottom:20px}
+ .model-atlas-copy h3{font-size:45px}
+ .ribbon{min-height:27px}
+}
+@media(prefers-reduced-motion:reduce){.hero-iphone,.product-art img,.story-card,.film-card{transition:none!important;animation:none!important}}
+
+
+/* MD PHONE — mobile composition repair, 2026-11-17.
+   Keep source photography unaltered and preserve existing brand assets. */
+@media (max-width: 790px) {
+  html,body {max-width:100%;overflow-x:clip}
+  .editorial-grid {display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+  .story-card {min-width:0;min-height:0!important;height:auto!important;display:flex;flex-direction:column;overflow:hidden;border-radius:22px}
+  .story-copy {padding:30px 26px 12px!important;position:relative;z-index:2}
+  .story-copy h3 {font-size:clamp(38px,10vw,60px)!important;line-height:1.06;letter-spacing:-.065em;overflow-wrap:normal}
+  .story-copy p {font-size:14px;line-height:1.65;max-width:38ch}
+  .story-copy a {position:relative;z-index:4}
+  .story-phone,.story-real-photo.apple-studio-story {
+    position:relative!important;inset:auto!important;display:block!important;
+    width:100%!important;max-width:100%!important;height:290px!important;
+    object-fit:contain!important;object-position:center!important;
+    margin:8px auto 28px!important;mix-blend-mode:normal!important;
+    transform:none!important;filter:none!important
+  }
+  .story-card .image-note {position:relative!important;right:auto!important;bottom:auto!important;display:block;text-align:center;padding:0 16px 18px;font-size:9px;line-height:1.5}
+  .products {grid-template-columns:minmax(0,1fr)}
+  .product-card {min-width:0;overflow:hidden}
+  .product-art,.product-art.dark {height:270px!important;min-height:270px!important;overflow:hidden;padding:20px!important}
+  .product-art img,.product-art.dark img {width:100%;height:100%;max-height:100%!important;object-fit:contain!important}
+  .product-body {padding:20px!important}
+  .catalog-controls,.catalog-subnav,.catalog-actions {min-width:0;flex-wrap:wrap;gap:12px}
+  .search-field {min-width:0;max-width:100%}
+  .film-grid {grid-template-columns:minmax(0,1fr)}
+  .cinema-product-image {position:relative!important;inset:auto!important;width:100%!important;height:260px!important;opacity:1!important;object-fit:contain!important}
+  .cinema-text {position:relative;z-index:2}
+}
+@media (max-width: 520px) {
+  .shell {width:calc(100% - 36px)!important}
+  .editorial,.catalog-band>.shell,.video-area,.explore,.accessories {padding-block:54px!important}
+  .section-title h2,.title-line h2 {font-size:clamp(34px,10vw,48px)!important}
+  .story-copy {padding:28px 22px 8px!important}
+  .story-copy h3 {font-size:clamp(36px,10.2vw,48px)!important}
+  .story-phone,.story-real-photo.apple-studio-story {height:245px!important;margin-bottom:16px!important}
+  .product-art,.product-art.dark {height:245px!important;min-height:245px!important}
+  .product-name {font-size:21px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .story-card,.product-card,.story-phone,.story-real-photo {animation:none!important;transition:none!important}
+}
+
+
+/* MD PHONE / Premium visual refinement — 2026-11-17.
+   Restrained Apple-inspired editorial spacing, real product photography. */
+:root{--md-radius:28px;--md-soft-shadow:0 24px 72px rgba(12,39,24,.07)}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.shell{max-width:1280px}
+.site-header{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.hero-frame{background:linear-gradient(105deg,#03170c 0%,#0b2a19 53%,#f0f4ef 53.1%,#f8faf7 100%)}
+.hero h1{font-weight:740;letter-spacing:-.075em;line-height:1.025}
+.hero h1 em{font-style:normal;color:#a5edb9}
+.hero-content>p{font-size:clamp(15px,1.35vw,18px);letter-spacing:-.015em}
+.hero-iphone{object-position:center;max-width:650px}
+.section-title h2,.title-line h2{line-height:1.1}
+.section-title .eyebrow{font-weight:750}
+.story-card{border-radius:var(--md-radius);overflow:hidden;isolation:isolate}
+.story-card .story-copy h3{letter-spacing:-.07em;line-height:1.04}
+.story-card .story-copy{max-width:58%}
+.story-card img{object-fit:contain}
+.story-card .image-note{font-size:9px;letter-spacing:.08em}
+.product-card{overflow:hidden;border-radius:24px;transition:box-shadow .28s ease,transform .28s ease,border-color .28s ease}
+.product-card:hover{border-color:#c4d9c9;box-shadow:var(--md-soft-shadow)}
+.product-art,.product-art.dark{background:linear-gradient(180deg,#f9fbf9,#fff)!important}
+.product-art img,.product-art.dark img{display:block;margin:auto;object-fit:contain}
+.product-body{display:flex;flex-direction:column;gap:10px}
+.product-name{line-height:1.15}
+.product-button{border-radius:100px}
+.film-card{border-radius:26px;overflow:hidden}
+.film-content{max-width:calc(100% - 48px)}
+.button,.nav-chat{transition:background .2s ease,color .2s ease,transform .2s ease}
+.button:hover,.nav-chat:hover{transform:translateY(-1px)}
+@media(max-width:790px){
+ .hero-frame{background:linear-gradient(180deg,#04190d 0%,#0b2919 54%,#f4f7f3 54.1%,#f8faf7 100%)}
+ .hero-content{position:relative;z-index:4}
+ .hero h1{letter-spacing:-.065em}
+ .story-card .story-copy{max-width:100%}
+ .story-card .story-copy h3{font-size:clamp(32px,7vw,46px)}
+ .story-card img{object-position:center}
+ .product-card{border-radius:20px}
+ .product-body{gap:8px}
+ .film-content{max-width:calc(100% - 36px)}
+}
+@media(max-width:520px){
+ .hero h1{font-size:clamp(48px,11.7vw,64px)}
+ .hero-content>p{max-width:330px}
+ .hero-iphone{object-position:center}
+ .story-card{border-radius:21px}
+ .product-art,.product-art.dark{background:#fafcfa!important}
+ .section-title h2,.title-line h2{letter-spacing:-.055em}
+}
+
+
+/* MD PHONE — final responsive quality pass: prevent editorial overlap and blank imagery. */
+.story-card{position:relative}
+.story-card .story-copy{position:relative;z-index:3}
+.story-card .story-copy h3{overflow-wrap:break-word}
+.story-card img[hidden],.hero-iphone[hidden],.product-art img[hidden]{display:none!important}
+.story-card:has(> img[hidden]){background:linear-gradient(135deg,#f4f9f5,#e4efe7)!important}
+.story-card:has(> img[hidden]) .story-copy{max-width:85%}
+.product-art:has(img[hidden]){background:linear-gradient(155deg,#f0f6f1,#fff)!important}
+.product-art:has(img[hidden]):after{content:"MD PHONE · IMAGEM INDISPONÍVEL";display:block;text-align:center;margin:auto;font-size:11px;letter-spacing:.12em;color:#47745b}
+.hero-frame:has(> img.hero-iphone[hidden]){background:#082415}
+.hero-frame:has(> img.hero-iphone[hidden]) .hero-content{width:min(100%,740px)}
+.hero-frame:has(> img.hero-iphone[hidden]) .hero-feature{display:none}
+@media (min-width:791px) and (max-width:1100px){
+ .hero-content{width:53%}
+ .hero h1{font-size:clamp(56px,6.6vw,78px)}
+ .hero-iphone{right:0;width:46%}
+ .story-card .story-copy{max-width:60%}
+ .story-card .story-copy h3{font-size:clamp(36px,4.2vw,52px)}
+}
+@media(max-width:790px){
+ .hero-frame,.hero-inner{height:auto!important;min-height:760px!important}
+ .hero-inner{padding-bottom:330px!important}
+ .hero-iphone{top:auto!important;bottom:8px!important;height:310px!important;max-height:42%!important}
+ .story-card .story-copy{max-width:100%!important}
+ .story-card:has(> img[hidden]) .story-copy{max-width:100%}
+ .cinema{display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden}
+ .cinema-text{order:0;padding-top:48px;padding-bottom:10px}
+ .cinema-product-image{order:1;margin:0 auto 20px!important;max-width:420px}
+ .cinema-footer{position:relative!important;order:2;inset:auto!important;padding:0 20px 24px}
+}
+@media(max-width:520px){
+ .hero-frame,.hero-inner{min-height:720px!important}
+ .hero-inner{padding-top:42px!important;padding-bottom:280px!important}
+ .hero-iphone{height:270px!important;bottom:4px!important}
+ .hero h1{font-size:clamp(45px,11.5vw,59px)!important}
+ .hero-micro{display:none}
+ .story-copy h3{font-size:clamp(35px,9vw,44px)!important}
+ .product-art,.product-art.dark{height:260px!important;min-height:260px!important}
+ .product-art img,.product-art.dark img{max-width:100%;max-height:100%;object-fit:contain}
+ .catalog-controls{display:flex;flex-direction:column;align-items:stretch}
+ .catalog-controls .search-field{width:100%}
+}
+
+
+/* MD PHONE premium polish — interaction, readability, performance. */
+:root{--md-green:#126a3a;--md-ink:#12261a}
+a,button,input,select{touch-action:manipulation}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #35ad69!important;outline-offset:3px!important}
+button:disabled{cursor:not-allowed;opacity:.55}
+img{height:auto}
+.hero-iphone,.story-card img,.product-art img,.studio-iphone-image{will-change:auto}
+.section-title h2,.title-line h2{text-wrap:balance}
+.section-title p,.title-line p{text-wrap:pretty}
+.product-card{background:#fff;box-shadow:0 5px 25px rgba(11,38,21,.045)}
+.product-card:hover{transform:translateY(-3px)}
+.product-art{isolation:isolate}
+.product-art img{filter:drop-shadow(0 15px 19px rgba(0,0,0,.07))}
+.product-body{min-width:0}
+.product-name{overflow-wrap:anywhere}
+.stock-notice{line-height:1.65}
+.search-field:focus-within{box-shadow:0 0 0 3px rgba(44,151,87,.16)}
+.tab,.generation-tabs button{transition:background-color .18s ease,color .18s ease,border-color .18s ease}
+.film-card .md-motion-scene img{object-fit:contain}
+@media(max-width:790px){
+ .category-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .category-nav>a{min-width:0}
+ .hero-buttons{flex-wrap:wrap}
+ .hero-buttons .button{min-height:46px}
+ .catalog-subnav{align-items:flex-start}
+ .product-card:hover{transform:none}
+ .film-card{min-height:360px}
+}
+@media(max-width:390px){
+ .shell{width:calc(100% - 28px)!important}
+ .hero-buttons{flex-direction:column;align-items:stretch}
+ .hero-buttons .button{justify-content:center}
+ .category-nav{gap:8px}
+ .category-nav>a{padding:15px 12px}
+ .tab-list{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* MD PHONE — studio photography presentation, 2026-11-17.
+   Presentation-only: no image replacement, no artificial recoloring of devices. */
+.product-art,.product-art.dark,.model-atlas-media{background:linear-gradient(145deg,#f1f7f2 0%,#f9fbf8 55%,#edf4ef 100%)!important}
+.product-art img,.product-art.dark img,.model-atlas-media img{mix-blend-mode:normal!important;filter:none!important;object-fit:contain!important;object-position:center!important}
+.story-dark,.story-light{background:linear-gradient(135deg,#f7faf7,#e9f3ec)!important}
+.story-dark .story-phone,.story-light .story-real-photo.apple-studio-story{mix-blend-mode:normal!important;filter:none!important;object-fit:contain!important}
+.md-photo-studio,.film-native-alt .md-photo-studio{background:linear-gradient(145deg,#eaf5ee,#f8faf8)!important}
+.md-photo-studio .studio-iphone-image{mix-blend-mode:normal!important;filter:none!important;object-fit:contain!important}
+@media(max-width:520px){.product-art,.product-art.dark{background:linear-gradient(145deg,#f1f7f2,#fff)!important}}

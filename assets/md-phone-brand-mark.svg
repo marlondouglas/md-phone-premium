@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MD PHONE">
+<title>MD PHONE — símbolo de contorno com folha verde</title>
+<defs>
+ <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".56" stop-color="#b9c7bf"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="leaf" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#087b49"/><stop offset=".65" stop-color="#1fc278"/><stop offset="1" stop-color="#43e699"/></linearGradient>
+</defs>
+<path d="M259 167C290 101 334 84 389 82C373 141 338 174 271 180Z" fill="url(#leaf)"/>
+<path d="M251 183C252 152 242 135 219 115" fill="none" stroke="url(#silver)" stroke-width="13" stroke-linecap="round"/>
+<path d="M260 190c-42-35-90-40-131-24-62 25-88 102-66 173 25 84 73 121 132 113 23-3 33-7 61-1 37 8 59 7 83-1 52-18 98-83 101-157 3-71-25-124-75-137-41-11-78-1-105 34Z"
+ fill="none" stroke="url(#silver)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

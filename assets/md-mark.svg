@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="MD PHONE">
+<rect width="96" height="96" rx="25" fill="#093a25"/>
+<rect x="2" y="2" width="92" height="92" rx="23" fill="none" stroke="#3e9c66" stroke-width="2"/>
+<path d="M18 66V30h9l13 18 13-18h9v36H52V46L40 62 28 46v20Z" fill="#d3f6df"/>
+<path d="M67 30h7c11 0 16 6 16 18s-5 18-16 18h-7Zm9 9v18c4-.2 6-4 6-9s-2-9-6-9Z" fill="#a6e7bb"/>
+</svg>

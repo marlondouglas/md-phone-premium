@@ -1,0 +1,195 @@
+/* MD PHONE / Design system enhancement
+   Adapted from open-source UI patterns: Magic UI, shadcn/ui, Motion.
+   Native CSS/JS implementation: no React runtime, no external dependency. */
+:root{--md-ease:cubic-bezier(.22,1,.36,1);--md-border:rgba(23,82,46,.12)}
+::selection{background:#b0ffd0;color:#082314}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #22ae65;outline-offset:4px}
+.site-header{transition:box-shadow .45s ease,background .45s ease}
+.site-header.is-scrolled{background:rgba(255,255,255,.96);box-shadow:0 12px 34px rgba(6,30,13,.09)}
+/* Magic-UI-inspired ambient spotlight: restrained and pointer-responsive. */
+.hero-frame:after{content:"";pointer-events:none;position:absolute;z-index:0;inset:0;background:radial-gradient(ellipse 560px 440px at var(--md-x,78%) var(--md-y,40%),rgba(71,255,148,.105),transparent 75%);opacity:.95;transition:opacity .6s}
+.hero-content{transform:translateZ(0)}
+.hero-buttons .button.lime,.nav-chat{position:relative;isolation:isolate;overflow:hidden}
+.hero-buttons .button.lime:before,.nav-chat:before{content:"";position:absolute;inset:0;transform:translateX(-150%) skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.23),transparent);pointer-events:none;transition:transform .8s var(--md-ease)}
+.hero-buttons .button.lime:hover:before,.nav-chat:hover:before{transform:translateX(150%) skewX(-20deg)}
+/* Editorial cards: premium product lighting, not artificial phone mockups. */
+.story-card,.model-card,.product-card{transform:translateZ(0);backface-visibility:hidden}
+.story-card{transition:transform .75s var(--md-ease),box-shadow .75s var(--md-ease)}
+.story-card:hover{transform:translateY(-5px);box-shadow:0 28px 65px rgba(6,30,13,.15)}
+.story-card:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(450px circle at var(--md-card-x,60%) var(--md-card-y,45%),rgba(150,255,179,.09),transparent 72%)}
+.story-card .story-copy{z-index:2}
+.model-card{transition:transform .6s var(--md-ease),box-shadow .6s var(--md-ease),border-color .4s}
+.model-card:hover{border-color:#9bdcb5;transform:translateY(-6px);box-shadow:0 24px 54px rgba(9,49,23,.13)}
+.model-card-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.33) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s var(--md-ease)}
+.model-card:hover .model-card-visual:after{transform:translateX(120%)}
+.model-card-visual img{transition:transform .9s var(--md-ease),filter .9s}
+.model-card:hover .model-card-visual img{transform:scale(1.055);filter:drop-shadow(0 20px 19px rgba(5,28,15,.19))}
+@media (prefers-reduced-motion:no-preference){
+ .reveal.md-observed{opacity:0;transform:translate3d(0,26px,0);transition:opacity .85s var(--md-ease),transform .85s var(--md-ease);transition-delay:var(--md-delay,0ms)}
+ .reveal.md-observed.show{opacity:1;transform:none}
+ .hero-content.reveal.md-observed{opacity:1;transform:none}
+}
+@media (hover:none),(pointer:coarse){.hero-frame:after,.story-card:after{display:none}.story-card:hover,.model-card:hover{transform:none}}
+@media (max-width:720px){.site-header.is-scrolled{box-shadow:0 5px 19px rgba(6,30,13,.07)}.hero-frame:after{opacity:.45}.story-card{transition:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.hero-frame:after{display:none}}
+
+/* MD PHONE - native cinematic fallback (no missing image/video assets) */
+.hero-background{background-image:radial-gradient(ellipse at 80% 45%,rgba(46,211,107,.22),transparent 40%),linear-gradient(125deg,#07130c,#16432c 65%,#05140a);filter:none}
+.cinema-bg{background-image:radial-gradient(ellipse at 75% 45%,rgba(51,255,131,.25),transparent 38%),linear-gradient(110deg,#04120a,#0b3822 60%,#04140b);filter:none}
+.md-motion-scene{position:absolute;inset:0;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 57% 42%,#236e47,#0c301e 50%,#06140c 100%)}
+.film-native-alt .md-motion-scene{background:radial-gradient(circle at 35% 45%,#16663b,#082d1b 48%,#05140b 100%)}
+.md-motion-scene:before{content:"";position:absolute;inset:-35%;background:repeating-linear-gradient(115deg,transparent,transparent 64px,rgba(210,255,221,.035) 65px,transparent 68px);animation:md-pan 14s ease-in-out infinite alternate}
+.md-motion-ring{position:absolute;width:min(85%,390px);aspect-ratio:1;left:51%;top:43%;border:1px solid rgba(183,255,204,.3);border-radius:50%;transform:translate(-50%,-50%);box-shadow:inset 0 0 68px rgba(30,188,93,.12),0 0 95px rgba(38,192,91,.12);animation:md-breathe 7s ease-in-out infinite alternate}
+.md-motion-ring:after{content:"";position:absolute;inset:24px;border:1px dashed rgba(195,255,216,.24);border-radius:50%;animation:md-rotate 25s linear infinite}
+.md-motion-orb{position:absolute;right:10%;top:15%;width:170px;height:170px;background:radial-gradient(circle,rgba(113,255,158,.4),transparent 71%);filter:blur(33px);animation:md-float 8s ease-in-out infinite alternate}
+.md-motion-mark{position:absolute;top:39%;left:51%;transform:translate(-50%,-50%);font:800 clamp(70px,9vw,120px)/1 Manrope,system-ui,sans-serif;letter-spacing:-.1em;color:rgba(238,255,243,.27);text-shadow:0 0 35px rgba(78,255,153,.2);user-select:none}
+.film-native-alt .md-motion-mark{font-size:clamp(36px,6vw,82px)}
+.film-native .film-content{z-index:2}
+@keyframes md-pan{to{translate:12% 0}}
+@keyframes md-breathe{to{transform:translate(-50%,-50%) scale(1.07);opacity:.75}}
+@keyframes md-rotate{to{transform:rotate(360deg)}}
+@keyframes md-float{to{transform:translate(-40px,35px);opacity:.5}}
+@media(max-width:720px){.md-motion-ring{width:255px}.md-motion-mark{font-size:74px}}
+@media(prefers-reduced-motion:reduce){.md-motion-scene:before,.md-motion-ring,.md-motion-ring:after,.md-motion-orb{animation:none!important}}
+
+/* Mobile modal usability: keep close button above large illustrative product photographs. */
+#productModal .modal-close{z-index:50;background:#f3fbf5;color:#163821;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+#productModal .modal-product-picture img{pointer-events:none}
+@media(max-width:560px){#productModal{padding-top:62px}#productModal .modal-close{top:13px;right:14px}}
+
+/* Authentic stock imagery — actual blue iPhone 13 Pro, never a generic render. */
+.product-art.real-stock{background:linear-gradient(145deg,#101a16,#26372d)}
+.product-art.real-stock img{height:100%;width:100%;max-width:100%;object-fit:contain;mix-blend-mode:normal}
+.product-art.real-stock .art-label{background:rgba(5,31,15,.83);color:#d9ffe4;border:1px solid rgba(153,255,190,.28)}
+.story-real-photo{position:absolute;z-index:1;right:6%;bottom:7%;width:46%;height:54%;object-fit:cover;object-position:center 38%;border-radius:19px;box-shadow:0 23px 58px rgba(10,33,19,.23);transform:rotate(5deg);transition:transform .7s var(--md-ease)}
+.story-light:hover .story-real-photo{transform:rotate(2deg) translateY(-5px)}
+.modal-real-gallery{min-width:0}
+.modal-product-picture.real-stock{background:linear-gradient(145deg,#0b1711,#203a29)}
+.modal-product-picture.real-stock img{width:100%;height:330px;max-height:330px;object-fit:contain;mix-blend-mode:normal}
+.modal-photo-thumbs{display:flex;gap:9px;margin-top:10px}
+.modal-photo-thumbs button{width:76px;height:76px;padding:3px;border:2px solid #e0e8e1;background:#f6f8f6;border-radius:12px;overflow:hidden;transition:border-color .2s}
+.modal-photo-thumbs button.active,.modal-photo-thumbs button:hover{border-color:#1d9c56}
+.modal-photo-thumbs img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.real-photo-note{display:block;color:#68786d;font-size:11px;line-height:1.5;margin-top:8px}
+@media(max-width:720px){.story-real-photo{width:56%;height:42%;right:8%;bottom:9%}.modal-product-picture.real-stock img{height:270px;max-height:270px}}
+@media(prefers-reduced-motion:reduce){.story-real-photo{transition:none}}
+
+/* Clear, non-fictional fallback when external product photography is unavailable. */
+.image-unavailable{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;color:#42614d;pointer-events:none;text-align:center;padding:25px}
+.image-unavailable strong{font:800 24px/1 Manrope,sans-serif;letter-spacing:-.07em}
+.image-unavailable span{font-size:11px;font-weight:700;color:#7c9381}
+.product-art.dark .image-unavailable{color:#d0ead8}
+.product-art.dark .image-unavailable span{color:#9abca4}
+.product-art img:not([hidden])~.image-unavailable{display:none}
+
+/* MD PHONE: curated, professional Apple-style product photography. */
+.hero-iphone{position:absolute;z-index:1;right:1%;top:10%;width:48%;height:78%;object-fit:contain;filter:drop-shadow(0 30px 60px rgba(0,0,0,.48));mask-image:linear-gradient(90deg,transparent,#000 18%);pointer-events:none}
+.hero-content{z-index:3;max-width:700px}.hero-content>p{max-width:420px}
+.hero-vignette{z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,7,4,.99),rgba(2,7,4,.94) 29%,rgba(2,7,4,.43) 72%,transparent)}
+.hero-feature{z-index:4}
+.product-art,.product-art.dark{background:linear-gradient(145deg,#fff,#f3f7f4);padding:12px}
+.product-art img,.product-art.dark img{width:100%;max-width:100%;height:97%;object-fit:contain;mix-blend-mode:normal;filter:drop-shadow(0 8px 10px rgba(11,41,19,.06))}
+.product-art .art-label,.product-art.dark .art-label{color:#215639;background:rgba(255,255,255,.91);border:1px solid #e3ede5}
+.story-real-photo.apple-studio-story{width:53%;height:47%;object-fit:contain;background:#fff;padding:12px;transform:rotate(-3deg);box-shadow:0 17px 47px rgba(8,31,14,.12)}
+.story-light:hover .story-real-photo.apple-studio-story{transform:rotate(0deg) translateY(-3px)}
+.modal-product-picture img{mix-blend-mode:normal}
+@media(max-width:900px){.hero-iphone{width:66%;right:-9%;opacity:.43}.hero-content{width:100%}}
+@media(max-width:600px){.hero-iphone{width:94%;right:-19%;top:14%;height:57%;opacity:.28}.story-real-photo.apple-studio-story{width:60%;height:38%}.product-art{height:245px;min-height:245px}}
+
+/* No illustrated or synthetic-looking phone placeholder when a photo is unavailable. */
+.product-art .phone-placeholder{display:none!important}
+.product-art:has(> img[hidden]):after{content:'Imagem profissional em atualização';position:absolute;inset:auto 16px 44%;text-align:center;color:#64786a;font:700 12px/1.4 'DM Sans',sans-serif;letter-spacing:.04em}
+
+/* MD PHONE / STUDIO EDITION — product-first, editorial, refined. */
+:root{--md-ink:#08130c;--md-forest:#0c5130;--md-silver:#e5ebe8;--md-studio-ease:cubic-bezier(.25,.8,.25,1)}
+body{background:#fbfcfa;color:#111b15}
+.ribbon{background:#08180f;color:#d5f1df}
+.site-header{background:rgba(252,254,252,.92);border-bottom:1px solid rgba(6,32,16,.09)}
+.logo img{filter:none}.logo span{color:#14834b}.logo b{color:#101a14}
+.nav-chat{background:#0c2a19;border:1px solid rgba(255,255,255,.07)}
+.nav-chat:hover{background:#145936}
+.section-title h2,.title-line h2{letter-spacing:-.077em;font-weight:750}
+.section-title em,.title-line h2 em{font-weight:650}
+.hero-frame{background:#07140d;min-height:710px}
+.hero-background{background-image:radial-gradient(circle at 72% 42%,#205e3c 0%,#0b2517 37%,#05100a 80%);filter:none;animation:none;transform:none;inset:0}
+.hero-graphic{opacity:.15}
+.hero-vignette{z-index:1;background:linear-gradient(90deg,rgba(2,8,5,.97) 0%,rgba(2,8,5,.82) 33%,rgba(2,8,5,.23) 70%,rgba(2,8,5,.12))}
+.hero-inner{min-height:710px}
+.hero-content{max-width:700px}
+.hero h1{font-size:clamp(68px,8.5vw,130px);letter-spacing:-.09em;line-height:1.01;font-weight:750;text-wrap:balance}
+.hero h1 em{color:#b5ffd1;text-shadow:none}
+.hero-content>p{color:#d4e7da;max-width:445px;font-size:16px;line-height:1.72}
+.hero-iphone{right:-.5%;top:7%;width:51%;height:86%;object-fit:contain;opacity:.98;mask-image:linear-gradient(90deg,transparent 0%,black 13%);filter:drop-shadow(0 20px 50px rgba(0,0,0,.22))}
+.hero .overline{color:#d1efd9;letter-spacing:.22em}
+.hero-buttons .button.lime{background:#b9ffd0;color:#052115}
+.hero-buttons .button.lime:hover{background:#d1ffdf}
+.hero-feature{border-color:rgba(195,255,214,.24)}
+.hero-micro{color:rgba(255,255,255,.47);letter-spacing:.15em}
+.trust-bar{border-radius:0 0 20px 20px}
+.category-nav{margin-top:22px;border-radius:20px;overflow:hidden;border:1px solid #e4ebe6;background:#fff}
+.category-nav a{transition:background .3s var(--md-ease)}
+.category-nav a:hover{background:#f2f8f3}
+.story-card{border-radius:24px;min-height:620px;box-shadow:0 18px 55px rgba(6,20,13,.075)}
+.story-dark{background:radial-gradient(circle at 85% 60%,#194a2f,#06140d 73%);color:#fff}
+.story-light{background:linear-gradient(145deg,#f4f9f4 5%,#deeae1 95%);color:#0d2416}
+.story-copy{padding:43px 43px;max-width:90%}
+.story-copy h3{font-weight:750;letter-spacing:-.08em;line-height:1.06}
+.story-copy p{line-height:1.65;max-width:300px}
+.story-dark .story-phone{width:75%;max-width:430px;height:61%;right:-8%;bottom:4%;mix-blend-mode:normal;opacity:1;filter:drop-shadow(0 16px 35px rgba(0,0,0,.27))}
+.story-light .story-real-photo.apple-studio-story{width:75%;height:55%;right:-7%;bottom:4%;background:transparent;box-shadow:none;padding:0;transform:rotate(-1deg);object-fit:contain;filter:drop-shadow(0 18px 24px rgba(13,34,17,.13))}
+.story-light:hover .story-real-photo.apple-studio-story{transform:rotate(0) translateY(-5px)}
+.story-dark .image-note{color:#bed6c5}
+.product-card{border-radius:22px;box-shadow:0 10px 38px rgba(10,40,20,.044);border-color:#e2eae5}
+.product-art,.product-art.dark{background:radial-gradient(circle at 50% 30%,#ffffff,#f3f6f4 80%);padding:15px;min-height:310px;height:310px}
+.product-art:before{display:none}
+.product-art img,.product-art.dark img{height:90%;max-width:88%;width:88%;object-fit:contain;mix-blend-mode:normal;filter:drop-shadow(0 12px 19px rgba(6,26,11,.1));transition:transform .7s var(--md-ease)}
+.product-card:hover .product-art img{transform:translateY(-6px) scale(1.04)}
+.product-art .art-label,.product-art.dark .art-label{color:#486a54;background:#f7faf7;border:1px solid #e2eae4;font-size:8px;letter-spacing:.1em}
+.product-name{letter-spacing:-.045em}
+.model-card{border-radius:20px;box-shadow:0 10px 25px rgba(10,44,23,.04)}
+.model-card-visual{background:linear-gradient(145deg,#f8fbf9,#e9f0eb);height:242px}
+.model-card-visual img{width:84%;height:83%;mix-blend-mode:normal;filter:drop-shadow(0 8px 18px rgba(13,37,22,.1))}
+.model-visual-label{color:#60806c;letter-spacing:.09em}
+.model-visual-fallback{color:#b6c9bb}
+.md-photo-studio{background:radial-gradient(circle at 50% 45%,#235337,#081d10 74%);isolation:isolate}
+.film-native-alt .md-photo-studio{background:radial-gradient(circle at 48% 40%,#254333,#08150e 76%)}
+.md-photo-studio:before{opacity:.17}
+.md-photo-studio .md-motion-ring{z-index:1;opacity:.23;left:50%;top:15%;width:56%}
+.md-photo-studio .studio-iphone-image{position:absolute;z-index:2;display:block;width:90%;height:80%;object-fit:contain;left:5%;top:0;filter:drop-shadow(0 18px 36px rgba(0,0,0,.36));animation:md-product-float 12s ease-in-out infinite alternate}
+.film-card:after{background:linear-gradient(0deg,rgba(2,10,5,.95),rgba(2,10,5,.46) 42%,transparent 88%)}
+.film-content{left:29px;bottom:27px;right:24px}
+.film-content strong{font-size:clamp(24px,2.8vw,38px);letter-spacing:-.06em}
+.film-content>span:last-child{color:#c1dfca}
+.cinema-bg{background-image:radial-gradient(ellipse at 78% 45%,#286e45,#0a2a18 46%,#031008 100%);filter:none;animation:none}
+.cinema-lights{animation:md-cinema-breathe 11s ease-in-out infinite alternate}
+@keyframes md-product-float{from{transform:translateY(5px) scale(.98)}to{transform:translateY(-9px) scale(1.02)}}
+@keyframes md-cinema-breathe{from{opacity:.35}to{opacity:.7}}
+@media(max-width:900px){
+.hero-iphone{right:-17%;top:15%;width:79%;height:72%;opacity:.43}
+.hero-vignette{background:linear-gradient(90deg,rgba(2,8,5,.97),rgba(2,8,5,.72) 61%,rgba(2,8,5,.4))}
+.hero-content{width:100%}
+.story-card{min-height:550px}
+.story-light .story-real-photo.apple-studio-story{right:-4%;bottom:4%;width:71%;height:50%}
+}
+@media(max-width:600px){
+.hero-frame,.hero-inner{min-height:660px}
+.hero-inner{padding-top:66px;padding-bottom:65px}
+.hero h1{font-size:clamp(58px,12vw,76px);line-height:1.04}
+.hero-content>p{max-width:350px;font-size:14px}
+.hero-iphone{width:110%;right:-43%;top:17%;height:65%;opacity:.28}
+.hero-vignette{background:linear-gradient(90deg,rgba(2,8,5,.97),rgba(2,8,5,.72))}
+.hero-buttons .button{min-height:52px}
+.story-card{min-height:520px;border-radius:19px}
+.story-copy{max-width:100%;padding:30px}
+.story-copy h3{font-size:clamp(45px,11vw,58px)}
+.story-dark .story-phone{width:84%;height:55%;right:-20%;bottom:3%}
+.story-light .story-real-photo.apple-studio-story{width:84%;height:52%;right:-20%;bottom:3%}
+.product-art,.product-art.dark{height:300px;min-height:300px}
+.film-card{aspect-ratio:1.1}
+.md-photo-studio .studio-iphone-image{height:77%;top:0}
+.film-content{left:22px;bottom:24px}
+}
+@media(prefers-reduced-motion:reduce){.md-photo-studio .studio-iphone-image,.cinema-lights{animation:none!important}}
+
+/* Graceful media failure: never show a broken thumbnail or fake device. */
+.md-photo-studio .studio-iphone-image[hidden],.hero-iphone[hidden],.story-real-photo[hidden]{display:none!important}
