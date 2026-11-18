@@ -1,0 +1,97 @@
+/* MD PHONE / retail refinement — 2026-11-18.
+   Product photography is illustrative; avoid oversized empty boxes.
+   Overrides the legacy theme without changing the existing assistant flow. */
+
+.md-retail-promises{background:#f5f8f4;color:#163624;border-bottom:1px solid #dfebe1}
+.md-promises-inner{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding-block:22px}
+.md-promise{display:flex;align-items:center;gap:13px;min-width:0;padding:10px 17px}
+.md-promise+.md-promise{border-left:1px solid #dbe9df}
+.md-promise-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;flex:none;background:#d7ecde;color:#20543a;font-size:24px;font-weight:650}
+.md-promise strong,.md-promise small{display:block}
+.md-promise strong{font-size:13px;font-weight:850;line-height:1.35}
+.md-promise small{font-size:11px;color:#637e6b;margin-top:5px;line-height:1.4}
+.md-retail-headline{padding-block:72px 5px;color:#f5fff7}
+.md-retail-headline-grid{display:flex;align-items:end;justify-content:space-between;gap:38px}
+.md-retail-kicker{font-size:11px;color:#a9dbb8;letter-spacing:.2em;font-weight:800}
+.md-retail-headline h2{font-size:clamp(45px,6.3vw,85px);line-height:1.02;letter-spacing:-.08em;margin:8px 0 15px}
+.md-retail-headline h2 em{font-style:normal;color:#aedfc2}
+.md-retail-headline-grid>p{max-width:330px;font-size:14px;line-height:1.7;color:#bfdbca;padding-bottom:13px}
+.md-family-card .md-family-art{isolation:isolate}
+.md-family-card .md-stock-badge,.md-family-card .md-condition-badge{
+  position:absolute;z-index:5;display:inline-flex;align-items:center;max-width:44%;
+  border-radius:99px;font-size:10px;font-weight:850;letter-spacing:.025em;
+  padding:8px 12px;line-height:1.25
+}
+.md-family-card .md-stock-badge{top:16px;left:16px;color:#28523b;background:#eff6f1;border:1px solid #d6e6da}
+.md-family-card .md-stock-badge.is-disponivel{color:#0e5e2e;background:#dbf8e5;border-color:#addec0}
+.md-family-card .md-stock-badge.is-esgotado{color:#fff;background:#485159;border-color:#485159}
+.md-family-card .md-condition-badge{top:16px;right:16px;color:#394e47;background:#fff9f0;border:1px solid #f0e7d8}
+.md-card-assurances{display:grid;gap:8px;border-top:1px solid rgba(213,237,220,.16);padding:13px 0 11px}
+.md-card-assurances>span{display:flex;align-items:center;gap:9px;color:#dcf1e1;font-size:11px;font-weight:700;line-height:1.35}
+.md-card-assurances>span>span{display:inline-grid;place-items:center;width:20px;height:20px;flex:none;background:#284b37;color:#c5f5d1;border-radius:7px;font-size:14px}
+/* Product-only gallery: make the iPhone fill its canvas rather than 210px. */
+#products.products{gap:30px!important}
+#products .md-family-card.product-card{background:#102a1e!important;box-shadow:0 17px 38px rgba(0,0,0,.12)!important;border:1px solid rgba(226,245,230,.13)!important;overflow:hidden}
+#products .md-family-card .md-family-art,
+#products .md-family-card .product-art,
+#products .md-family-card .product-art.dark{
+  height:390px!important;min-height:390px!important;
+  padding:30px 18px 21px!important;
+  background:linear-gradient(145deg,#e8eff0 0%,#f7faf7 74%)!important
+}
+#products .md-family-card:nth-child(3n+2) .md-family-art{background:linear-gradient(140deg,#e9ecff,#faf8ff 74%)!important}
+#products .md-family-card:nth-child(3n+3) .md-family-art{background:linear-gradient(140deg,#f6e7dc,#fffaf3 74%)!important}
+#products .md-family-card .md-family-art img.catalog-device-photo,
+#products .md-family-card .product-art img.catalog-device-photo{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center!important;
+  transform:scale(1.18)!important;filter:drop-shadow(0 18px 22px rgba(10,32,25,.13))!important;
+  mix-blend-mode:normal!important;transition:transform .5s ease!important
+}
+#products .md-family-card:hover .md-family-art img.catalog-device-photo:not([hidden]){transform:scale(1.23)!important}
+#products .md-family-card .art-label{z-index:5!important;bottom:10px!important;left:16px!important;font-size:8px!important}
+#products .md-family-card .product-body{padding:21px 23px 23px!important}
+#products .md-family-card .md-stock-badge.is-esgotado~img{opacity:.78!important}
+#destaques .story-card{border:0!important;border-radius:22px!important;overflow:hidden!important}
+#destaques .story-card img.story-phone,#destaques .story-card img.story-real-photo{width:89%!important;left:5.5%!important;height:69%!important;bottom:0!important;object-fit:contain!important}
+#destaques .story-card.story-dark{background:linear-gradient(147deg,#162d68,#6e8fdd)!important}
+#destaques .story-card.story-light{background:linear-gradient(147deg,#174b3a,#a0cf9b)!important}
+#destaques .story-card .story-copy{z-index:7!important}
+#destaques .story-card .image-note{z-index:7!important}
+.md-assistant-trigger{overflow:visible}
+.md-assistant-trigger:before{content:"";position:absolute;inset:-5px;border:2px solid rgba(122,228,169,.44);border-radius:100px;animation:mdAssistantGlow 3.6s ease-in-out infinite;pointer-events:none}
+.md-assistant-trigger .md-avatar-chip{animation:mdAssistantFloat 4.2s ease-in-out infinite;transform-origin:center}
+@keyframes mdAssistantGlow{0%,100%{opacity:.25;transform:scale(.98)}45%{opacity:1;transform:scale(1.055)}}
+@keyframes mdAssistantFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.md-assistant-intro img{box-shadow:0 0 0 7px rgba(160,237,188,.07)}
+.md-assistant-other[hidden]{display:none!important}
+.md-assistant-other{display:flex;flex-direction:column;gap:8px}
+.md-assistant-other input{width:100%;box-sizing:border-box;min-height:47px;padding:11px 12px;border-radius:11px;border:1px solid #527660;background:#193d2b;color:#f4faf3;font:500 14px/1.45 'DM Sans',sans-serif}
+.md-assistant-submit[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.md-assistant-note{color:#a3c3ac!important;font-size:11px!important;line-height:1.55!important;margin:8px 0!important}
+@media(max-width:1040px){
+ #products .md-family-card .md-family-art,#products .md-family-card .product-art{height:355px!important;min-height:355px!important}
+ .md-promises-inner{padding-block:12px}
+ .md-promise{padding:12px}
+}
+@media(max-width:740px){
+ .md-promises-inner{grid-template-columns:1fr;gap:0;padding-block:10px}
+ .md-promise{padding:10px 4px}
+ .md-promise+.md-promise{border-left:0;border-top:1px solid #dbe9df}
+ .md-retail-headline{padding-top:47px}
+ .md-retail-headline-grid{display:block}
+ .md-retail-headline-grid>p{max-width:500px;margin-top:14px}
+ #products .md-family-card .md-family-art,#products .md-family-card .product-art{height:370px!important;min-height:370px!important}
+ #destaques .story-card img.story-phone,#destaques .story-card img.story-real-photo{height:66%!important}
+}
+@media(max-width:420px){
+ #products .md-family-card .md-family-art,#products .md-family-card .product-art{height:323px!important;min-height:323px!important}
+ .md-family-card .md-stock-badge,.md-family-card .md-condition-badge{font-size:9px;padding:7px 9px;max-width:46%}
+ .md-retail-headline h2{font-size:43px}
+ .md-retail-headline{padding-inline:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .md-assistant-trigger:before,.md-assistant-trigger .md-avatar-chip{animation:none!important}
+ #products .md-family-card .md-family-art img.catalog-device-photo{transition:none!important}
+}
