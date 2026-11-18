@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,6 +23,29 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Incorporar o vídeo aprovado do mascote (uma única vez)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -s assets/md-assistant-live.mp4 ]]; then
+            echo "Vídeo permanente já está no repositório."
+            exit 0
+          fi
+          temp_file="$(mktemp)"
+          if curl -fsSL --max-time 45 --retry 2 'https://at.adobe.com/k7CCPonYG2D3B0hx' -o "$temp_file" && \
+             echo '806c905ddd0c9c473201f1a716806239339c6b61712c989e0330b08242910c6d  '"$temp_file" | sha256sum --check --status; then
+            cp "$temp_file" assets/md-assistant-live.mp4
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add assets/md-assistant-live.mp4
+            if ! git diff --cached --quiet; then
+              git commit -m 'MD Phone: instalar vídeo original do mascote animado'
+              git push origin HEAD:main || echo 'O vídeo ficará somente no artefato deste deploy até permitir escrita no repositório.'
+            fi
+          else
+            echo 'Vídeo indisponível; o mascote manterá o modo estático animado.'
+          fi
+          rm -f "$temp_file"
       - name: Validar os arquivos e preparar pasta pública
         run: |
           set -euo pipefail
@@ -34,6 +57,8 @@ jobs:
           test -s assets/mdphone-cinematic.mp4
           test -f index.html
           test -f md-storefront.css
+          test -f md-retail.css
+          test -f estoque.json
           test -f assets/md-assistant-avatar.svg
           grep -q 'md-storefront.css' index.html
           grep -q 'md-order.js' index.html
@@ -41,7 +66,7 @@ jobs:
           cp index.html app.js styles.css md-cinematic.css md-cinema.js premium-effects.css premium-effects.js \
             md-atelier.css md-atelier.js md-concierge.js md-editorial.css \
             md-order.js md-product-photo.css md-signature.css md-storefront.css \
-            _site/
+            md-retail.css estoque.json _site/
           cp -R assets _site/
           touch _site/.nojekyll
       - name: Configurar GitHub Pages para este repositório público
