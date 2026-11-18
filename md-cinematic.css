@@ -172,3 +172,26 @@ body{background:var(--md-ink)!important}
  .hero-iphone,.story-card img,.md-cinema-fallback img{animation:none!important;transform:none!important;translate:none!important}
  .md-family-card .product-art img{transition:none!important}
 }
+
+/* MD PHONE / automatic product showcase: visual-only, no play/pause UI. */
+.hero-frame .hero-iphone.hero-auto-slide{
+  opacity:0!important;
+  animation:md-hero-auto-cycle 21s linear infinite!important;
+  filter:drop-shadow(0 22px 42px rgba(0,0,0,.18))!important;
+  pointer-events:none!important;
+}
+.hero-frame .hero-iphone.hero-auto-slide[data-index="0"]{animation-delay:0s!important}
+.hero-frame .hero-iphone.hero-auto-slide[data-index="1"]{animation-delay:-7s!important}
+.hero-frame .hero-iphone.hero-auto-slide[data-index="2"]{animation-delay:-14s!important}
+@keyframes md-hero-auto-cycle{
+  0%,28%{opacity:1}
+  34%,94%{opacity:0}
+  100%{opacity:1}
+}
+@media(min-width:741px){
+  .hero-frame .hero-iphone.hero-auto-slide{right:0!important;width:49%!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-frame .hero-iphone.hero-auto-slide{animation:none!important;opacity:0!important}
+  .hero-frame .hero-iphone.hero-auto-slide[data-index="0"]{opacity:1!important}
+}
