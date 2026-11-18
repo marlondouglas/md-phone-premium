@@ -235,6 +235,29 @@ function variantMarkup(p,active,needsCondition){
    (p.color?'<span class="md-color-dot" style="--unit-color:'+swatchColor(p.color)+'"></span>':'<span class="md-condition-dot"></span>')+
    '<span>'+escapeHtml(label)+'</span></button>';
 }
+function stockStatus(p) {
+  return ['disponivel','esgotado'].includes(p.stockStatus) ? p.stockStatus : 'sob_consulta';
+}
+function stockLabel(p) {
+  return stockStatus(p)==='disponivel' ? 'Disponível' :
+    stockStatus(p)==='esgotado' ? 'Esgotado' : 'Disponibilidade sob consulta';
+}
+function warrantyLabel(p) {
+  return p.type==='lacrado' ? '12 meses de garantia' : '3 meses de garantia';
+}
+async function refreshInventoryStatus(){
+  try {
+    const response=await fetch('./estoque.json',{cache:'no-store'});
+    if(!response.ok)return;
+    const data=await response.json();
+    if(!data || typeof data!=='object' || Array.isArray(data))return;
+    MD.inventory.forEach(p=>{
+      const value=data[p.id];
+      if(['disponivel','esgotado','sob_consulta'].includes(value))p.stockStatus=value;
+    });
+    renderProducts();
+  } catch(err) { /* Mantém sob consulta quando o arquivo não estiver acessível. */ }
+}
 function productMarkup(family) {
  const p=activeUnit(family),photo=catalogPhoto(p),multiple=family.variants.length>1;
  const hasConditions=new Set(family.variants.map(v=>v.type)).size>1;
@@ -242,8 +265,9 @@ function productMarkup(family) {
  const color=escapeHtml(p.color||'Cor sob consulta'),capacity=escapeHtml(p.capacity||'Capacidade sob consulta');
  const battery=p.type==='lacrado'?'Lacrado · informação da loja':p.battery===null?'Bateria a confirmar':'Bateria '+p.battery+'%';
  const repairs=p.repairs.length?p.repairs.join(' · '):'Peças: confirmar histórico';
+  const availability=stockStatus(p);
  return '<article class="product-card md-family-card reveal show" data-family="'+escapeHtml(family.model)+'" aria-label="'+escapeHtml(p.model)+'">'+
- '<div class="product-art md-family-art"><span class="art-label">IMAGEM ILUSTRATIVA · '+escapeHtml(p.model.toUpperCase())+'</span>'+
+ '<div class="product-art md-family-art"><span class="md-stock-badge is-'+availability+'">'+escapeHtml(stockLabel(p))+'</span><span class="md-condition-badge">'+(p.type==='lacrado'?'NOVO · LACRADO':'SEMINOVO')+'</span><span class="art-label">IMAGEM ILUSTRATIVA · '+escapeHtml(p.model.toUpperCase())+'</span>'+
  '<img class="catalog-device-photo" src="'+escapeHtml(photo.src)+'" data-fallback="'+escapeHtml(photo.fallback)+'" alt="Foto ilustrativa do '+escapeHtml(p.model)+(p.color?' '+color:'')+'" loading="lazy" decoding="async" width="380" height="380" onerror="photoErrorFallback.call(this)">'+
  '<div class="image-unavailable" aria-hidden="true"><strong>MD PHONE</strong><span>Foto sob atualização</span></div></div>'+
  '<div class="product-body">'+
@@ -257,10 +281,11 @@ function productMarkup(family) {
  '<span>'+escapeHtml(battery)+'</span>'+
  (p.repairs.length?'<span class="md-unit-warning">Atenção: '+escapeHtml(repairs)+'</span>':'')+
  '</div>'+
- '<p class="md-price-request">Preço e disponibilidade <strong>sob consulta</strong></p>'+
+ '<div class="md-card-assurances" aria-label="Garantia e entrega"><span><span aria-hidden="true">◇</span> '+warrantyLabel(p)+'</span><span><span aria-hidden="true">↗</span> Enviamos para todo o Brasil</span></div>'+
+  '<p class="md-price-request">Valor <strong>sob consulta</strong></p>'+
  '<div class="product-actions">'+
  '<button type="button" class="product-button" data-product="'+escapeHtml(p.id)+'">Ver ficha</button>'+
- '<button type="button" class="md-buy-button" data-order="'+escapeHtml(p.id)+'">Consultar no WhatsApp <span aria-hidden="true">↗</span></button></div>'+
+ '<button type="button" class="md-buy-button" data-order="'+escapeHtml(p.id)+'">'+(availability==='esgotado'?'Consultar reposição':'Consultar no WhatsApp')+' <span aria-hidden="true">↗</span></button></div>'+
  '<div class="md-secondary-actions"><button type="button" class="favorite-button'+(fav?' is-active':'')+'" data-favorite="'+escapeHtml(p.id)+'" aria-pressed="'+String(fav)+'" aria-label="Favorito '+escapeHtml(family.model)+'">♡ Favoritar</button>'+
  '<button type="button" class="compare-item'+(cmp?' is-active':'')+'" data-compare="'+escapeHtml(p.id)+'" aria-pressed="'+String(cmp)+'">Comparar</button></div>'+
  '</div></article>';
@@ -295,6 +320,8 @@ function showProduct(id) {
   const imageAlt='Foto ilustrativa de catálogo de '+p.model+(p.color?' na cor '+p.color:'')+'. Não é a unidade usada à venda.';
   const data=[
     ['Categoria',describe(p)],
+    ['Disponibilidade',stockLabel(p)],
+    ['Garantia MD PHONE',warrantyLabel(p)],
     ['Conservação',cond(p)],
     ['Cor',p.color||'A confirmar'],
     ['Armazenamento',p.capacity||'A confirmar'],
@@ -309,7 +336,7 @@ function showProduct(id) {
     '<h3 class="md-spec-title">Condição da unidade</h3><ul>'+data.map(([a,b])=>'<li><span>'+escapeHtml(a)+'</span><b>'+escapeHtml(b)+'</b></li>').join('')+'</ul>'+ 
     '<h3 class="md-spec-title">Especificações do modelo</h3><ul class="md-tech-table">'+technicalRows(p).map(([a,b])=>'<li><span>'+escapeHtml(a)+'</span><b>'+escapeHtml(b)+'</b></li>').join('')+'</ul>'+ 
     (MD_TECH[p.id]?'<a class="md-spec-source" href="'+escapeHtml(MD_TECH[p.id].source)+'" target="_blank" rel="noopener noreferrer">Conferir especificações oficiais na Apple ↗</a>':'')+
-    '<p class="modal-warning">Solicite fotos atuais da unidade e confirme bateria, marcas, peças, preço, garantia e disponibilidade antes da compra.</p>'+
+    '<p class="modal-warning">Enviamos para todo o Brasil. Consulte frete, cobertura da garantia, fotos atuais, preço, estado do aparelho e disponibilidade antes da compra.</p>'+
     '<div class="modal-actions"><button class="button lime" id="modalConsult" type="button">Solicitar compra / valor ↗</button>'+
     '<button class="button modal-share" id="modalShare" type="button">Compartilhar ficha ↗</button></div></div></div>';
   $('#productModal').showModal();
@@ -370,7 +397,7 @@ function playVideo() { notify('Vídeos originais da loja serão disponibilizados
 function closeVideo(){const video=$('#videoMount video');if(video)video.pause();$('#videoModal').close();$('#videoMount').innerHTML='';}
 function init(){
   $('#year').textContent=new Date().getFullYear();
-  renderProducts();renderGenerations();
+  renderProducts();renderGenerations();refreshInventoryStatus();
   const initialProduct=new URLSearchParams(window.location.search).get('produto');
   if(initialProduct&&MD.inventory.some(item=>item.id===initialProduct))showProduct(initialProduct);
   const modelSearchInput=$('#modelSearch');if(modelSearchInput)modelSearchInput.addEventListener('input',e=>{modelSearch=e.target.value;renderGenerations();});
