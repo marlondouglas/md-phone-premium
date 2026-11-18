@@ -173,3 +173,51 @@
 @media(prefers-reduced-motion:reduce){
  .md-assistant-trigger .md-avatar-chip{animation:none!important}
 }
+
+/* MD PHONE / Mascote real em movimento: MP4 silencioso; imagem animada como fallback. */
+.md-assistant-trigger .md-mascot-stage{
+  display:block!important;position:relative!important;isolation:isolate;
+  width:86px!important;height:92px!important;min-width:86px!important;flex:none!important;
+  overflow:visible!important;background:transparent!important
+}
+.md-assistant-trigger .md-mascot-stage>.md-avatar-chip,
+.md-assistant-trigger .md-mascot-stage>.md-mascot-video{
+  position:absolute!important;inset:0!important;
+  display:block!important;width:100%!important;height:100%!important;
+  max-height:none!important;max-width:none!important;min-width:0!important;
+  border:0!important;border-radius:0!important;padding:0!important;
+  background:transparent!important;object-position:center center!important
+}
+.md-assistant-trigger .md-mascot-stage>.md-avatar-chip{
+  object-fit:contain!important;
+  opacity:1!important;
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.2));
+  animation:mdAssistantFloat 4s ease-in-out infinite!important;
+  transition:opacity .25s
+}
+.md-assistant-trigger .md-mascot-stage>.md-mascot-video{
+  object-fit:contain!important;
+  opacity:0!important;pointer-events:none!important;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 85%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 85%,transparent 100%);
+  transition:opacity .3s
+}
+.md-assistant-trigger.md-mascot-is-playing .md-mascot-stage>.md-mascot-video{opacity:1!important}
+.md-assistant-trigger.md-mascot-is-playing .md-mascot-stage>.md-avatar-chip{
+  opacity:0!important;animation:none!important
+}
+#mobileAssistantLink{display:flex!important;align-items:center;justify-content:center;
+  background:#b8e7c5!important;color:#0d3520!important;font-weight:800!important;
+  border-radius:13px;padding:12px 18px!important;margin:8px 14px 14px!important}
+@media(max-width:520px){
+  .md-assistant-trigger .md-mascot-stage{
+    width:68px!important;height:76px!important;min-width:68px!important
+  }
+  #destaques .story-card img.story-phone,#destaques .story-card img.story-real-photo{
+    height:60%!important;bottom:0!important
+  }
+}
+@media(prefers-reduced-motion:reduce){
+ .md-assistant-trigger .md-mascot-stage>.md-avatar-chip{animation:none!important}
+ .md-assistant-trigger .md-mascot-stage>.md-mascot-video{display:none!important}
+}
