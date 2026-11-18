@@ -121,13 +121,8 @@
   <p>Escolha o que procura. O assistente prepara sua solicitação e leva você diretamente ao WhatsApp da MD PHONE.</p>
   <form id="assistantForm">
     <label for="assistantModel">Qual iPhone você procura?</label>
-    <select id="assistantModel" name="model">
- <option value="Quero uma recomendação">Ainda não sei — quero orientação</option>
- <option>iPhone XR</option><option>iPhone 11</option><option>iPhone 12 Pro Max</option>
- <option>iPhone 13 Pro Max</option><option>iPhone 14 Pro Max</option><option>iPhone 15 Pro Max</option>
- <option>iPhone 18</option><option>iPhone 18 Pro Max</option>
- <option value="Outro modelo">Outro modelo</option>
- </select>
+    <select id="assistantModel" name="model"><option value="Quero uma recomendação">Ainda não sei — quero orientação</option><option>iPhone XR</option><option>iPhone 11</option><option>iPhone 11 Pro</option><option>iPhone 11 Pro Max</option><option>iPhone 12</option><option>iPhone 12 Pro</option><option>iPhone 12 Pro Max</option><option>iPhone 13</option><option>iPhone 13 Pro</option><option>iPhone 13 Pro Max</option><option>iPhone 14</option><option>iPhone 14 Pro</option><option>iPhone 14 Pro Max</option><option>iPhone 15</option><option>iPhone 15 Pro</option><option>iPhone 15 Pro Max</option><option>iPhone 16</option><option>iPhone 16 Pro</option><option>iPhone 16 Pro Max</option><option>iPhone 17</option><option>iPhone 17 Pro</option><option>iPhone 17 Pro Max</option><option>iPhone 18</option><option>iPhone 18 Pro</option><option>iPhone 18 Pro Max</option><option value="Outro modelo">Outro modelo</option></select>
+    <div class="md-assistant-other" id="assistantOtherWrap" hidden><label for="assistantOtherModel">Qual modelo?</label><input id="assistantOtherModel" type="text" maxlength="80" placeholder="Digite o modelo desejado" autocomplete="off"></div>
  <div class="md-assistant-other" id="assistantOtherWrap" hidden><label for="assistantOtherModel">Qual outro modelo?</label><input id="assistantOtherModel" type="text" autocomplete="off" maxlength="65" placeholder="Ex.: iPhone 16 Pro ou iPhone Air"></div>
     <div class="md-assistant-fields">
       <div><label for="assistantBudget">Qual faixa de valor?</label><select id="assistantBudget" name="budget"><option>Quero consultar preços</option><option>Até R$ 2.000</option><option>R$ 2.000 a R$ 3.000</option><option>R$ 3.000 a R$ 4.500</option><option>Acima de R$ 4.500</option></select></div>
@@ -137,11 +132,22 @@
   <div><label for="assistantPurchase">O que você deseja?</label><select id="assistantPurchase" name="purchase"><option value="Apenas compra">Apenas comprar</option><option value="Tenho aparelho na troca">Tenho aparelho na troca</option></select></div>
   <div><label for="assistantTiming">Quando pretende comprar?</label><select id="assistantTiming" name="timing"><option>Estou pesquisando</option><option>Quero comprar agora</option><option>Nos próximos dias</option></select></div>
  </div>
- <label for="assistantNotes">Algum detalhe importante? (opcional)</label><textarea id="assistantNotes" rows="3" maxlength="360" placeholder="Se for trocar: modelo do seu aparelho, saúde da bateria (%), marcas ou reparos. Ou informe a cor/capacidade desejada."></textarea>
+ <label for="assistantStage">Você já pretende comprar?</label>
+    <select id="assistantStage"><option>Quero comprar agora</option><option>Estou pesquisando opções</option><option>Quero receber uma recomendação</option></select>
+    <label for="assistantIntent">Como será a compra?</label>
+    <select id="assistantIntent"><option value="Compra sem troca">Apenas comprar</option><option value="Tenho aparelho para troca">Tenho um iPhone para dar na troca</option></select>
+    <div class="md-assistant-trade" id="assistantTradeFields" hidden>
+      <label for="assistantTradeModel">Qual aparelho você tem para trocar?</label>
+      <input id="assistantTradeModel" type="text" maxlength="90" placeholder="Ex.: iPhone 13 Pro 128 GB">
+      <div class="md-assistant-trade-grid"><div><label for="assistantTradeBattery">Bateria (se souber)</label><input id="assistantTradeBattery" type="text" maxlength="12" placeholder="Ex.: 85%"></div><div><label for="assistantTradeCondition">Condição do aparelho</label><select id="assistantTradeCondition"><option>Sem detalhes conhecidos</option><option>Com marcas de uso</option><option>Já passou por reparo</option><option>Tem defeitos</option></select></div></div>
+      <label for="assistantTradeNotes">Detalhes da troca (opcional)</label>
+      <textarea id="assistantTradeNotes" rows="2" maxlength="240" placeholder="Tela, bateria trocada, trincos, funcionamento ou acessórios"></textarea>
+    </div>
+    <label for="assistantNotes">Algum detalhe importante? (opcional)</label><textarea id="assistantNotes" rows="3" maxlength="360" placeholder="Se for trocar: modelo do seu aparelho, saúde da bateria (%), marcas ou reparos. Ou informe a cor/capacidade desejada."></textarea>
  <p class="md-assistant-note">As respostas organizam seu atendimento; o WhatsApp abre com a mensagem preenchida para você confirmar o envio.</p>
     <a class="md-assistant-submit" id="assistantWhatsApp" href="https://wa.me/5533987044866" target="_blank" rel="noopener noreferrer">Continuar pelo WhatsApp <span aria-hidden="true">↗</span></a>
   </form>
-  <small>Assistente de escolha guiada. A equipe confirma preço, estoque, fotos e condição do aparelho no WhatsApp.</small>
+  <small>Assistente de compra guiada. O WhatsApp abre com a mensagem preenchida; o cliente confirma o envio. Estoque e preço dependem da loja.</small>
 </dialog>
 <dialog class="md-order-modal" id="orderModal" aria-labelledby="orderTitle">
 <div class="md-order-top"><span>MD PHONE / SOLICITAÇÃO DE ORÇAMENTO</span><button id="orderClose" type="button" aria-label="Fechar pedido">×</button></div>
