@@ -21,7 +21,7 @@ const expectedFiles = [
 for (const filename of expectedFiles) {
  assert(fs.existsSync(path.join(root, filename)), 'Arquivo ausente: '+filename);
 }
-const ids=[...html.matchAll(/\\bid=\"([^\"]+)\"/g)].map(m=>m[1]);
+const ids=[...html.matchAll(/\bid=\"([^\"]+)\"/g)].map(m=>m[1]);
 assert.equal(new Set(ids).size, ids.length, 'IDs repetidos no HTML');
 for (const required of ['assistantTrigger','assistantModal','assistantOtherModel',
  'assistantIntent','assistantStage','assistantTradeFields','assistantWhatsApp',
@@ -37,7 +37,7 @@ assert(html.includes('Enviamos para todo o Brasil'), 'Entrega nacional não indi
 assert(!html.includes('Xiaomi'), 'Catálogo contém marca incompatível com o escopo');
 assert(assistants.includes('buildMessage()'), 'Mensagem de WhatsApp não construída');
 assert(assistants.includes('assistantTradeBattery'), 'Troca sem bateria');
-const idsInApp = [...app.matchAll(/\\{id:'([^']+)',model:/g)].map(m=>m[1]);
+const idsInApp = [...app.matchAll(/\{id:'([^']+)',model:/g)].map(m=>m[1]);
 assert(idsInApp.length>5, 'Estoque inicial inesperadamente vazio');
 for (const id of idsInApp) assert(id in stock, 'ID sem disponibilidade: '+id);
 for (const [id,status] of Object.entries(stock)) {
