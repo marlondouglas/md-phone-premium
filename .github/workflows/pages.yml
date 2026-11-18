@@ -29,13 +29,16 @@ jobs:
           node --check app.js
           node --check md-order.js
           node --check md-concierge.js
+          node --check md-cinema.js
+          test -f md-cinematic.css
+          test -s assets/mdphone-cinematic.mp4
           test -f index.html
           test -f md-storefront.css
           test -f assets/md-assistant-avatar.svg
           grep -q 'md-storefront.css' index.html
           grep -q 'md-order.js' index.html
           mkdir -p _site
-          cp index.html app.js styles.css premium-effects.css premium-effects.js \
+          cp index.html app.js styles.css md-cinematic.css md-cinema.js premium-effects.css premium-effects.js \
             md-atelier.css md-atelier.js md-concierge.js md-editorial.css \
             md-order.js md-product-photo.css md-signature.css md-storefront.css \
             _site/
