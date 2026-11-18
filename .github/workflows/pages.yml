@@ -1,0 +1,54 @@
+name: MD PHONE — publicar GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: md-phone-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar somente a MD PHONE
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar os arquivos e preparar pasta pública
+        run: |
+          set -euo pipefail
+          node --check app.js
+          node --check md-order.js
+          node --check md-concierge.js
+          test -f index.html
+          test -f md-storefront.css
+          test -f assets/md-assistant-avatar.svg
+          grep -q 'md-storefront.css' index.html
+          grep -q 'md-order.js' index.html
+          mkdir -p _site
+          cp index.html app.js styles.css premium-effects.css premium-effects.js \
+            md-atelier.css md-atelier.js md-concierge.js md-editorial.css \
+            md-order.js md-product-photo.css md-signature.css md-storefront.css \
+            _site/
+          cp -R assets _site/
+          touch _site/.nojekyll
+      - name: Configurar GitHub Pages para este repositório público
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Enviar site estático MD PHONE
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publicar GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
