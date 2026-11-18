@@ -18,8 +18,8 @@
 <header class="site-header"><div class="nav-wrap">
  <a href="#inicio" class="logo" aria-label="MD PHONE — início"><img class="brand-mark-original" src="assets/md-phone-brand-mark.svg" alt="" width="46" height="46"><span>MD <b>PHONE</b></span></a>
  <nav class="desktop-nav" aria-label="Menu principal"><a href="#vitrine">iPhones</a><a href="#destaques">Destaques</a><a href="#cinema">Vídeo</a><a href="#acessorios">AirPods</a><a href="#relogios">Apple Watch</a></nav>
- <div class="nav-right"><button type="button" id="headerContact" class="nav-chat">WhatsApp <span>↗</span></button><button id="mobileTrigger" class="mobile-trigger" aria-label="Abrir navegação" aria-expanded="false"><i></i><i></i></button></div>
-</div><nav class="mobile-nav" id="mobileNav" aria-label="Navegação para celular"><a href="#vitrine">iPhones</a><a href="#destaques">Destaques</a><a href="#linha">Modelos</a><a href="#relogios">Apple Watch</a><a href="#acessorios">AirPods</a><a href="#guia">Padrão MD</a><a class="mobile-whatsapp-link" href="https://wa.me/5533987044866?text=Ol%C3%A1%21%20Gostaria%20de%20atendimento%20da%20MD%20PHONE." target="_blank" rel="noopener noreferrer">Atendimento pelo WhatsApp ↗</a></nav></header>
+ <div class="nav-right"><button type="button" id="headerAssistant" class="nav-chat" aria-label="Abrir Assistente MD">Assistente MD <span>↗</span></button><button id="mobileTrigger" class="mobile-trigger" aria-label="Abrir navegação" aria-expanded="false"><i></i><i></i></button></div>
+</div><nav class="mobile-nav" id="mobileNav" aria-label="Navegação para celular"><a href="#vitrine">iPhones</a><a href="#destaques">Destaques</a><a href="#linha">Modelos</a><a href="#relogios">Apple Watch</a><a href="#acessorios">AirPods</a><a href="#guia">Padrão MD</a><a class="mobile-whatsapp-link" href="#assistente" id="mobileAssistantLink">Assistente MD ↗</a></nav></header>
 <main id="inicio">
 <section class="hero">
  <div class="hero-frame">
@@ -121,12 +121,24 @@
   <p>Escolha o que procura. O assistente prepara sua solicitação e leva você diretamente ao WhatsApp da MD PHONE.</p>
   <form id="assistantForm">
     <label for="assistantModel">Qual iPhone você procura?</label>
-    <select id="assistantModel" name="model"><option value="Quero uma recomendação">Ainda não sei — quero orientação</option><option>iPhone 13</option><option>iPhone 13 Pro</option><option>iPhone 14 Pro</option><option>iPhone 14 Pro Max</option><option>iPhone 17 Pro Max</option><option>iPhone 18 Pro Max</option><option value="Outro modelo">Outro modelo</option></select>
+    <select id="assistantModel" name="model">
+ <option value="Quero uma recomendação">Ainda não sei — quero orientação</option>
+ <option>iPhone XR</option><option>iPhone 11</option><option>iPhone 12 Pro Max</option>
+ <option>iPhone 13 Pro Max</option><option>iPhone 14 Pro Max</option><option>iPhone 15 Pro Max</option>
+ <option>iPhone 18</option><option>iPhone 18 Pro Max</option>
+ <option value="Outro modelo">Outro modelo</option>
+ </select>
+ <div class="md-assistant-other" id="assistantOtherWrap" hidden><label for="assistantOtherModel">Qual outro modelo?</label><input id="assistantOtherModel" type="text" autocomplete="off" maxlength="65" placeholder="Ex.: iPhone 16 Pro ou iPhone Air"></div>
     <div class="md-assistant-fields">
       <div><label for="assistantBudget">Qual faixa de valor?</label><select id="assistantBudget" name="budget"><option>Quero consultar preços</option><option>Até R$ 2.000</option><option>R$ 2.000 a R$ 3.000</option><option>R$ 3.000 a R$ 4.500</option><option>Acima de R$ 4.500</option></select></div>
       <div><label for="assistantCondition">Preferência de aparelho</label><select id="assistantCondition" name="condition"><option>Sem preferência</option><option>Seminovo</option><option>Lacrado</option></select></div>
     </div>
-    <label for="assistantNotes">Algum detalhe importante? (opcional)</label><textarea id="assistantNotes" rows="2" maxlength="240" placeholder="Cor, capacidade, bateria ou uso principal"></textarea>
+    <div class="md-assistant-fields">
+  <div><label for="assistantPurchase">O que você deseja?</label><select id="assistantPurchase" name="purchase"><option value="Apenas compra">Apenas comprar</option><option value="Tenho aparelho na troca">Tenho aparelho na troca</option></select></div>
+  <div><label for="assistantTiming">Quando pretende comprar?</label><select id="assistantTiming" name="timing"><option>Estou pesquisando</option><option>Quero comprar agora</option><option>Nos próximos dias</option></select></div>
+ </div>
+ <label for="assistantNotes">Algum detalhe importante? (opcional)</label><textarea id="assistantNotes" rows="3" maxlength="360" placeholder="Se for trocar: modelo do seu aparelho, saúde da bateria (%), marcas ou reparos. Ou informe a cor/capacidade desejada."></textarea>
+ <p class="md-assistant-note">As respostas organizam seu atendimento; o WhatsApp abre com a mensagem preenchida para você confirmar o envio.</p>
     <a class="md-assistant-submit" id="assistantWhatsApp" href="https://wa.me/5533987044866" target="_blank" rel="noopener noreferrer">Continuar pelo WhatsApp <span aria-hidden="true">↗</span></a>
   </form>
   <small>Assistente de escolha guiada. A equipe confirma preço, estoque, fotos e condição do aparelho no WhatsApp.</small>
