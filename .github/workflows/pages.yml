@@ -30,6 +30,7 @@ jobs:
           node --check md-order.js
           node --check md-concierge.js
           node --check md-cinema.js
+          node tests/site-smoke.cjs
           test -f md-cinematic.css
           test -s assets/mdphone-cinematic.mp4
           test -s assets/md-assistant-live.mp4
