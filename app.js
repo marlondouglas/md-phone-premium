@@ -408,7 +408,7 @@ function init(){
   $('#compareGo').addEventListener('click',openCompare);
   $('#compareClear').addEventListener('click',()=>{compared=[];renderProducts();notify('Comparação limpa');});
   $('#compareClose').addEventListener('click',()=>$('#compareModal').close());
-  $('#headerContact').addEventListener('click',()=>contact());
+  $('#headerContact')?.addEventListener('click',()=>contact());
   $('#copyText').addEventListener('click',copyText);
   $('#contactText').addEventListener('input',()=>{if(MD.whatsapp)$('#whatsapp').href='https://wa.me/'+encodeURIComponent(MD.whatsapp)+'?text='+encodeURIComponent($('#contactText').value);});
   $('#contactClose').addEventListener('click',()=>$('#contactModal').close());
