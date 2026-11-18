@@ -45,6 +45,37 @@
       if(!modal.open)modal.showModal();
       $('assistantModel').focus({preventScroll:true});
     });
+    const header=$('headerAssistant'),mobile=$('mobileAssistantLink');
+    function openFromNavigation(event){
+      if(event)event.preventDefault();
+      const mobileNav=$('mobileNav');
+      mobileNav?.classList.remove('open');
+      $('mobileTrigger')?.setAttribute('aria-expanded','false');
+      trigger.click();
+    }
+    header?.addEventListener('click',openFromNavigation);
+    mobile?.addEventListener('click',openFromNavigation);
+    window.MD_ASSISTANT_OPEN=()=>trigger.click();
+    const video=trigger.querySelector('.md-mascot-video');
+    if(video){
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+      function stop(){trigger.classList.remove('md-mascot-is-playing');}
+      video.addEventListener('playing',()=>{
+        if(reduced.matches){video.pause();stop();return;}
+        trigger.classList.add('md-mascot-is-playing');
+      });
+      video.addEventListener('error',stop);
+      video.addEventListener('pause',stop);
+      if(reduced.matches)video.pause();
+      const tryPlay=()=>{
+        if(document.hidden||reduced.matches){video.pause();stop();return;}
+        const task=video.play();
+        if(task?.catch)task.catch(stop);
+      };
+      if(reduced.addEventListener)reduced.addEventListener('change',tryPlay);
+      document.addEventListener('visibilitychange',tryPlay);
+      tryPlay();
+    }
     $('assistantClose').addEventListener('click',()=>modal.close());
     form.addEventListener('submit',e=>e.preventDefault());
     form.addEventListener('input',updateForm);
