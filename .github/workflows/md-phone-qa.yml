@@ -103,17 +103,21 @@ jobs:
              const ratio=photoAudit[id]?.visual_height_ratio||0;
              console.log(device,'foto ocuppancy',id,ratio);
              if(ratio<0.57)errors.push(device+': foto do '+id+' ocupa apenas '+Math.round(ratio*100)+'% da altura da imagem');
+              const dims=photoAudit[id]?.photo_dimensions||[];
+              if(dims.length===2&&dims[0]>dims[1]*1.15)errors.push(device+': fotografia de '+id+' é horizontal e reduz a escala do aparelho no card vertical');
             }
             const photos=await page.locator('.product-card img').evaluateAll(nodes=>nodes.map(img=>({loaded:img.complete&&img.naturalWidth>150,src:img.currentSrc})));
             const loaded=photos.filter(p=>p.loaded).length;
             console.log(device,'fotos carregadas:',loaded,'de',photos.length,'falhas:',JSON.stringify(photos.filter(p=>!p.loaded).slice(0,6)));
-            if(loaded<9)errors.push(device+': menos de 9 fotos de produto carregadas (encontradas '+loaded+')');
+            if(loaded!==14)errors.push(device+': todos os 14 produtos precisam ter fotos carregadas; encontrados '+loaded);
             const buyCount=await page.locator('.product-card a.button.primary').count();
             if(buyCount!==14)errors.push(device+': esperado botão Comprar em cada um dos 14 aparelhos, encontrado '+buyCount);
             const buyUrl=await page.locator('.product-card a.button.primary').first().getAttribute('href');
             if(!buyUrl?.startsWith('https://wa.me/5533987044866?text='))errors.push(device+': Comprar não abre a loja no WhatsApp');
             if(await page.locator('.assistant-launcher img').count()!==1)errors.push(device+': mascote original ausente');
-            if(await page.locator('.studio-story').count()!==3)errors.push(device+': deveriam existir três cards de vídeos');
+            if(await page.locator('.studio-story').count()!==3)errors.push(device+': deveriam existir três cards de apresentações');
+            if(await page.locator('.studio-screen video').count()!==0)errors.push(device+': animação antiga não deve ser reproduzida');
+            if(await page.locator('body').innerText().then(s=>s.includes('Studio')))errors.push(device+': nomenclatura Studio ainda visível');
             const storyMedia=await page.evaluate(()=>window.MD_STORIES||{});
             console.log(device,'studio stories:',JSON.stringify(storyMedia));
             const availableStories=Object.values(storyMedia).filter(Boolean).length;
@@ -131,6 +135,11 @@ jobs:
             await page.locator('[data-filter="all"]').click();
             if(await page.locator('.product-card:visible').count()!==14)errors.push(device+': filtro Todos não restaurou os 14');
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-catalog.png',fullPage:true,animations:'disabled'});
+            for(const card of await page.locator('.product-card').all()){
+              const id=await card.locator('[data-product]').first().getAttribute('data-product');
+              await card.scrollIntoViewIfNeeded();
+              await card.screenshot({path:'qa-snapshots/elevate-'+device+'-'+id+'.png',animations:'disabled'});
+            }
             await page.locator('[data-product="iphone-11"]').click();
             if(!await page.locator('#productDialog').evaluate(e=>e.open))errors.push(device+': detalhe não abriu');
             if(!await page.locator('#detailPrice').innerText().then(t=>t.includes('1.200')))errors.push(device+': preço do iPhone 11 64GB incorreto');
