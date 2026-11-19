@@ -41,6 +41,16 @@ jobs:
           python3 -m venv /tmp/md-photo-env
           /tmp/md-photo-env/bin/python -m pip install --quiet pillow
           /tmp/md-photo-env/bin/python scripts/clean-product-photography.py
+          node <<'PHOTO_CHECK'
+          const fs=require('fs');
+          const s=fs.readFileSync('_site/md-photo-manifest.js','utf8');
+          const map=JSON.parse(s.slice('window.MD_PHOTOS = '.length).trim().replace(/;$/,''));
+          const phones=Object.entries(map).filter(([key])=>key.startsWith('iphone-'));
+          const edited=phones.filter(([key,p])=>p.endsWith('-studio.png'));
+          console.log('Photo QA:',JSON.stringify({downloaded:phones.length,transparentOrCropped:edited.length,
+            iphone14pro:map['iphone-14-pro'],iphone15pro:map['iphone-15-pro']}));
+          if(!edited.length)throw Error('Nenhuma fotografia de iPhone foi preparada sem fundo branco');
+          PHOTO_CHECK
           python3 -m http.server 8765 --directory _site >/tmp/md-phone-server.log 2>&1 &
           node <<'NODE'
           const {chromium}=require('playwright');
