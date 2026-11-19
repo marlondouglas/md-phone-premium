@@ -6,11 +6,11 @@
 const D=window.MD_UNIVERSE;if(!D||!D.categories||!D.products)return;
 const WA='5533987044866';
 const PHOTO={
- iphone:'https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg',
- mac:'https://www.apple.com/v/homepage/images/macbook-pro-proled-xdr/a/hero_macbook_pro_proled_xdr_preorder__df38n593sxg2_large.jpg',
- ipad:'https://www.apple.com/v/homepage/images/ipad-mini/a/promo_ipad_mini_a20_announce__efc6vmmxg58i_large.jpg',
- watch:'https://www.apple.com/br/homepage/built/promos/26_apple-watch-series-12_10/images/promo_apple_watch_series_12__gnlprtt8526a_large.jpg',
- airpods:'https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg',
+ iphone:window.MD_PHOTOS?.['hero::iphone']||'https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg',
+ mac:window.MD_PHOTOS?.['hero::mac']||'https://www.apple.com/v/homepage/images/macbook-pro-proled-xdr/a/hero_macbook_pro_proled_xdr_preorder__df38n593sxg2_large.jpg',
+ ipad:window.MD_PHOTOS?.['hero::ipad']||'https://www.apple.com/v/homepage/images/ipad-mini/a/promo_ipad_mini_a20_announce__efc6vmmxg58i_large.jpg',
+ watch:window.MD_PHOTOS?.['hero::watch']||'https://www.apple.com/br/homepage/built/promos/26_apple-watch-series-12_10/images/promo_apple_watch_series_12__gnlprtt8526a_large.jpg',
+ airpods:window.MD_PHOTOS?.['hero::airpods']||'https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg',
  casa:'https://bfasset.costco-static.com/U447IH35/as/r5k55cb7n2g5ps96f2kmpfg/8897200-847__1?auto=webp&canvas=1024%2C1024&fit=bounds&format=jpg&height=1024&width=1024',
  acessorios:'https://www.celudmovil.com.co/cdn/shop/files/MAGSAFEDUO_1024x1024.png?v=1697827277'
 };
