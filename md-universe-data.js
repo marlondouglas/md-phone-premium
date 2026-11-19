@@ -1,4 +1,4 @@
-/* MD PHONE · Preços informados pela loja. Produto, fotos, condições e disponibilidade sob confirmação. */
+/* MD PHONE — preço e condição informados pela loja; fotos promocionais ilustrativas. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -292,7 +292,8 @@ window.MD_UNIVERSE = {
           "condition": "Seminovo",
           "color": "Azul",
           "battery": 77,
-          "repairs": "Não informado"
+          "repairs": "Não informado",
+          "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha"
         },
         {
           "label": "1 TB · Dourado",
@@ -300,7 +301,8 @@ window.MD_UNIVERSE = {
           "condition": "Seminovo",
           "color": "Dourado",
           "battery": 74,
-          "repairs": "Tela substituída"
+          "repairs": "Tela substituída",
+          "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=900&hei=1112&fmt=png-alpha"
         },
         {
           "label": "1 TB · Grafite",
@@ -308,7 +310,8 @@ window.MD_UNIVERSE = {
           "condition": "Seminovo",
           "color": "Grafite",
           "battery": null,
-          "repairs": "Tela e bateria substituídas"
+          "repairs": "Tela e bateria substituídas",
+          "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=900&hei=1112&fmt=png-alpha"
         }
       ],
       "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
@@ -617,10 +620,11 @@ window.MD_UNIVERSE = {
         "Preço e configuração sob consulta"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://applefans.today/wp-content/uploads/2026/03/Apple-iPhone-17e-family-lineup-ROW-260302.jpg",
       "featured": false,
       "tag": null,
-      "seriesOrder": 23
+      "seriesOrder": 23,
+      "visualDisclaimer": "Fotografia promocional da família iPhone 17e; não representa unidade específica da loja."
     },
     {
       "id": "iphone-17",
