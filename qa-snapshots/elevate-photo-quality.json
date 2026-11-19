@@ -1,0 +1,177 @@
+{
+  "iphone-xr": {
+    "name": "iPhone XR",
+    "source": "assets/catalog/iphone-xr-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.932,
+    "visual_height_ratio": 0.937,
+    "visible_area_ratio": 0.873,
+    "photo_dimensions": [
+      384,
+      284
+    ],
+    "background_removed": true
+  },
+  "iphone-11": {
+    "name": "iPhone 11",
+    "source": "assets/catalog/iphone-11-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.933,
+    "visual_height_ratio": 0.937,
+    "visible_area_ratio": 0.874,
+    "photo_dimensions": [
+      357,
+      284
+    ],
+    "background_removed": true
+  },
+  "iphone-12": {
+    "name": "iPhone 12",
+    "source": "assets/catalog/iphone-12-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.934,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.873,
+    "photo_dimensions": [
+      606,
+      824
+    ],
+    "background_removed": true
+  },
+  "iphone-13": {
+    "name": "iPhone 13",
+    "source": "assets/catalog/iphone-13-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.936,
+    "visual_height_ratio": 0.935,
+    "visible_area_ratio": 0.875,
+    "photo_dimensions": [
+      498,
+      678
+    ],
+    "background_removed": true
+  },
+  "iphone-13-pro": {
+    "name": "iPhone 13 Pro",
+    "source": "assets/catalog/iphone-13-pro-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.936,
+    "visual_height_ratio": 0.935,
+    "visible_area_ratio": 0.875,
+    "photo_dimensions": [
+      532,
+      678
+    ],
+    "background_removed": true
+  },
+  "iphone-14": {
+    "name": "iPhone 14",
+    "source": "assets/catalog/iphone-14-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.935,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.873,
+    "photo_dimensions": [
+      552,
+      732
+    ],
+    "background_removed": true
+  },
+  "iphone-14-pro": {
+    "name": "iPhone 14 Pro",
+    "source": "assets/catalog/iphone-14-pro-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 1.0,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.934,
+    "photo_dimensions": [
+      900,
+      542
+    ],
+    "background_removed": true
+  },
+  "iphone-14-pro-max": {
+    "name": "iPhone 14 Pro Max",
+    "source": "assets/catalog/iphone-14-pro-max-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 1.0,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.934,
+    "photo_dimensions": [
+      900,
+      542
+    ],
+    "background_removed": true
+  },
+  "iphone-14-plus": {
+    "name": "iPhone 14 Plus",
+    "source": null,
+    "loaded": false,
+    "error": "local asset unavailable"
+  },
+  "iphone-15": {
+    "name": "iPhone 15",
+    "source": "assets/catalog/iphone-15-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.935,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.874,
+    "photo_dimensions": [
+      556,
+      731
+    ],
+    "background_removed": true
+  },
+  "iphone-15-pro": {
+    "name": "iPhone 15 Pro",
+    "source": "assets/catalog/iphone-15-pro-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 1.0,
+    "visual_height_ratio": 0.934,
+    "visible_area_ratio": 0.934,
+    "photo_dimensions": [
+      900,
+      542
+    ],
+    "background_removed": true
+  },
+  "iphone-16-pro-max": {
+    "name": "iPhone 16 Pro Max",
+    "source": "assets/catalog/iphone-16-pro-max-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.934,
+    "visual_height_ratio": 0.935,
+    "visible_area_ratio": 0.873,
+    "photo_dimensions": [
+      638,
+      800
+    ],
+    "background_removed": true
+  },
+  "iphone-17-pro-max": {
+    "name": "iPhone 17 Pro Max",
+    "source": "assets/catalog/iphone-17-pro-max-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.936,
+    "visual_height_ratio": 0.935,
+    "visible_area_ratio": 0.875,
+    "photo_dimensions": [
+      622,
+      800
+    ],
+    "background_removed": true
+  },
+  "iphone-18-pro-max": {
+    "name": "iPhone 18 Pro Max",
+    "source": "assets/catalog/iphone-18-pro-max-studio.png",
+    "loaded": true,
+    "visual_width_ratio": 0.935,
+    "visual_height_ratio": 0.935,
+    "visible_area_ratio": 0.874,
+    "photo_dimensions": [
+      651,
+      797
+    ],
+    "background_removed": true
+  }
+}

@@ -15,7 +15,9 @@
       },
       "oldCount": 3,
       "variantCount": 20,
-      "video": 200
+      "videoCards": 3,
+      "buyCount": 14,
+      "colorPhotos": 4
     },
     {
       "device": "mobile",
@@ -26,12 +28,14 @@
         "headingOverlap": false,
         "footOverlap": false,
         "photoHeight": 430,
-        "cardPhotoHeight": 401.6875
+        "cardPhotoHeight": 397.796875
       },
       "oldCount": 3,
       "variantCount": 20,
-      "video": 200
+      "videoCards": 3,
+      "buyCount": 14,
+      "colorPhotos": 4
     }
   ],
-  "commit": "36df677f350519a2e7ca353559a2c4bb1cd595c8"
+  "commit": "a5cb497d5cc994fa0099d09e4187b1f47c24d172"
 }
