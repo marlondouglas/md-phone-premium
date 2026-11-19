@@ -1,4 +1,4 @@
-/* MD PHONE: imagens ilustrativas profissionais e preços informados pela loja. Confirmar unidade e condição. */
+/* MD PHONE: preços e fotos promocionais ilustrativas; disponibilidade sob consulta. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -570,10 +570,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://static01.galaxus.com/productimages/4/8/8/9/9/4/7/2/iPhone_13_Pro_Max_Sierra_Blue_PDP_Image_Position-1A__WWEN.jpg_sea.jpeg",
       "seriesOrder": 10,
-      "imageFamilyReference": "iPhone 13 Pro",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 13 Pro, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
       "colors": [
         {
           "name": "Grafite",
@@ -862,10 +861,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-blue-select-202309?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://www.dateks.lv/images/pic/2400/2400/973/1647.jpg",
       "seriesOrder": 16,
-      "imageFamilyReference": "iPhone 15",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 15, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
       "colors": [
         {
           "name": "Rosa",
@@ -1063,10 +1061,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
+      "image": "https://cdn.cimri.io/image/1000x1000/apple-iphone-16-pro-256gb-col-titanyum_917069445.jpg",
       "seriesOrder": 21,
-      "imageFamilyReference": "iPhone 16 Pro Max",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 16 Pro Max, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
       "colors": [
         {
           "name": "Titânio-preto",
@@ -1219,10 +1216,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
+      "image": "https://cache.cil.ahamo.com/products/iphone/iphone-17-pro/APL85320/APL85320_L_01.jpg",
       "seriesOrder": 25,
-      "imageFamilyReference": "iPhone 17 Pro Max",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 17 Pro Max, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
       "colors": [
         {
           "name": "Prateado",
