@@ -1,4 +1,4 @@
-/* MD PHONE — somente os 14 modelos informados para venda pela loja. Fotos e condições sob confirmação. */
+/* MD PHONE: apenas os 14 iPhones anunciados pela loja; preços preservados, foto de produto individual com fallback. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -705,7 +705,7 @@ window.MD_UNIVERSE = {
         }
       ],
       "featured": false,
-      "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
+      "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-max-deserttitanium-select?wid=900&hei=1112&fmt=png-alpha",
       "seriesOrder": 22,
       "priceFrom": 5499,
       "colors": [
@@ -727,7 +727,10 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "photoFallback": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
+      "defaultColor": "Titânio-deserto",
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
     },
     {
       "id": "iphone-17-pro-max",
@@ -755,7 +758,7 @@ window.MD_UNIVERSE = {
         }
       ],
       "featured": true,
-      "image": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
+      "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-max-finish-select-silver-202509?wid=900&hei=1112&fmt=png-alpha",
       "seriesOrder": 26,
       "priceFrom": 6799,
       "colors": [
@@ -773,7 +776,10 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "photoFallback": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
+      "defaultColor": "Prateado",
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
     },
     {
       "id": "iphone-18-pro-max",
@@ -795,7 +801,7 @@ window.MD_UNIVERSE = {
           "condition": "A confirmar"
         }
       ],
-      "image": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
+      "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-max-finish-select-silver-202609?wid=900&hei=1112&fmt=png-alpha",
       "featured": true,
       "tag": "Novo",
       "seriesOrder": 29,
@@ -819,7 +825,10 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "photoFallback": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
+      "defaultColor": "Prateado",
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
     },
     {
       "id": "macbook-neo",
