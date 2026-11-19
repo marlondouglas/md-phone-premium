@@ -60,6 +60,12 @@ def load_image(key):
 pictures=[load_image(key) for key in model_ids]
 valid=sum(x is not None for x in pictures)
 print("MD PHONE film: real product photos available:",valid)
+(ROOT/"assets"/"md-elevate-film-info.json").write_text(json.dumps({
+    "source_photos":valid,"models":model_ids,"source":"MD PHONE original editorial; photographed product references"
+},ensure_ascii=False))
+if valid < 2:
+    raise SystemExit("Not enough clean real iPhone photos to render premium film; requires at least two.")
+
 def base():
     im=Image.new("RGB",(W,H))
     pix=im.load()
