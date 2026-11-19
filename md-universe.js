@@ -154,7 +154,7 @@ function categoryPage(c){
  '<p class="small-note">As imagens são ilustrativas. Preços informados pela loja; cores, condição, peças, estoque e garantia precisam de confirmação.</p></div></section>';
  const other=isPhone?'':'<section class="section universe"><div class="section-inner"><div class="section-top"><h2 class="section-heading">Explore outras <em>linhas.</em></h2></div><div class="category-grid">'+
  D.categories.filter(x=>x.id!==c.id).slice(0,3).map(x=>'<a href="'+linkCat(x.id)+'" class="category-tile" style="--tile-glow:'+COLORS[x.id]+'"><div class="tile-visual">'+imageEl(PHOTO[x.id],'Foto da linha '+x.label)+'</div><div class="tile-content"><h3>'+esc(x.label)+'</h3><span class="tile-arrow">Descobrir ↗</span></div></a>').join('')+'</div></div></section>';
- return hero+(isPhone?cinemaSection():'')+showcase+other;
+ return hero+showcase+(isPhone?cinemaSection():'')+other;
 }
 function selectedColor(p){
  if(!p?.colors?.length)return '';
