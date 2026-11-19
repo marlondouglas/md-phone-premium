@@ -31,7 +31,20 @@ def transform(file_path):
         return None
     alpha_before = image.getchannel("A")
     transparent = alpha_before.getextrema()[0] < 230
-    if not transparent:
+    if transparent:
+        # Some transparent product files still contain a solid pale-gray rectangle
+        # inside the alpha bounds. Remove it only if it surrounds the artwork.
+        visible_box = alpha_before.point(lambda x: 255 if x > 230 else 0).getbbox()
+        if visible_box:
+            l,t,r,b = visible_box
+            points = [(l+1,t+1),(r-2,t+1),(l+1,b-2),(r-2,b-2),
+                      ((l+r)//2,t+1),((l+r)//2,b-2),(l+1,(t+b)//2),(r-2,(t+b)//2)]
+            qualified = [xy for xy in points if light_neutral(image.getpixel(xy))]
+            if len(qualified) >= 6:
+                for point in qualified:
+                    if light_neutral(image.getpixel(point)):
+                        ImageDraw.floodfill(image, point, (255,255,255,0), thresh=16)
+    else:
         points = [(1,1),(w-2,1),(1,h-2),(w-2,h-2),(w//2,1),(w//2,h-2),(1,h//2),(w-2,h//2)]
         qualified = [xy for xy in points if light_neutral(image.getpixel(xy))]
         if len(qualified) < 5:
@@ -61,7 +74,7 @@ def transform(file_path):
 
 for key,path in list(manifest.items()):
     # Hero imagery for other categories remains unchanged.
-    if not key.startswith("iphone-"):
+    if not (key.startswith("iphone-") or key == "media::airpods-pro-3"):
         continue
     candidate = root / path
     if not candidate.is_file():
