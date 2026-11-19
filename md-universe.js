@@ -25,7 +25,7 @@ const pictureFormat=p=>p?.image&&/(?:color-lineup|family-lineup|segment|promo_|h
 const priceBRL=n=>Number.isFinite(n)?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(n):'Sob consulta';
 const phoneGroup=p=>/^iphone-(?:xr|11|12)(?:-|$)/.test(p.id)?'classicos':/^iphone-(?:13|14|15)(?:-|$)/.test(p.id)?'intermediarios':'recentes';
 function phoneFilterUI(items){if(items[0]?.category!=='iphone')return '';
-return '<div class="phone-eras" role="group" aria-label="Filtrar geração">'+[['todos','Todos'],['classicos','XR ao 12'],['intermediarios','13 ao 15'],['recentes','16 ao 18 + Duo']].map(([id,label],i)=>'<button type="button" class="phone-era '+(i===0?'active':'')+'" data-phone-era="'+id+'" aria-pressed="'+(i===0)+'">'+label+'</button>').join('')+'</div>'}
+return '<div class="phone-eras" role="group" aria-label="Filtrar geração">'+[['todos','Todos'],['classicos','XR ao 12'],['intermediarios','13 ao 15'],['recentes','16 ao 18']].map(([id,label],i)=>'<button type="button" class="phone-era '+(i===0?'active':'')+'" data-phone-era="'+id+'" aria-pressed="'+(i===0)+'">'+label+'</button>').join('')+'</div>'}
 function priceTable(items){if(items[0]?.category!=='iphone')return '';
 const rows=items.flatMap(p=>(p.variants||[]).filter(v=>Number.isFinite(v.price)).map(v=>'<tr><td>'+esc(p.name)+'</td><td>'+esc(v.label)+'</td><td>'+esc(v.condition||'Confirmar')+'</td><td>'+priceBRL(v.price)+(v.needsVerification?' *':'')+'</td></tr>'));
 return '<details class="price-list"><summary>Tabela completa de preços <span>+</span></summary><div class="price-list-scroll"><table><thead><tr><th>Modelo</th><th>Capacidade / opção</th><th>Condição</th><th>Valor</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div><p>* Verificar capacidade do iPhone 16 Pro Max antes da compra. Preços fornecidos pela loja e sujeitos a confirmação.</p></details>'}
@@ -106,7 +106,7 @@ function phoneCatalog(items,activeId){
  if(items[0]?.category!=='iphone')return '';
  return '<section class="md-phone-catalog" id="catalogo-completo" aria-labelledby="mdAllPhonesTitle">'+
  '<div class="md-catalog-head"><div><div class="kicker">MD PHONE / CATÁLOGO COMPLETO</div>'+
- '<h2 id="mdAllPhonesTitle">Todos os <em>iPhones.</em></h2><p>A seleção real da MD PHONE: fotos amplas e preços claros. Toque em um modelo para conferir a unidade.</p></div>'+
+ '<h2 id="mdAllPhonesTitle">A seleção <em>MD PHONE.</em></h2><p>Somente os 14 modelos informados pela loja, com fotos amplas e os preços de cada versão.</p></div>'+
  '<span class="md-catalog-counter" id="mdCatalogCounter">'+items.length+' modelos</span></div>'+
  '<div class="md-catalog-grid" id="mdPhoneCatalog">'+items.map(p=>{
   const src=srcOf(p),fallback=p.photoFallback||((p.image&&src!==p.image)?p.image:'');
@@ -254,7 +254,7 @@ function detailSpecs(p,i){
  return items.join('');
 }
 function comparePage(){
-const list=D.products.filter(p=>p.category==='iphone').slice(0,12);
+const list=D.products.filter(p=>p.category==='iphone');
 return '<section class="section compare"><div class="section-inner"><div class="kicker">MD PHONE / COMPARAÇÃO</div><h1 class="section-heading">Dois modelos.<br><em>Uma escolha.</em></h1><p class="section-sub">Compare os modelos cadastrados. Valores e disponibilidade sempre sob confirmação.</p><div class="compare-toolbar"><select id="compA" aria-label="Primeiro modelo">'+list.map((p,i)=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('')+'</select><select id="compB" aria-label="Segundo modelo">'+list.map((p,i)=>'<option value="'+esc(p.id)+'" '+(i===1?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select></div><div class="compare-table" id="compareContent"></div></div></section>';
 }
 function compareDetails(p){return '<div class="compare-col"><div class="kicker">COMPARANDO</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><div class="compare-row">Categoria: '+esc(catOf(p.category).label)+'</div>'+(p.specs||[]).map(x=>'<div class="compare-row">'+esc(x)+'</div>').join('')+'<div class="compare-row">'+(p.availability==='estoque_informado'?'Unidade cadastrada':p.priceFrom!=null?'Preço informado · confira disponibilidade':'Sob consulta')+'</div>'+priceHtml(p)+button('Ver produto',linkProd(p.id))+'</div>'}
