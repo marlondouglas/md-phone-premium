@@ -24,7 +24,7 @@ const PRODUCTS=[
  ]},
  {id:'13',model:'iPhone 13',line:'SEMINOVO · ESTOQUE INFORMADO',tone:'#52685b',img:IMG['13'],stock:true,variants:[{id:'13-white',type:'seminovo',color:'Branco',gb:'128 GB',battery:92,repair:[]}]}
 ];
-const state={filter:'todos',query:'',chosen:Object.create(null),current:null};
+const state={filter:'todos',query:'',chosen:Object.create(null),current:null,activeModel:'14pm'};
 const $=q=>document.querySelector(q);
 const $$=q=>Array.from(document.querySelectorAll(q));
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -55,8 +55,19 @@ function render(){
   return match&&(!state.query||s.includes(state.query));
  });
  const el=$('#inventory');if(!el)return;
- el.innerHTML=out.length?out.map(card).join(''):'<div class="empty-state"><strong>Nenhum modelo encontrado.</strong><p>Experimente outra busca ou entre em contato com a MD PHONE.</p></div>';
- const count=$('#resultsCount');if(count)count.textContent=out.length+' modelo'+(out.length!==1?'s':'')+' nesta seleção · estoque sujeito a confirmação';
+ const count=$('#resultsCount');
+ if(!out.length){
+  el.innerHTML='<div class="empty-state"><strong>Nenhum iPhone encontrado.</strong><p>Experimente outra busca ou entre em contato com a MD PHONE.</p></div>';
+  if(count)count.textContent='Nenhum modelo com esses filtros';
+  return;
+ }
+ if(!out.some(p=>p.id===state.activeModel))state.activeModel=out[0].id;
+ const selected=out.find(p=>p.id===state.activeModel)||out[0];
+ const tabs='<div class="model-switcher" role="tablist" aria-label="Escolha o modelo do iPhone">'+out.map(p=>
+  '<button type="button" role="tab" data-model-select="'+esc(p.id)+'" class="model-tab '+(p.id===selected.id?'active':'')+'" aria-selected="'+(p.id===selected.id)+'" aria-controls="showcaseStage" tabindex="'+(p.id===selected.id?'0':'-1')+'">'+esc(p.model)+'</button>'
+ ).join('')+'</div>';
+ el.innerHTML=tabs+'<div class="showcase-stage" id="showcaseStage" role="tabpanel" aria-label="Detalhes do '+esc(selected.model)+'">'+card(selected)+'</div>';
+ if(count)count.textContent=out.length+' modelos para explorar · '+selected.model+' selecionado';
 }
 function findVariant(id){for(const p of PRODUCTS){const v=p.variants.find(v=>v.id===id);if(v)return {p,v}}return null}
 function openDialog(d){if(!d)return;if(typeof d.showModal==='function'){if(!d.open)d.showModal()}else d.setAttribute('open','');}
@@ -100,6 +111,7 @@ function init(){
  $('#search')?.addEventListener('input',e=>{state.query=norm(e.target.value.trim());render()});
  $$('[data-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.filter;$$('[data-filter]').forEach(x=>x.classList.toggle('selected',x===b));render()}));
  document.addEventListener('click',e=>{
+  const model=e.target.closest('[data-model-select]');if(model){state.activeModel=model.dataset.modelSelect;render();const again=$('[data-model-select]').find(x=>x.dataset.modelSelect===state.activeModel);again?.focus({preventScroll:true});return;}
   const choice=e.target.closest('[data-choice]');if(choice){state.chosen[choice.dataset.model]=choice.dataset.choice;render();const again=$$('[data-choice]').find(x=>x.dataset.choice===choice.dataset.choice);again?.focus({preventScroll:true});return;}
   const buy=e.target.closest('[data-buy]');if(buy){checkout(buy.dataset.buy);return;}
   const more=e.target.closest('[data-details]');if(more){details(more.dataset.details);return;}
