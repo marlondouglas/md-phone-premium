@@ -174,7 +174,15 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Preto": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-black-select-2019?wid=1200&hei=1460&fmt=png-alpha",
+        "Branco": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-white-select-2019?wid=1200&hei=1460&fmt=png-alpha",
+        "Roxo": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-purple-select-2019?wid=1200&hei=1460&fmt=png-alpha",
+        "Amarelo": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-yellow-select-2019?wid=1200&hei=1460&fmt=png-alpha",
+        "Verde": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-green-select-2019?wid=1200&hei=1460&fmt=png-alpha",
+        "(PRODUCT)RED": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-red-select-2019?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-12",
@@ -231,7 +239,15 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Preto",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Preto": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-black-select-2020?wid=1200&hei=1460&fmt=png-alpha",
+        "Branco": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-white-select-2020?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-blue-select-2020?wid=1200&hei=1460&fmt=png-alpha",
+        "Verde": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-green-select-2020?wid=1200&hei=1460&fmt=png-alpha",
+        "Roxo": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-purple-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "(PRODUCT)RED": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-red-select-2020?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-13",
