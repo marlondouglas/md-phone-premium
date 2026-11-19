@@ -77,6 +77,12 @@ jobs:
             if(composition.headingOverlap||composition.footOverlap)errors.push(device+': título ou texto invade os botões');
             if(composition.cardPhotoHeight<340)errors.push(device+': foto de produto pequena: '+composition.cardPhotoHeight+'px');
             if(composition.photoHeight<350)errors.push(device+': foto principal pequena: '+composition.photoHeight+'px');
+            await page.locator('.product-card img').evaluateAll(async nodes=>{
+              await Promise.all(nodes.map(async img=>{
+                img.loading='eager';
+                try {await img.decode()} catch(e) {}
+              }));
+            });
             const photos=await page.locator('.product-card img').evaluateAll(nodes=>nodes.map(img=>({loaded:img.complete&&img.naturalWidth>150,src:img.currentSrc})));
             const loaded=photos.filter(p=>p.loaded).length;
             console.log(device,'fotos carregadas:',loaded,'de',photos.length,'falhas:',JSON.stringify(photos.filter(p=>!p.loaded).slice(0,6)));
