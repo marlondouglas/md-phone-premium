@@ -20,6 +20,11 @@ const heroSources={
  airpods:'https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg'
 };
 const tasks=[];
+tasks.push({
+ key:'media::airpods-pro-3',
+ filename:'airpods-pro-3-launch',
+ url:'https://www.apple.com/newsroom/images/2025/09/introducing-airpods-pro-3-the-ultimate-audio-experience/article/Apple-AirPods-Pro-3-hero-250909_inline.jpg.large.jpg'
+});
 for(const [id,url] of Object.entries(heroSources))tasks.push({key:'hero::'+id,url,filename:'hero-'+id});
 for(const p of data.products||[]){
  if(p.image)tasks.push({key:p.id,url:p.image,filename:p.id});
