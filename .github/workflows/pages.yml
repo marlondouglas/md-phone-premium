@@ -1,8 +1,10 @@
-name: MD PHONE — publicar nova experiência 2026
+name: MD PHONE Universe · publicar site
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'qa-snapshots/**'
   workflow_dispatch:
 
 permissions:
@@ -16,39 +18,40 @@ concurrency:
 
 jobs:
   deploy:
-    name: Publicar MD PHONE 2026
+    name: Publicar experiência MD PHONE
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Validar reconstrução integral
+      - name: Validar todas as páginas e arquivos
         shell: bash
         run: |
           set -euo pipefail
-          node --check md-2026.js
-          test -s index.html
-          test -s md-2026.css
-          test -s md-2026.js
+          node --check md-universe-data.js
+          node --check md-universe-app.js
+          test -s md-universe.css
           test -s assets/md-phone-brand-mark.svg
-          grep -q 'md-2026.css' index.html
-          grep -q 'md-2026.js' index.html
-          grep -q 'id="checkoutForm"' index.html
+          for file in index.html iphone.html mac.html ipad.html watch.html airpods.html casa.html acessorios.html produto.html comparar.html sobre.html; do
+            test -s "$file"
+            grep -q 'md-universe-app.js' "$file"
+            grep -q 'md-universe-data.js' "$file"
+          done
           ! grep -q 'md-retail.css' index.html
-          ! grep -q 'md-ultra.css' index.html
           mkdir -p _site/assets
-          cp index.html md-2026.css md-2026.js _site/
+          cp index.html iphone.html mac.html ipad.html watch.html airpods.html casa.html acessorios.html produto.html comparar.html sobre.html _site/
+          cp md-universe.css md-universe-data.js md-universe-app.js _site/
           cp assets/md-phone-brand-mark.svg _site/assets/
           touch _site/.nojekyll
-          echo "Nova página MD PHONE pronta para publicação"
+          echo "MD PHONE Universe validado e preparado"
       - uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Enviar site estático
+      - name: Enviar site
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-      - name: Publicar GitHub Pages
+      - name: Publicar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
