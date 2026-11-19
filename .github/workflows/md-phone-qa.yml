@@ -8,6 +8,7 @@ on:
       - md-universe.js
       - md-universe-data.js
       - scripts/prepare-catalog-media.cjs
+      - scripts/clean-product-photography.py
       - .github/workflows/pages.yml
       - .github/workflows/md-phone-qa.yml
   workflow_dispatch:
@@ -37,6 +38,9 @@ jobs:
           cp index.html md-universe.css md-universe.js md-universe-data.js _site/
           cp -R assets/. _site/assets/
           node scripts/prepare-catalog-media.cjs
+          python3 -m venv /tmp/md-photo-env
+          /tmp/md-photo-env/bin/python -m pip install --quiet pillow
+          /tmp/md-photo-env/bin/python scripts/clean-product-photography.py
           python3 -m http.server 8765 --directory _site >/tmp/md-phone-server.log 2>&1 &
           node <<'NODE'
           const {chromium}=require('playwright');
