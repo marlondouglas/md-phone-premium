@@ -125,9 +125,9 @@ return '<button type="button" class="assistant-launcher" id="assistantLauncher" 
 '<div class="dialog-product-summary"><p class="dialog-price-label">Preço</p><p class="dialog-price" id="detailPrice"></p>'+
 '<p class="choice-label">Capacidade e condição</p><div class="variants" id="detailVariants"></div>'+
 '<p class="choice-label">Cor de preferência: <span id="selectedColor"></span></p><div class="swatches" id="detailColors"></div>'+
-'<p class="selection-info">Cores de fábrica. A equipe confirma quais cores estão disponíveis no estoque.</p>'+
+'<p class="selection-info" id="colorPreviewInfo">Escolha uma cor para visualizar o acabamento.</p>'+
 '<div class="detail-list" id="detailNotes"></div>'+
-'<a id="productWhatsapp" class="button dark form-submit" target="_blank" rel="noopener noreferrer" href="#">Consultar esta configuração ↗</a>'+
+'<a id="productWhatsapp" class="button primary form-submit" target="_blank" rel="noopener noreferrer" href="#">Comprar este iPhone ↗</a>'+
 '<p class="detail-disclaimer">Foto ilustrativa do modelo, não da unidade seminova. Finalize seu pedido diretamente com nossa equipe no WhatsApp.</p></div></div></dialog>'+
 '<dialog class="dialog" id="assistantDialog" aria-labelledby="assistantTitle">'+
 '<div class="dialog-top"><span class="eyebrow">MD PHONE / ASSISTENTE</span><button type="button" class="dialog-close" data-close="assistantDialog" aria-label="Fechar">×</button></div>'+
@@ -181,10 +181,21 @@ if(v.battery!=null)notes+='<div class="detail-row"><b>Bateria</b><span>'+safe(v.
 if(v.repairs)notes+='<div class="detail-row"><b>Histórico de peças</b><span>'+safe(v.repairs)+'</span></div>';
 if(v.needsVerification)notes+='<div class="detail-row"><b>A confirmar</b><span>'+safe(v.verificationNote||'Capacidade da unidade')+'</span></div>';
 $('#detailNotes').innerHTML=notes;
-var photo=M[p.id+'::color::'+selection.color]||M[p.id+'::variant::'+selection.v]||p.colorPhotos?.[selection.color]||v.image||imageSrc(p);
-$('#detailVisual').innerHTML='<img src="'+safe(photo)+'" data-fallback="'+safe(p.photoFallback||p.image||'')+'" alt="Foto ilustrativa do '+safe(p.name)+'">';
-var lines=['Olá, MD PHONE! Quero consultar este aparelho:','Modelo: '+p.name,'Configuração: '+v.label,'Preço anunciado: '+price(v.price),'Condição: '+(v.condition||'A confirmar'),'Cor desejada: '+selection.color,'Podem confirmar a cor disponível, bateria, reparos, capacidade e enviar fotos reais da unidade?'];
+var imageKey=p.id+'::color::'+selection.color;
+var nativeColorPhoto=M[imageKey]||null;
+var hasColorPhoto=Boolean(nativeColorPhoto)||(selection.color===preferred(p)&&Boolean(M[p.id]));
+var photo=nativeColorPhoto||M[p.id+'::variant::'+selection.v]||v.image||imageSrc(p);
+var colored=(p.colors||[]).find(function(c){return c.name===selection.color});
+var surface=$('#detailVisual');
+surface.style.setProperty('--selected-finish',colored?.hex||'#deeee3');
+surface.dataset.selectedColor=selection.color;
+surface.innerHTML='<img src="'+safe(photo)+'" data-fallback="'+safe(p.photoFallback||p.image||'')+'" alt="Foto de referência do '+safe(p.name)+' na cor '+safe(selection.color)+'">';
+$('#colorPreviewInfo').textContent=hasColorPhoto
+ ? 'Visualização da cor '+selection.color+'. Consulte a disponibilidade desta configuração.'
+ : 'Cor selecionada: '+selection.color+'. Foto específica desta cor sob consulta; o produto exibido é uma referência do modelo.';
+var lines=['Olá, MD PHONE! Quero consultar este aparelho:','Modelo: '+p.name,'Configuração: '+v.label,'Valor: '+price(v.price),'Condição: '+(v.condition||'A confirmar'),'Cor desejada: '+selection.color,'Podem confirmar a cor disponível, bateria, reparos, capacidade e enviar fotos reais da unidade?'];
 if(v.needsVerification)lines.push('Observação: confirmar a capacidade exata do aparelho.');
+var cta=$('#productWhatsapp');cta.setAttribute('aria-label','Comprar '+p.name+' na configuração '+v.label+' pelo WhatsApp');
 $('#productWhatsapp').href=whatsapp(lines.join('\n'));
 }
 function openProduct(id){
