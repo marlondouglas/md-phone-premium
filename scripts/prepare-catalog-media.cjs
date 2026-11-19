@@ -12,7 +12,15 @@ fs.mkdirSync(dir,{recursive:true});
 const context={window:{}};
 vm.runInNewContext(fs.readFileSync('md-universe-data.js','utf8'),context,{timeout:3000});
 const data=context.window.MD_UNIVERSE;
+const heroSources={
+ iphone:'https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg',
+ mac:'https://www.apple.com/v/homepage/images/macbook-pro-proled-xdr/a/hero_macbook_pro_proled_xdr_preorder__df38n593sxg2_large.jpg',
+ ipad:'https://www.apple.com/v/homepage/images/ipad-mini/a/promo_ipad_mini_a20_announce__efc6vmmxg58i_large.jpg',
+ watch:'https://www.apple.com/br/homepage/built/promos/26_apple-watch-series-12_10/images/promo_apple_watch_series_12__gnlprtt8526a_large.jpg',
+ airpods:'https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg'
+};
 const tasks=[];
+for(const [id,url] of Object.entries(heroSources))tasks.push({key:'hero::'+id,url,filename:'hero-'+id});
 for(const p of data.products||[]){
  if(p.image)tasks.push({key:p.id,url:p.image,filename:p.id});
  if(p.category==='iphone'){
