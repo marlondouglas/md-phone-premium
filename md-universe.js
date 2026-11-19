@@ -10,7 +10,9 @@ const PHOTO={
  mac:'https://cdn.visaovip.com/img/prod/apple-macbook-pro-mgdr4lla-a3426-m5-pro-15-core-tela-retina-142-24gb-de-ram-1tb-ssd-space-black-2026/57454/733468.jpg',
  ipad:'https://cdn.shopify.com/s/files/1/0024/9803/5810/files/807680-Product-0-I-639080812803357965_600x600.jpg?v=1772484545',
  watch:'https://i5.samsclubimages.com/asr/65c9cb05-6604-4fb7-844a-e44584ad46e1.73e284e97b471f4cdff25aa0e57dd3ad.jpeg?odnBg=FFFFFF&odnHeight=576&odnWidth=576',
- airpods:'https://istore.am/product_image/2487/1757939902_b3e47e53c727475095da.jpgAirPods_Pro_3_N_PDP_Image_Position_2__ce-WW.jpg'
+ airpods:'https://istore.am/product_image/2487/1757939902_b3e47e53c727475095da.jpgAirPods_Pro_3_N_PDP_Image_Position_2__ce-WW.jpg',
+ casa:'https://bfasset.costco-static.com/U447IH35/as/r5k55cb7n2g5ps96f2kmpfg/8897200-847__1?auto=webp&canvas=1024%2C1024&fit=bounds&format=jpg&height=1024&width=1024',
+ acessorios:'https://www.celudmovil.com.co/cdn/shop/files/MAGSAFEDUO_1024x1024.png?v=1697827277'
 };
 const COLORS={iphone:'#2c6b4c',mac:'#315776',ipad:'#51427b',watch:'#564d43',airpods:'#365c62',casa:'#2b704a',acessorios:'#6b5337'};
 const ICONS={iphone:'⌁',mac:'▱',ipad:'▣',watch:'◉',airpods:'♫',casa:'⌂',acessorios:'✦'};
