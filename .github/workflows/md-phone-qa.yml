@@ -56,7 +56,13 @@ jobs:
               await page.goto(u+'?categoria=iphone',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.model-stage',{timeout:20000});
               const modelCount=await page.locator('.model-tab').count();
-              if(modelCount<8)errors.push(name+': catálogo iPhone incompleto');
+              if(modelCount!==31)errors.push(name+': esperado 31 modelos iPhone, encontrado '+modelCount);
+              const xrColors=await page.locator('.md-color-swatch').count();
+              if(xrColors!==6)errors.push(name+': iPhone XR deveria apresentar seis cores, encontrado '+xrColors);
+              await page.locator('[data-color-name="Coral"]').click();
+              const chosen=await page.locator('.md-color-current').innerText();
+              if(chosen!=='Coral')errors.push(name+': cor Coral não foi selecionada');
+              if(await page.locator('[data-phone-era]').count()!==4)errors.push(name+': filtros por geração ausentes');
               await page.locator('.model-tab').nth(2).click();
               if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone'))errors.push(name+': troca do modelo falhou');
               await page.screenshot({path:'qa-screenshots/'+name+'-iphone.png',fullPage:true});
@@ -64,6 +70,10 @@ jobs:
               await page.waitForSelector('.product-hero',{timeout:20000});
               const title=await page.locator('.product-copy h1').innerText();
               if(!title.includes('iPhone 18 Pro Max'))errors.push(name+': página individual incorreta '+title);
+              const colors=await page.locator('[data-color-name]').count();
+              if(colors!==4)errors.push(name+': iPhone 18 Pro Max deveria apresentar quatro cores, encontrou '+colors);
+              await page.locator('[data-color-name="Preto"]').click();
+              if((await page.locator('.md-color-current').innerText())!=='Preto')errors.push(name+': cor Preto não selecionada');
               await page.screenshot({path:'qa-screenshots/'+name+'-produto.png',fullPage:true});
               await page.locator('[data-buy]').first().click();
               if(!(await page.locator('#buyDialog').evaluate(el=>el.open)))errors.push(name+': compra não abriu');
@@ -77,6 +87,7 @@ jobs:
               await page.locator('#buyForm button[type=submit]').click();
               const wa=await page.evaluate(()=>window.__waCaptured);
               if(!wa.startsWith('https://wa.me/5533987044866?text='))errors.push(name+': compra não prepara WhatsApp');
+              if(!decodeURIComponent(wa).includes('Cor desejada (sujeita à confirmação): Preto'))errors.push(name+': cor escolhida não seguiu para WhatsApp');
               await page.screenshot({path:'qa-screenshots/'+name+'-checkout.png',fullPage:false});
               checks.push({name,categoryCount:count,iphoneModels:modelCount,whatsapp:!!wa});
               await page.close();
