@@ -34,53 +34,14 @@ main{min-height:60vh}.hero{height:min(900px,100svh);min-height:690px;position:re
 @media(max-width:400px){.hero{min-height:740px}.hero-inner{padding-top:105px}.hero h1{font-size:55px}.hero-media{inset:45% -25% 0 -25%}.category-copy h1{font-size:65px}.category-hero{min-height:700px}.category-tile:nth-child(n){min-height:320px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 
-/* Product photography emphasis: fullscreen image-led compositions, no tiny product cards. */
-.hero-media img{object-fit:cover;object-position:center;transform:scale(1.48);filter:drop-shadow(0 25px 50px #0007)}
-.hero-slide.active .hero-media img{transform:scale(1.62)}
-.category-hero .category-photo img{object-fit:cover;object-position:center;transform:scale(1.48)}
-.model-art img{object-fit:cover;object-position:center;transform:scale(1.44)}
-.model-art:hover img{transform:scale(1.53)}
-.product-photo img{object-fit:cover;object-position:center;transform:scale(1.32)}
-.category-hero .category-photo.photo-light{background:#eef2ef}
-.category-hero .category-photo.photo-light img{mix-blend-mode:multiply}
-.tile-light .tile-visual{background:#dce9e0}
-.tile-light .tile-visual img{mix-blend-mode:multiply}
-.strip-photo .brand-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.95;mix-blend-mode:screen;pointer-events:none}
-.strip-photo .brand-film:focus{outline:0}
-@media(max-width:700px){.hero-media img{transform:scale(1.23)}.hero-slide.active .hero-media img{transform:scale(1.32)}.category-hero .category-photo img{transform:scale(1.23)}.model-art img{transform:scale(1.32)}.product-photo img{transform:scale(1.22)}.strip-photo .brand-film{object-fit:cover}}
-
-/* Correct background compositing for photographic assets with white/black matte */
-.hero-media.photo-light{background:transparent!important}.hero-media.photo-light img,.category-photo.photo-light img,.product-photo.photo-light img{mix-blend-mode:multiply!important}
-.hero-media.photo-dark img,.category-photo.photo-dark img,.product-photo.photo-dark img{mix-blend-mode:screen!important}
-.category-tile:not(.image-iphone) .tile-visual img{mix-blend-mode:multiply!important}
-
-
-/* MD PHONE / Vitrine de preços e movimento fotográfico suave para toda a linha iPhone. */
-.md-offer{display:flex;flex-direction:column;gap:8px;margin:22px 0 14px;padding:19px 22px;border:1px solid #76ff9144;border-radius:18px;background:linear-gradient(120deg,#103923c9,#06170de8);box-shadow:inset 0 1px 0 #d9ffe916}
-.md-offer-caption{font-size:10px;font-weight:850;letter-spacing:.14em;color:#9de9b0}
-.md-offer-price{display:block;font-size:clamp(36px,4.4vw,61px);line-height:1.07;letter-spacing:-.07em;color:#fff;font-weight:900;font-variant-numeric:tabular-nums}
-.md-offer-warning{font-size:12px;color:#ffda9a;line-height:1.5;display:block;font-weight:800}
-.product-details .md-offer-warning{border-left:3px solid #ffa548;padding:12px 14px;background:#3e291966}
-.model-info .md-offer{max-width:435px}
-.model-stage .model-info .model-specs{margin-top:18px}
-.product-copy .variant-list button{white-space:normal;line-height:1.35;min-height:46px;text-align:left}
-.product-copy .variant-list button.active{background:#62fa83;color:#05250e;border-color:#62fa83;box-shadow:0 5px 22px #59ff8730}
-.model-stage .model-art.md-iphone-motion,.product-hero .product-photo.md-iphone-motion{perspective:1600px;transform-style:preserve-3d;isolation:isolate}
-.model-stage .model-art.md-iphone-motion::before,.product-hero .product-photo.md-iphone-motion::before{content:"";position:absolute;z-index:0;inset:10% 12%;background:radial-gradient(ellipse at 51% 45%,#70ff9860,transparent 60%);filter:blur(40px);animation:md-light-shift 8s ease-in-out infinite alternate}
-.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img{
-  animation:md-iphone-showcase 12s cubic-bezier(.45,0,.55,1) infinite;
-  transform-origin:50% 50%;transform-style:preserve-3d;
-  backface-visibility:visible;will-change:transform,filter;
-}
-@keyframes md-iphone-showcase{
-  0%,100%{transform:perspective(1600px) rotateY(-11deg) rotateZ(-2deg) translate3d(-2%,1%,0) scale(1.34);filter:drop-shadow(30px 29px 38px #0008)}
-  25%{transform:perspective(1600px) rotateY(1deg) rotateZ(0deg) translate3d(0,-3%,20px) scale(1.39);filter:drop-shadow(0 41px 40px #0008)}
-  50%{transform:perspective(1600px) rotateY(12deg) rotateZ(2deg) translate3d(2%,0,0) scale(1.34);filter:drop-shadow(-25px 34px 38px #0008)}
-  75%{transform:perspective(1600px) rotateY(0deg) rotateZ(0deg) translate3d(0,-2%,10px) scale(1.37);filter:drop-shadow(0 37px 40px #0008)}
-}
-@keyframes md-light-shift{from{opacity:.28;transform:translateX(-12%) scale(.9)}to{opacity:.75;transform:translateX(12%) scale(1.12)}}
-@media(max-width:700px){.md-offer{margin:15px 0 10px;padding:16px 19px}.md-offer-price{font-size:43px}.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img{animation-name:md-iphone-showcase-mobile}@keyframes md-iphone-showcase-mobile{0%,100%{transform:perspective(1600px) rotateY(-10deg) translateY(3px) scale(1.28)}50%{transform:perspective(1600px) rotateY(10deg) translateY(-11px) scale(1.31)}}}
-@media(prefers-reduced-motion:reduce){.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img,.model-stage .model-art.md-iphone-motion::before,.product-hero .product-photo.md-iphone-motion::before{animation:none!important;transform:scale(1.2)}}
+/* Preço e movimento editorial — uma única definição, sem ampliação excessiva das imagens. */
+.md-offer{margin:18px 0 20px;padding:18px 22px;background:#0b2516;border:1px solid #3a784d;border-radius:17px}
+.md-offer-caption{display:block;margin-bottom:9px;color:#a5f2ba;font-size:10px;font-weight:800;letter-spacing:.11em;line-height:1.6}
+.md-offer-price{display:block;color:#fff;font-size:clamp(34px,3.6vw,53px);line-height:1.15;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.md-offer-warning{color:#ffdfac;font-size:12px;line-height:1.6;font-weight:750;display:block}
+.model-info .md-offer{max-width:450px}
+.product-copy .variant-list button{min-height:42px;white-space:normal;line-height:1.4}
+.product-copy .variant-list button.active{background:#62fa83;color:#05250e;border-color:#62fa83}
 
 /* Gerações do iPhone e tabela de preços editorial, sem repetir os grandes cards. */
 .phone-eras{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 18px}
@@ -119,3 +80,104 @@ main{min-height:60vh}.hero{height:min(900px,100svh);min-height:690px;position:re
 .model-art:has(+ .model-info .md-color-swatch.active)::before,.product-photo:has(+ .product-copy .md-color-swatch.active)::before{background:radial-gradient(ellipse at 50% 45%,color-mix(in srgb,var(--selected-color) 36%,transparent),transparent 62%);transition:background 550ms ease}
 @media(max-width:700px){.md-colors{margin:16px 0 19px;padding:16px 0 5px}.md-color-swatch{width:38px;height:38px}.md-color-dot{width:27px;height:27px}.md-color-current{font-size:11px}.md-color-swatch-list{gap:7px}}
 @media(prefers-reduced-motion:reduce){.md-color-swatch{transition:none}}
+
+
+/* ===== MD PHONE: composição definitiva da vitrine, 2026 ===== */
+.hero h1{font-size:clamp(49px,6.1vw,89px);line-height:1.11;letter-spacing:-.05em;margin:20px 0 20px;max-width:720px;overflow-wrap:normal}
+.hero-desc{font-size:clamp(14px,1.4vw,18px);line-height:1.7;max-width:410px}
+.hero-media img{object-fit:contain;object-position:center;transform:scale(1.02);filter:drop-shadow(0 20px 35px #0007)}
+.hero-slide.active .hero-media img{transform:scale(1.07)}
+.category-tile .tile-visual img{object-fit:contain;object-position:center;mix-blend-mode:normal;transform:scale(1.02)}
+.category-tile:hover .tile-visual img{transform:scale(1.05)}
+.category-tile .tile-visual:after{background:linear-gradient(0deg,#07110bd9 0%,#07110b66 35%,transparent 77%)}
+.section-heading{font-size:clamp(36px,4.1vw,58px);line-height:1.13;letter-spacing:-.055em;text-wrap:balance}
+.section-sub{line-height:1.8;max-width:510px}
+.category-copy h1{font-size:clamp(57px,7vw,100px);line-height:1.07;letter-spacing:-.055em;overflow-wrap:normal}
+.category-hero.md-iphone-banner{height:auto;min-height:400px;max-height:none;align-items:center;padding-top:76px;background:radial-gradient(ellipse at 85% 20%,#226a3d70,#071810 55%,#040a07)}
+.category-hero.md-iphone-banner::after{background:none}
+.category-hero.md-iphone-banner .category-copy{width:min(100%,var(--max));padding-top:60px;padding-bottom:65px}
+.category-hero.md-iphone-banner .category-copy h1{font-size:clamp(56px,8vw,108px);margin:15px 0}
+.category-hero.md-iphone-banner .category-copy p{max-width:770px;font-size:clamp(14px,1.7vw,20px);line-height:1.7}
+.model-section{padding-top:80px}
+.model-section .section-inner{max-width:1370px}
+.model-intro{margin-bottom:28px}
+.model-intro .section-sub{max-width:680px}
+.md-model-picker{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:5px 0 22px}
+.md-model-picker label{width:min(100%,520px);display:flex;flex-direction:column;gap:10px}
+.md-model-picker label>span{font-size:10px;color:#b0ffbf;letter-spacing:.17em;font-weight:850}
+.md-model-picker select{appearance:none;width:100%;height:59px;border-radius:14px;border:1px solid #67bc7d88;padding:0 55px 0 21px;background:#0e2c1b;color:#fff;font-weight:850;font-size:clamp(14px,1.5vw,19px);box-shadow:0 6px 20px #0005;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%239cf7ae' stroke-width='2'%3E%3Cpath d='m4 7 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 20px center}
+.md-model-picker select option{color:#fff;background:#10291a}
+.md-model-count{font-size:11px;font-weight:650;color:#b0c9b6;padding-bottom:18px;line-height:1.5}
+.phone-eras{margin:16px 0}
+.phone-era{font-size:12px}
+.model-stage{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);min-height:560px;height:auto;overflow:hidden;border-radius:23px}
+.model-art{position:relative;min-height:560px;overflow:hidden;isolation:isolate}
+.model-art img{position:absolute;inset:5% 5%;width:90%;height:90%;max-width:none;object-fit:contain;object-position:center;transform:scale(1);filter:drop-shadow(0 28px 28px #0008);mix-blend-mode:normal;transition:transform .6s ease}
+.model-art:hover img{transform:scale(1.025)}
+.model-art-label{z-index:3;left:18px;bottom:16px;font-size:9px;line-height:1.5;max-width:calc(100% - 36px);background:#03100888;border-radius:5px;padding:5px 9px}
+.model-info{min-width:0;padding:clamp(29px,3.7vw,55px);background:linear-gradient(90deg,#07170dbb,#07160edc)}
+.model-info h3{font-size:clamp(33px,3.5vw,54px);line-height:1.12;letter-spacing:-.055em;margin:12px 0 13px;max-width:100%;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+.model-info p{font-size:13px;line-height:1.8;max-width:500px;margin:4px 0}
+.model-specs{margin:13px 0 16px;gap:7px}
+.spec-pill{line-height:1.4;font-size:10px;padding:8px 11px}
+.model-actions{margin-top:9px;gap:10px}
+.model-actions .btn{min-height:44px;padding:11px 18px;white-space:normal}
+.model-art.md-iphone-motion img,.product-photo.md-iphone-motion img{animation:md-showcase-subtle 9s ease-in-out infinite alternate}
+@keyframes md-showcase-subtle{from{transform:translateY(7px) rotateY(-2deg) scale(1.015)}to{transform:translateY(-9px) rotateY(2deg) scale(1.035)}}
+.product-hero{min-height:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,65px);padding-top:135px;padding-bottom:90px;align-items:center}
+.product-photo{min-height:570px;height:570px;overflow:hidden}
+.product-photo img{position:absolute;inset:4% 3%;width:94%;height:92%;max-width:none;object-fit:contain;object-position:center;transform:scale(1);filter:drop-shadow(0 24px 32px #0007)}
+.product-copy{min-width:0}
+.product-copy h1{font-size:clamp(40px,4.4vw,66px);line-height:1.12;letter-spacing:-.055em;margin:13px 0 16px;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+.product-copy>p{line-height:1.8;font-size:14px}
+.product-details{gap:8px;margin:16px 0 20px}
+.product-details>div{font-size:12px;line-height:1.7;padding-bottom:9px}
+.variant-list{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.md-colors{margin:14px 0 16px;padding:13px 0 2px}
+.md-colors-title{margin-bottom:10px}
+.md-color-disclaimer{font-size:10px;line-height:1.7}
+.md-offer{max-width:480px}
+.md-offer-price{letter-spacing:-.045em}
+.model-art.image-error,.product-photo.image-error,.tile-visual.image-error{background:radial-gradient(ellipse at center,#204631,#07180e 70%)}
+.md-missing-photo{position:absolute;z-index:2;inset:18% 13%;border:1px dashed #87f49a5e;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:#d9f5df;font-size:13px;line-height:1.8;font-weight:750;background:#092719a1}
+.md-missing-photo:before{content:"◇";display:block;font-size:44px;color:#76f790;position:absolute;top:16%}
+.md-iphone-banner .category-copy .action-row{margin-top:20px}
+@media(max-width:950px){.model-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.model-art{min-height:490px}.model-info{padding:25px}.model-info h3{font-size:clamp(31px,4vw,45px)}.product-photo{min-height:490px;height:490px}.product-hero{gap:18px}}
+@media(max-width:700px){
+.hero h1{font-size:clamp(43px,12vw,65px);line-height:1.1;letter-spacing:-.055em;max-width:470px}
+.hero-desc{max-width:360px;font-size:13px}
+.hero-media{inset:45% -10% 3% -10%}
+.hero-media img,.hero-slide.active .hero-media img{object-fit:contain;transform:scale(1.025)}
+.category-hero.md-iphone-banner{min-height:0;height:auto;max-height:none;padding-top:65px}
+.category-hero.md-iphone-banner .category-copy{padding:45px 22px 53px}
+.category-hero.md-iphone-banner .category-copy h1{font-size:clamp(51px,14vw,74px);line-height:1.07}
+.category-hero.md-iphone-banner .category-copy p{font-size:14px;max-width:450px}
+.section{padding:62px 18px}
+.section-heading{font-size:clamp(35px,9vw,52px);line-height:1.14}
+.model-intro{margin-bottom:20px}
+.md-model-picker{display:block;margin:4px 0 18px}
+.md-model-picker label{width:100%}
+.md-model-picker select{height:54px;padding-left:15px;font-size:14px}
+.md-model-count{display:block;margin:9px 0 0;padding:0;font-size:10px}
+.model-stage{grid-template-columns:1fr;min-height:0;border-radius:20px}
+.model-art{min-height:360px;height:360px}
+.model-art img{inset:5% 6%;height:90%;width:88%;object-fit:contain;transform:scale(1)}
+.model-art:hover img{transform:scale(1.01)}
+.model-art-label{left:12px;bottom:10px;font-size:8px}
+.model-info{padding:26px 22px 30px}
+.model-info h3{font-size:clamp(32px,8vw,43px);line-height:1.12;margin:10px 0 12px}
+.model-info p{font-size:12px;line-height:1.75}
+.model-info .md-offer{margin:13px 0;padding:14px 17px}
+.md-offer-price{font-size:clamp(33px,9vw,43px);white-space:normal}
+.model-actions .btn{width:100%}
+.product-hero{grid-template-columns:1fr;padding:90px 18px 50px;gap:12px}
+.product-photo{min-height:350px;height:350px}
+.product-photo img{inset:5% 6%;width:88%;height:90%;object-fit:contain;transform:scale(1)}
+.product-copy h1{font-size:clamp(37px,9.7vw,57px);line-height:1.12}
+.product-copy>p{font-size:13px}
+.product-copy .action-row .btn{white-space:normal}
+.md-missing-photo{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+.model-art.md-iphone-motion img,.product-photo.md-iphone-motion img{animation:none!important;transform:none!important}
+}
