@@ -18,7 +18,10 @@ const COLORS={iphone:'#2c6b4c',mac:'#315776',ipad:'#51427b',watch:'#564d43',airp
 const ICONS={iphone:'⌁',mac:'▱',ipad:'▣',watch:'◉',airpods:'♫',casa:'⌂',acessorios:'✦'};
 const $=(q,root=document)=>root.querySelector(q),$$=(q,root=document)=>Array.from(root.querySelectorAll(q));
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const srcOf=p=>p?.image||(p?.category==='iphone'?'':PHOTO[p?.category]||'');
+const LOCAL_PHOTOS=window.MD_PHOTOS||{};
+const srcOf=p=>LOCAL_PHOTOS[p?.id]||p?.image||(p?.category==='iphone'?'':PHOTO[p?.category]||'');
+const variantPhoto=(p,i)=>LOCAL_PHOTOS[p?.id+'::variant::'+i]||picked(p,i)?.image||null;
+const pictureFormat=p=>p?.image&&/(?:color-lineup|family-lineup|segment|promo_|hero_)/i.test(p.image)?' md-photo-landscape':' md-photo-portrait';
 const priceBRL=n=>Number.isFinite(n)?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(n):'Sob consulta';
 const phoneGroup=p=>/^iphone-(?:xr|11|12)(?:-|$)/.test(p.id)?'classicos':/^iphone-(?:13|14|15)(?:-|$)/.test(p.id)?'intermediarios':'recentes';
 function phoneFilterUI(items){if(items[0]?.category!=='iphone')return '';
@@ -48,6 +51,9 @@ const state={category:'iphone',index:0,variant:0,cart:null,colorModel:null,color
 let heroTimer=null,observer=null;
 window.mdPhotoFallback=function(img){
  if(!img||!img.parentElement)return;
+ if(img.dataset.fallback&&img.src!==img.dataset.fallback&&!img.dataset.triedFallback){
+  img.dataset.triedFallback='1';img.src=img.dataset.fallback;return;
+ }
  const parent=img.parentElement;
  img.hidden=true;
  parent.classList.add('image-error');
@@ -59,9 +65,9 @@ window.mdPhotoFallback=function(img){
   parent.appendChild(note);
  }
 };
-function imageEl(src,alt='',cls='',picture=''){
- if(!src)return '<div class="md-missing-photo">Foto do modelo em atualização. Solicite à MD PHONE.</div>';
- return '<img class="'+esc(cls)+'" loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(alt)+'" onerror="window.mdPhotoFallback(this)">';
+function imageEl(src,alt='',cls='',picture='',fallback=''){
+ if(!src)return '<div class="md-missing-photo">Foto deste modelo em atualização. Solicite imagens reais à loja.</div>';
+ return '<img class="'+esc(cls)+'" loading="lazy" decoding="async" src="'+esc(src)+'"'+(fallback&&fallback!==src?' data-fallback="'+esc(fallback)+'"':'')+' alt="'+esc(alt)+'" onerror="window.mdPhotoFallback(this)">';
 }
 function header(){
 return '<a class="skip" href="#principal">Ir ao conteúdo</a><header class="site-head"><div class="head-inner">'+
@@ -124,7 +130,7 @@ function variantColor(p,v){
  return p.colors.find(c=>c.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().startsWith(key))?.name||'';
 }
 function colorPhoto(p,color){
- return p?.colorPhotos?.[color]||null;
+ return LOCAL_PHOTOS[p?.id+'::color::'+color]||p?.colorPhotos?.[color]||null;
 }
 function colorSelector(p){
  if(p.category!=='iphone'||!p.colors?.length)return '';
@@ -147,10 +153,12 @@ function applyColorChoice(p,color){
  if(art){
   art.style.setProperty('--selected-color',p.colors.find(c=>c.name===color).hex);
   const img=art.querySelector('img');
-  const src=colorPhoto(p,color)||picked(p,state.variant)?.image||srcOf(p);
+  const src=colorPhoto(p,color)||variantPhoto(p,state.variant)||srcOf(p);
+  const fallback=p.colorPhotos?.[color]||picked(p,state.variant)?.image||p.image||'';
   if(img&&src){
    if(img.getAttribute('src')!==src){
-    img.hidden=false;art.classList.remove('image-error');art.querySelector('.md-missing-photo')?.remove();img.src=src;
+    img.hidden=false;art.classList.remove('image-error');art.querySelector('.md-missing-photo')?.remove();
+    img.dataset.triedFallback='';img.dataset.fallback=fallback;img.src=src;
    }
    img.alt='Imagem ilustrativa '+p.name+' · cor desejada: '+color;
   }
@@ -161,22 +169,23 @@ function initColorPreference(p){
 }
 
 function modelStage(p){
- if(!p)return '<div>Modelos sob consulta.</div>';
- const stock=p.availability==='estoque_informado';
- const heroPhoto=p.category==='iphone'?' md-iphone-motion':'';
+ if(!p)return '<div class="md-no-photo">Modelo em atualização. Consulte a loja.</div>';
+ const iphone=p.category==='iphone',stock=p.availability==='estoque_informado';
+ const info=iphone?'Selecione a cor e veja as configurações. Consulte o estoque da unidade desejada.':p.desc;
+ const conditionText=stock?'UNIDADE INFORMADA':'DISPONIBILIDADE SOB CONFIRMAÇÃO';
  return '<div class="model-stage" style="--model-glow:'+esc(p.accent||COLORS[p.category])+'">'+
- '<div class="model-art'+heroPhoto+'">'+imageEl(srcOf(p),'Foto de referência do '+p.name)+
- '<span class="model-art-label">'+(p.imageFamilyReference?'IMAGEM DA LINHA '+esc(p.imageFamilyReference.toUpperCase())+' · ILUSTRATIVA':'FOTO ILUSTRATIVA · CONSULTE A UNIDADE REAL')+'</span></div>'+
- '<div class="model-info"><div class="kicker">'+esc(condition(p).toUpperCase())+' · '+(stock?'UNIDADE INFORMADA':'CONFIRME DISPONIBILIDADE')+'</div>'+
- '<h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p>'+priceHtml(p)+colorSelector(p)+
- '<div class="model-specs">'+(p.specs||[]).slice(0,3).map(x=>'<span class="spec-pill">'+esc(x)+'</span>').join('')+'</div>'+
- '<div class="model-actions">'+button('Escolher configuração',linkProd(p.id))+
- '<button type="button" class="btn secondary" data-buy="'+esc(p.id)+'">Solicitar ↗</button></div></div></div>';
+ '<div class="model-art'+(iphone?' md-iphone-motion':'')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem ilustrativa do '+p.name,'','',p.image)+
+ '<span class="model-art-label">'+(p.imageFamilyReference?'FOTO DE REFERÊNCIA DA LINHA '+esc(p.imageFamilyReference.toUpperCase()):'FOTO DE REFERÊNCIA · CONFIRME O APARELHO REAL')+'</span></div>'+
+ '<div class="model-info"><div class="kicker">MD PHONE / '+esc(conditionText)+'</div>'+
+ '<h3>'+esc(p.name)+'</h3><p class="md-model-summary">'+esc(info)+'</p>'+
+ priceHtml(p)+colorSelector(p)+
+ '<div class="model-actions">'+button(iphone?'Ver capacidades e detalhes':'Ver detalhes',linkProd(p.id))+
+ '<button type="button" class="btn secondary" data-buy="'+esc(p.id)+'">Consultar pelo WhatsApp ↗</button></div></div></div>';
 }
 function productPage(p){
  const c=catOf(p.category),stock=p.availability==='estoque_informado';
  return '<section class="product-hero" style="--prod-glow:'+esc(p.accent||COLORS[p.category])+'">'+
- '<div class="product-photo '+(p.category==='iphone'?'photo-dark md-iphone-motion':'photo-light')+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name)+'</div>'+
+ '<div class="product-photo '+(p.category==='iphone'?'photo-dark md-iphone-motion':'photo-light')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name,'','',p.image)+'</div>'+
  '<div class="product-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span>'+
  '<h1>'+esc(p.name)+'</h1><p>'+esc(p.desc)+'</p><div class="stock-label">'+
  (stock?'Unidade informada · confirme disponibilidade':p.variants?.length?'Preço informado · estoque sob confirmação':'Modelo sob consulta')+
@@ -229,7 +238,7 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('[data-buy]');if(b){openBuy(b.dataset.buy);return;}
  const v=e.target.closest('[data-variant]');if(v&&prod){state.variant=Number(v.dataset.variant);$$('[data-variant]').forEach(x=>{const active=x===v;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});const det=$('.product-details');if(det)det.innerHTML=detailSpecs(prod,state.variant);const offer=$('#productOffer');if(offer)offer.innerHTML=priceHtml(prod,state.variant);
  const item=picked(prod,state.variant);const matchedColor=variantColor(prod,item);if(matchedColor)applyColorChoice(prod,matchedColor);const selected=selectedColor(prod);
- const img=$('.product-photo img');if(img){const src=colorPhoto(prod,selected)||item?.image||srcOf(prod);if(src){img.hidden=false;img.parentElement.classList.remove('image-error');img.parentElement.querySelector('.md-missing-photo')?.remove();img.src=src;}
+ const img=$('.product-photo img');if(img){const src=colorPhoto(prod,selected)||variantPhoto(prod,state.variant)||srcOf(prod);if(src){img.hidden=false;img.parentElement.classList.remove('image-error');img.parentElement.querySelector('.md-missing-photo')?.remove();img.dataset.triedFallback='';img.dataset.fallback=prod.colorPhotos?.[selected]||item?.image||prod.image||'';img.src=src;}
  img.alt='Imagem promocional ilustrativa de '+prod.name+' '+(item?.label||'');}
  return;}
  const c=e.target.closest('[data-close]');if(c){const d=document.getElementById(c.dataset.close);if(d.open)d.close();return;}
