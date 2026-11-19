@@ -55,16 +55,19 @@ jobs:
               }
               await page.goto(u+'?categoria=iphone',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.model-stage',{timeout:20000});
-              const modelCount=await page.locator('.model-tab').count();
-              if(modelCount!==31)errors.push(name+': esperado 31 modelos iPhone, encontrado '+modelCount);
-              const xrColors=await page.locator('.md-color-swatch').count();
-              if(xrColors!==6)errors.push(name+': iPhone XR deveria apresentar seis cores, encontrado '+xrColors);
-              await page.locator('[data-color-name="Coral"]').click();
-              const chosen=await page.locator('.md-color-current').innerText();
-              if(chosen!=='Coral')errors.push(name+': cor Coral não foi selecionada');
+              const modelCount=await page.locator('#mdPhoneModel option').count();
+              if(modelCount!==31)errors.push(name+': esperado 31 modelos no seletor, encontrado '+modelCount);
+              if(await page.locator('.model-stage').count()!==1)errors.push(name+': deveria haver apenas um iPhone em destaque');
+              if(await page.locator('.model-tab').count()!==0)errors.push(name+': faixa de 31 modelos deveria estar oculta');
               if(await page.locator('[data-phone-era]').count()!==4)errors.push(name+': filtros por geração ausentes');
-              await page.locator('.model-tab').nth(2).click();
-              if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone'))errors.push(name+': troca do modelo falhou');
+              await page.locator('#mdPhoneModel').selectOption('iphone-xr');
+              if((await page.locator('.md-color-swatch').count())!==6)errors.push(name+': cores do iPhone XR incompletas');
+              await page.locator('[data-color-name="Coral"]').click();
+              if((await page.locator('.md-color-current').innerText())!=='Coral')errors.push(name+': cor Coral não foi selecionada');
+              await page.locator('[data-phone-era="intermediarios"]').click();
+              await page.locator('#mdPhoneModel').selectOption('iphone-13-pro');
+              if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 13 Pro'))errors.push(name+': troca do modelo falhou');
+              if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+4))errors.push(name+': rolagem horizontal na vitrine iPhone');
               await page.screenshot({path:'qa-screenshots/'+name+'-iphone.png',fullPage:true});
               await page.goto(u+'?produto=iphone-18-pro-max',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.product-hero',{timeout:20000});
