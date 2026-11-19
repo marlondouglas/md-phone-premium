@@ -259,9 +259,27 @@ return '<section class="section compare"><div class="section-inner"><div class="
 }
 function compareDetails(p){return '<div class="compare-col"><div class="kicker">COMPARANDO</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><div class="compare-row">Categoria: '+esc(catOf(p.category).label)+'</div>'+(p.specs||[]).map(x=>'<div class="compare-row">'+esc(x)+'</div>').join('')+'<div class="compare-row">'+(p.availability==='estoque_informado'?'Unidade cadastrada':p.priceFrom!=null?'Preço informado · confira disponibilidade':'Sob consulta')+'</div>'+priceHtml(p)+button('Ver produto',linkProd(p.id))+'</div>'}
 function renderCompare(){const a=prodOf($('#compA')?.value),b=prodOf($('#compB')?.value),box=$('#compareContent');if(a&&b&&box)box.innerHTML=compareDetails(a)+compareDetails(b)}
-function dialogMarkup(){return '<button class="concierge" id="concierge" type="button" aria-label="Abrir assistente MD PHONE"><span class="concierge-orb">✦</span> Assistente MD <span aria-hidden="true">↗</span></button>'+
+function assistantDialogMarkup(){
+ const phoneOptions=D.products.filter(p=>p.category==='iphone').map(p=>'<option value="'+esc(p.name)+'">'+esc(p.name)+'</option>').join('');
+ return '<dialog id="helpDialog" class="dialog md-assistant-dialog" aria-labelledby="helpTitle">'+
+ '<button type="button" class="dialog-close" data-close="helpDialog" aria-label="Fechar assistente">×</button>'+
+ '<div class="md-assistant-hero"><img src="assets/md-assistant-avatar.svg" width="90" height="98" alt="Personagem do Assistente MD">'+
+ '<div><div class="kicker">MD PHONE / ATENDIMENTO PERSONALIZADO</div><h2 id="helpTitle">Encontre o iPhone certo.</h2></div></div>'+
+ '<p>Escolha suas preferências. O assistente prepara a consulta e você confirma o envio pelo WhatsApp.</p>'+
+ '<form id="helpForm" class="md-assistant-form">'+
+ '<label class="full">Qual iPhone você procura?<select id="helpModel"><option value="Quero uma recomendação">Ainda não sei — quero orientação</option>'+phoneOptions+'</select></label>'+
+ '<label>Qual faixa de valor?<select id="helpBudget"><option>Quero consultar preços</option><option>Até R$ 2.000</option><option>R$ 2.000 a R$ 3.000</option><option>R$ 3.000 a R$ 4.500</option><option>Acima de R$ 4.500</option></select></label>'+
+ '<label>Preferência de aparelho<select id="helpCondition"><option>Sem preferência</option><option>Seminovo</option><option>Novo lacrado</option></select></label>'+
+ '<label>O que deseja?<select id="helpPurchase"><option>Apenas comprar</option><option>Tenho aparelho na troca</option></select></label>'+
+ '<label>Quando pretende comprar?<select id="helpTiming"><option>Estou pesquisando</option><option>Quero comprar agora</option><option>Nos próximos dias</option></select></label>'+
+ '<label class="full">Detalhes da sua preferência<textarea id="helpNote" rows="3" maxlength="360" placeholder="Cor, memória, bateria, aparelho na troca ou detalhes importantes..."></textarea></label>'+
+ '<button class="btn primary dialog-submit" type="submit">Continuar pelo WhatsApp ↗</button>'+
+ '<small>A loja confirma fotos reais, valor, disponibilidade, estado e garantia. O WhatsApp abre com a mensagem pronta, sem enviar automaticamente.</small>'+
+ '</form></dialog>';
+}
+function dialogMarkup(){return '<button class="concierge md-mascot-trigger" id="concierge" type="button" aria-label="Abrir assistente de compra MD PHONE"><img class="md-mascot-avatar" src="assets/md-assistant-avatar.svg" width="65" height="69" alt="" decoding="async"> <span>Assistente MD</span> <span aria-hidden="true">↗</span></button>'+
 '<dialog id="buyDialog" class="dialog" aria-labelledby="buyTitle"><button type="button" class="dialog-close" data-close="buyDialog" aria-label="Fechar">×</button><div class="kicker">MD PHONE / SOLICITAÇÃO</div><h2 id="buyTitle">Sua escolha começa aqui.</h2><p>Preencha seus dados para preparar uma solicitação ao WhatsApp. Não realizamos pagamento ou reserva pelo site.</p><div class="dialog-choice" id="buyChoice"></div><form id="buyForm"><label>Nome completo *<input id="buyerName" autocomplete="name" minlength="2" maxlength="90" required placeholder="Seu nome"></label><label>WhatsApp para retorno *<input id="buyerPhone" type="tel" autocomplete="tel" minlength="10" maxlength="20" required placeholder="(33) 99999-9999"></label><label>Como deseja receber?<select id="shipping"><option value="Consultar entrega">Consultar entrega</option><option value="Retirada com a loja">Retirada com a loja</option></select></label><label>Cidade / UF<input id="buyerCity" autocomplete="address-level2" maxlength="100" placeholder="Governador Valadares / MG"></label><label class="full" id="addressLabel">Endereço para consulta de entrega<input id="buyerAddress" autocomplete="street-address" maxlength="180" placeholder="Rua, número, bairro e complemento"></label><label>CEP (opcional)<input id="buyerCep" autocomplete="postal-code" maxlength="9" placeholder="00000-000"></label><label class="full">Detalhes (opcional)<textarea id="buyerNotes" rows="2" maxlength="240" placeholder="Cor, memória, troca de aparelho..."></textarea></label><label class="consent"><input id="buyerConsent" type="checkbox" required>Autorizo compartilhar meus dados com a MD PHONE pelo WhatsApp para receber atendimento.</label><button class="btn primary dialog-submit" type="submit">Abrir WhatsApp com pedido ↗</button><small>Os dados não são guardados neste site. O WhatsApp será aberto com mensagem pronta, para você confirmar o envio.</small></form></dialog>'+
-'<dialog id="helpDialog" class="dialog" aria-labelledby="helpTitle"><button type="button" class="dialog-close" data-close="helpDialog" aria-label="Fechar">×</button><div class="concierge-orb" style="margin-bottom:16px">✦</div><div class="kicker">MD PHONE / CONCIERGE</div><h2 id="helpTitle">Qual produto combina com você?</h2><p>Escolha uma linha e conte o que procura. Nossa equipe responde no WhatsApp.</p><form id="helpForm"><label class="full">O que procura?<select id="helpCategory">'+D.categories.map(c=>'<option value="'+esc(c.label)+'">'+esc(c.label)+'</option>').join('')+'</select></label><label class="full">Sua preferência<textarea id="helpNote" rows="3" maxlength="250" placeholder="Modelo, faixa de preço, cor..."></textarea></label><button class="btn primary dialog-submit" type="submit">Conversar no WhatsApp ↗</button></form></dialog>';
+assistantDialogMarkup();
 }
 function init(){
 const url=new URL(location.href),prod=prodOf(url.searchParams.get('produto')),cat=catOf(url.searchParams.get('categoria')),compare=url.searchParams.has('comparar');
@@ -285,10 +303,27 @@ document.addEventListener('click',e=>{
  const c=e.target.closest('[data-close]');if(c){const d=document.getElementById(c.dataset.close);if(d.open)d.close();return;}
 });
 for(const id of ['buyDialog','helpDialog']){const d=document.getElementById(id);d?.addEventListener('click',e=>{if(e.target===d)d.close()})}
-$('#concierge')?.addEventListener('click',()=>$('#helpDialog').showModal());
+const openAssistant=()=>$('#helpDialog')?.showModal();
+$('#concierge')?.addEventListener('click',openAssistant);
+$('#headerAssistant')?.addEventListener('click',openAssistant);
+$('#mobileAssistant')?.addEventListener('click',openAssistant);
 $('#shipping')?.addEventListener('change',e=>{$('#addressLabel').hidden=e.target.value==='Retirada com a loja'});
 $('#buyForm')?.addEventListener('submit',submitBuy);
-$('#helpForm')?.addEventListener('submit',e=>{e.preventDefault();const msg='Olá, MD PHONE! Quero ajuda para escolher um produto Apple.\nCategoria: '+$('#helpCategory').value+'\nDetalhes: '+$('#helpNote').value.trim()+'\nPode me orientar sobre modelos e preços?';openWhatsapp(msg)});
+$('#helpForm')?.addEventListener('submit',e=>{
+ e.preventDefault();
+ const msg=[
+  'Olá, MD PHONE! Vim pelo Assistente MD do site.',
+  'iPhone desejado: '+$('#helpModel').value,
+  'Faixa de valor: '+$('#helpBudget').value,
+  'Condição: '+$('#helpCondition').value,
+  'Objetivo: '+$('#helpPurchase').value,
+  'Quando comprar: '+$('#helpTiming').value
+ ];
+ const notes=$('#helpNote').value.trim();
+ if(notes)msg.push('Outros detalhes: '+notes);
+ msg.push('Pode confirmar preços, fotos reais, disponibilidade e opções de compra?');
+ openWhatsapp(msg.join('\n'));
+});
 if('IntersectionObserver'in window){observer=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');observer.unobserve(en.target)}}),{threshold:.08});$$('.reveal').forEach(e=>observer.observe(e));}
 }
 function startHero(){const slides=$$('.hero-slide');if(slides.length<2)return;let i=0;heroTimer=setInterval(()=>{if(document.hidden||matchMedia('(prefers-reduced-motion: reduce)').matches)return;slides[i].classList.remove('active');$$('.timeline-item')[i]?.classList.remove('active');i=(i+1)%slides.length;slides[i].classList.add('active');$$('.timeline-item')[i]?.classList.add('active')},6500)}
