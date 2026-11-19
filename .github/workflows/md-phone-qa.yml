@@ -138,7 +138,7 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa-snapshots/elevate-*.png qa-snapshots/elevate-*.base64.txt qa-snapshots/elevate-audit-status.json
+          git add -A qa-snapshots
           if ! git diff --cached --quiet; then
             git commit -m "Visual QA: MD PHONE Elevate resultado e capturas"
             git push
