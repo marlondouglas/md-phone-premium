@@ -1,4 +1,4 @@
-/* Catálogo MD PHONE. Modelos referenciados nas páginas Apple Brasil em novembro de 2026. Disponibilidade da loja não confirmada salvo estoque previamente informado. */
+/* Catálogo MD PHONE. Linhas Apple de referência; disponibilidade e preço sob consulta. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -80,7 +80,7 @@ window.MD_UNIVERSE = {
         "Consulte capacidades e cores"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/br/homepage/built/heroes/26_iphone-duo_09/images/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg",
       "featured": true,
       "tag": "Novo"
     },
@@ -116,7 +116,7 @@ window.MD_UNIVERSE = {
         "Consulte cores e armazenamento"
       ],
       "variants": [],
-      "image": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
+      "image": "https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg",
       "featured": true,
       "tag": "Novo"
     },
@@ -366,7 +366,7 @@ window.MD_UNIVERSE = {
         "Consulte versões e chips"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/v/homepage/images/macbook-pro-proled-xdr/a/hero_macbook_pro_proled_xdr_preorder__df38n593sxg2_large.jpg",
       "featured": true,
       "tag": null
     },
@@ -401,7 +401,7 @@ window.MD_UNIVERSE = {
         "Cores e configurações sob consulta"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/v/homepage/images/imac-m6/a/promo_imac_m6_announce__fd1gdwgpg2a2_large.jpg",
       "featured": true,
       "tag": null
     },
@@ -537,7 +537,7 @@ window.MD_UNIVERSE = {
         "Consulte memória e acabamento"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/v/homepage/images/ipad-mini/a/promo_ipad_mini_a20_announce__efc6vmmxg58i_large.jpg",
       "featured": false,
       "tag": "Novo"
     },
@@ -554,7 +554,7 @@ window.MD_UNIVERSE = {
         "Consulte caixa e pulseira"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/br/homepage/built/promos/26_apple-watch-series-12_10/images/promo_apple_watch_series_12__gnlprtt8526a_large.jpg",
       "featured": true,
       "tag": "Novo"
     },
@@ -657,7 +657,7 @@ window.MD_UNIVERSE = {
         "Consulte disponibilidade"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg",
       "featured": true,
       "tag": null
     },
