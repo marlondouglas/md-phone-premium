@@ -43,14 +43,19 @@ jobs:
               await page.waitForTimeout(2000);
               await page.screenshot({path:'qa-screenshots/'+name+'.png',fullPage:true});
               const count=await page.locator('.product-panel').count();
+              const models=await page.locator('.model-tab').count();
               const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3);
-              if(count!==6)errors.push(name+': expected 6 product panels, got '+count);
+              if(count!==1)errors.push(name+': expected one product showroom, got '+count);
+              if(models!==6)errors.push(name+': expected 6 model tabs, got '+models);
+              if(await page.locator('.feature, .cinema-band, .steps').count())errors.push(name+': duplicated sections remain');
               if(overflow)errors.push(name+': horizontal overflow detected');
               if(name==='mobile'){
                 await page.locator('#menuToggle').click();
                 if(!(await page.locator('#mobileNav').isVisible()))errors.push('Mobile menu did not open');
                 await page.locator('#menuToggle').click();
               }
+              await page.locator('[data-model-select="18pro"]').click();
+              if(!(await page.locator('.product-panel h3').innerText()).includes('iPhone 18 Pro Max'))errors.push(name+': model switch failed');
               await page.locator('[data-buy="18pro"]').first().click();
               if(!(await page.locator('#checkout').evaluate(el=>el.open)))errors.push(name+': buy dialog not open');
               await page.locator('#buyerName').fill('Cliente Teste');
@@ -60,7 +65,7 @@ jobs:
               await page.locator('#checkoutForm button[type=submit]').click();
               const whatsapp=await page.evaluate(()=>window.__waCaptured);
               if(!whatsapp.startsWith('https://wa.me/5533987044866?text='))errors.push(name+': no valid WhatsApp purchase URL');
-              console.log(JSON.stringify({screen:name,count,overflow,whatsappAttempted:!!whatsapp}));
+              console.log(JSON.stringify({screen:name,count,models,overflow,whatsappAttempted:!!whatsapp}));
               await page.close();
             }
             await browser.close();
