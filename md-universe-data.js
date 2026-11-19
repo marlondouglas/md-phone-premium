@@ -1,4 +1,4 @@
-/* MD PHONE: catálogo e imagens de referência profissionais. Estoque/cores sob confirmação. */
+/* MD PHONE: catálogo, cores e preços informados. Fotos promocionais; estoque sob confirmação. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -298,7 +298,8 @@ window.MD_UNIVERSE = {
           "hex": "#c52330"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Preto"
     },
     {
       "id": "iphone-12-pro",
@@ -469,7 +470,8 @@ window.MD_UNIVERSE = {
           "hex": "#466b55"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Estelar"
     },
     {
       "id": "iphone-13-pro",
@@ -553,7 +555,8 @@ window.MD_UNIVERSE = {
         "Azul-sierra": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
         "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=900&hei=1112&fmt=png-alpha",
         "Grafite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=900&hei=1112&fmt=png-alpha"
-      }
+      },
+      "defaultColor": "Azul-sierra"
     },
     {
       "id": "iphone-13-pro-max",
@@ -644,7 +647,8 @@ window.MD_UNIVERSE = {
           "hex": "#f9e277"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Azul"
     },
     {
       "id": "iphone-14-plus",
@@ -695,7 +699,8 @@ window.MD_UNIVERSE = {
           "hex": "#f9e277"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Azul"
     },
     {
       "id": "iphone-14-pro",
@@ -746,7 +751,8 @@ window.MD_UNIVERSE = {
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "colorPhotos": {
         "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
-      }
+      },
+      "defaultColor": "Roxo-profundo"
     },
     {
       "id": "iphone-14-pro-max",
@@ -797,7 +803,8 @@ window.MD_UNIVERSE = {
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "colorPhotos": {
         "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
-      }
+      },
+      "defaultColor": "Roxo-profundo"
     },
     {
       "id": "iphone-15",
@@ -844,7 +851,8 @@ window.MD_UNIVERSE = {
           "hex": "#343735"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Azul"
     },
     {
       "id": "iphone-15-plus",
@@ -927,7 +935,8 @@ window.MD_UNIVERSE = {
           "hex": "#434342"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Titânio-azul"
     },
     {
       "id": "iphone-15-pro-max",
