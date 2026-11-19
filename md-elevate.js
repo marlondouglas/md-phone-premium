@@ -35,13 +35,13 @@ function hero(){
  return '<section class="hero"><div class="shell hero-inner"><div class="hero-copy">'+
  '<span class="eyebrow">MD PHONE / SELEÇÃO PREMIUM</span>'+
  '<h1>Seu próximo iPhone.<br><em>Em outro nível.</em></h1>'+
- '<p class="hero-desc">Fotografias que valorizam cada detalhe. Condições claras, modelos selecionados e atendimento de verdade para escolher com confiança.</p>'+
+ '<p class="hero-desc">Tecnologia, design e uma seleção que combina com você. Explore os modelos, escolha sua configuração e encontre seu próximo iPhone.</p>'+
  '<div class="button-row"><a class="button primary" href="#catalogo">Explorar iPhones '+arrow+'</a>'+
  '<button class="button ghost" type="button" data-help>Encontrar meu iPhone '+arrow+'</button></div>'+
- '<p class="hero-submeta">14 MODELOS ANUNCIADOS · DO XR AO 18 PRO MAX</p></div>'+
+ '<p class="hero-submeta">DO IPHONE XR AO 18 PRO MAX · ESCOLHA COM CONFIANÇA</p></div>'+
  '<div class="hero-visual">'+img(phone,'hero-phone','Foto profissional ilustrativa do '+phone.name)+
  '<div class="hero-flag"><span><strong>'+safe(phone.name)+'</strong><small>'+safe(first.label)+' · disponibilidade sob confirmação</small></span><b>'+price(first.price)+'</b></div></div></div></section>'+
- '<div class="hero-feature-line"><div class="shell"><span>✦ SELEÇÃO DA LOJA</span><span>✦ FOTOS PROFISSIONAIS</span><span>✦ PREÇOS INFORMADOS</span></div></div>';
+ '<div class="hero-feature-line"><div class="shell"><span>✦ DESIGN E PERFORMANCE</span><span>✦ UMA EXPERIÊNCIA PREMIUM</span><span>✦ ATENDIMENTO PERSONALIZADO</span></div></div>';
 }
 function spotlight(p,i){
  return '<button type="button" class="spotlight" data-product="'+safe(p.id)+'" aria-label="Conhecer '+safe(p.name)+'">'+
@@ -53,21 +53,26 @@ function spotlight(p,i){
 function highlights(){
  return '<section class="section highlights" id="destaques"><div class="shell"><div class="chapter-head">'+
  '<div><span class="eyebrow">SELEÇÃO EM DESTAQUE</span><h2>Mais que um celular.<br><em>Sua próxima escolha.</em></h2></div>'+
- '<p>Uma apresentação que deixa os produtos falarem: imagens grandes, texto bem organizado e preços visíveis.</p></div>'+
+ '<p>Explore a coleção e descubra os detalhes que tornam cada iPhone especial.</p></div>'+
  '<div class="spotlight-grid">'+feature.map(spotlight).join('')+'</div></div></section>';
 }
 function productCard(p){
  var first=p.variants[0],sealed=p.variants.some(function(v){return /lacrado/i.test(v.condition||v.label||'')});
- var config=p.variants.length>1?p.variants.length+' opções de capacidade ou condição':first.label;
- return '<button type="button" class="product-card" data-product="'+safe(p.id)+'" data-group="'+group(p)+'" aria-label="Ver '+safe(p.name)+', a partir de '+price(firstPrice(p))+'">'+
- '<div class="product-visual"><span class="product-tag">'+safe(sealed?'Há opção lacrada':(first.condition||'Condição a confirmar'))+'</span>'+img(p,'','Foto de catálogo do '+p.name)+'</div>'+
+ var config=p.variants.length>1?p.variants.length+' configurações disponíveis':first.label;
+ var quickMsg=['Olá! Tenho interesse no '+p.name+'.','Configuração: '+first.label,'Valor: '+price(first.price),'Gostaria de confirmar a disponibilidade e concluir a compra.'].join('\n');
+ return '<article class="product-card" data-group="'+group(p)+'" aria-label="'+safe(p.name)+'">'+
+ '<div class="product-visual"><span class="product-tag">'+safe(sealed?'Opção lacrada':first.condition||'Confira os detalhes')+'</span>'+img(p,'','Foto de produto '+p.name)+'</div>'+
  '<div class="product-copy"><h3>'+safe(p.name)+'</h3><p class="product-config">'+safe(config)+'</p>'+
- '<div class="price-line"><span><small>VALOR INFORMADO A PARTIR DE</small><strong>'+price(firstPrice(p))+'</strong></span><span class="see-more">Ver opções ↗</span></div></div></button>';
+ '<div class="price-line"><span><small>A partir de</small><strong>'+price(firstPrice(p))+'</strong></span></div>'+
+ '<div class="product-actions">'+
+ '<button type="button" class="button ghost" data-product="'+safe(p.id)+'">Ver cores e detalhes</button>'+
+ '<a class="button primary" href="'+whatsapp(quickMsg)+'" target="_blank" rel="noopener noreferrer">Comprar <span aria-hidden="true">↗</span></a>'+
+ '</div></div></article>';
 }
 function catalog(){
  return '<section class="section catalog-section" id="catalogo"><div class="shell"><div class="chapter-head">'+
- '<div><span class="eyebrow">CATÁLOGO MD PHONE</span><h2>iPhones selecionados.<br><em>Escolhas reais.</em></h2></div>'+
- '<p>Somente os 14 modelos anunciados. Escolha o aparelho para consultar capacidade, cor de preferência e valor informado.</p></div>'+
+ '<div><span class="eyebrow">COLEÇÃO IPHONE</span><h2>Encontre o seu<br><em>próximo iPhone.</em></h2></div>'+
+ '<p>Evolua com seu iPhone. Compare gerações, memórias e acabamentos para encontrar sua próxima escolha.</p></div>'+
  '<div class="catalog-toolbar"><div class="filter-chips" role="group" aria-label="Filtrar geração">'+
  '<button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">Todos</button>'+
  '<button class="filter-chip" type="button" data-filter="old" aria-pressed="false">XR ao 12</button>'+
@@ -81,26 +86,26 @@ function catalog(){
 function film(){
  return '<section class="film-section" id="filme"><div class="shell"><div class="film-head">'+
  '<div><span class="eyebrow">MD PHONE / STUDIO FILM</span><h2>Design em destaque.<br><em>Movimento de verdade.</em></h2></div>'+
- '<p>Uma produção editorial da MD PHONE com os aparelhos em primeiro plano, sem YouTube e sem controles decorativos.</p></div>'+
+ '<p>Detalhes, luz e movimento. Descubra uma nova forma de explorar o design Apple.</p></div>'+
  '<div class="film-frame" id="filmFrame"><div class="film-poster">'+img(phone,'','Foto ilustrativa do filme')+'<span>Seu iPhone.<br>Em foco.</span></div>'+
  '<video id="studioVideo" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-label="Filme editorial original MD PHONE"><source src="assets/md-elevate-film.mp4" type="video/mp4"></video>'+
  '<div class="film-watermark"><img src="assets/md-phone-brand-mark.svg" alt=""> MD PHONE</div></div>'+
- '<div class="film-foot"><span>FILME EDITORIAL ORIGINAL / MD PHONE</span><span>TECNOLOGIA & DESIGN</span></div></div></section>';
+ '<div class="film-foot"><span>MD PHONE / STUDIO</span><span>TECNOLOGIA & DESIGN</span></div></div></section>';
 }
 function promises(){
 return '<section class="section promise-section" id="porque"><div class="shell"><div class="chapter-head">'+
 '<div><span class="eyebrow">A EXPERIÊNCIA MD PHONE</span><h2>Escolher bem.<br><em>Sem complicar.</em></h2></div>'+
 '<p>Do catálogo ao atendimento, você pode confirmar os detalhes do aparelho antes de tomar sua decisão.</p></div>'+
 '<div class="promise-grid">'+
-'<div class="promise"><div class="promise-number">01 / TRANSPARÊNCIA</div><h3>Informação que importa.</h3><p>Preço e capacidade publicados. Bateria, reparos, garantia e condição real confirmados pela loja.</p></div>'+
-'<div class="promise"><div class="promise-number">02 / ESCOLHA</div><h3>Do XR ao 18 Pro Max.</h3><p>Uma seleção de 14 modelos anunciados, incluindo opções de armazenamento e iPhone 17 Pro Max lacrado.</p></div>'+
+'<div class="promise"><div class="promise-number">01 / TRANSPARÊNCIA</div><h3>Informação que importa.</h3><p>Compare modelos e configurações com clareza. Nossa equipe ajuda a confirmar os detalhes da sua escolha.</p></div>'+
+'<div class="promise"><div class="promise-number">02 / ESCOLHA</div><h3>Evolua com seu iPhone.</h3><p>Dos clássicos às gerações recentes, encontre um iPhone para o seu estilo.</p></div>'+
 '<div class="promise"><div class="promise-number">03 / ATENDIMENTO</div><h3>Escolha com alguém por perto.</h3><p>Seu modelo e suas preferências viram uma mensagem organizada para o WhatsApp da MD PHONE.</p></div>'+
 '</div></div></section>';
 }
 function footer(){
 return '<footer class="footer"><div class="shell"><div class="footer-inner">'+
 '<div><a class="brand" href="#inicio"><img src="assets/md-phone-brand-mark.svg" alt=""><span><b>MD</b> PHONE</span></a>'+
-'<p>Uma loja independente com foco em iPhones, fotografia de produto e atendimento direto para você escolher com confiança.</p></div>'+
+'<p>Tecnologia, design e atendimento personalizado para a sua próxima escolha.</p></div>'+
 '<div><h4>Explorar</h4><a href="#destaques">Destaques</a><a href="#catalogo">Modelos e preços</a><a href="#filme">Studio Film</a></div>'+
 '<div><h4>Atendimento</h4><a href="'+whatsapp('Olá, MD PHONE! Quero atendimento.')+'" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="#porque">Como comprar</a><a href="#inicio">Voltar ao início ↑</a></div>'+
 '<section class="shipping-global" aria-labelledby="shippingTitle"><div class="shipping-top"><div><span class="shipping-kicker">MD PHONE / ALCANCE INTERNACIONAL</span><h2 id="shippingTitle">O seu próximo iPhone. <em>Onde você estiver.</em></h2><p>Consulte a possibilidade de envio, frete e prazos para os destinos abaixo. A disponibilidade e as condições são confirmadas pela loja antes de qualquer compra.</p></div><div class="shipping-icon" aria-hidden="true">✦</div></div><div class="shipping-countries">'+
@@ -117,13 +122,13 @@ return '<button type="button" class="assistant-launcher" id="assistantLauncher" 
 '<dialog class="dialog" id="productDialog" aria-labelledby="productTitle">'+
 '<div class="dialog-top"><div><span class="eyebrow">MD PHONE / DETALHES</span><h2 id="productTitle">iPhone</h2></div><button type="button" class="dialog-close" data-close="productDialog" aria-label="Fechar">×</button></div>'+
 '<div class="dialog-content dialog-product"><div class="dialog-product-visual" id="detailVisual"></div>'+
-'<div class="dialog-product-summary"><p class="dialog-price-label">VALOR INFORMADO PARA ESTA CONFIGURAÇÃO</p><p class="dialog-price" id="detailPrice"></p>'+
+'<div class="dialog-product-summary"><p class="dialog-price-label">Preço</p><p class="dialog-price" id="detailPrice"></p>'+
 '<p class="choice-label">Capacidade e condição</p><div class="variants" id="detailVariants"></div>'+
 '<p class="choice-label">Cor de preferência: <span id="selectedColor"></span></p><div class="swatches" id="detailColors"></div>'+
 '<p class="selection-info">Cores de fábrica. A equipe confirma quais cores estão disponíveis no estoque.</p>'+
 '<div class="detail-list" id="detailNotes"></div>'+
 '<a id="productWhatsapp" class="button dark form-submit" target="_blank" rel="noopener noreferrer" href="#">Consultar esta configuração ↗</a>'+
-'<p class="detail-disclaimer">Foto ilustrativa do modelo, não da unidade seminova. A mensagem abre no WhatsApp e você confirma o envio.</p></div></div></dialog>'+
+'<p class="detail-disclaimer">Foto ilustrativa do modelo, não da unidade seminova. Finalize seu pedido diretamente com nossa equipe no WhatsApp.</p></div></div></dialog>'+
 '<dialog class="dialog" id="assistantDialog" aria-labelledby="assistantTitle">'+
 '<div class="dialog-top"><span class="eyebrow">MD PHONE / ASSISTENTE</span><button type="button" class="dialog-close" data-close="assistantDialog" aria-label="Fechar">×</button></div>'+
 '<div class="help-intro"><img src="assets/md-assistant-avatar.svg" alt="Personagem do Assistente MD"><div>'+
