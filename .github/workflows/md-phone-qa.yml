@@ -1,11 +1,13 @@
-name: MD PHONE · Visual QA
+name: MD PHONE Universe · QA visual
 on:
   push:
     branches: [main]
     paths:
       - index.html
-      - md-2026.css
-      - md-2026.js
+      - '*.html'
+      - md-universe.css
+      - md-universe-data.js
+      - md-universe-app.js
       - .github/workflows/md-phone-qa.yml
   workflow_dispatch:
 permissions:
@@ -13,19 +15,20 @@ permissions:
 jobs:
   qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 14
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Node.js
+      - name: Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Playwright
+      - name: Instalar Playwright
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Testar e fotografar telas
+      - name: Testar site em navegadores desktop e celular
+        shell: bash
         run: |
           python3 -m http.server 8765 >/tmp/mdphone-http.log 2>&1 &
           node <<'NODE'
@@ -37,50 +40,67 @@ jobs:
             const errors=[];
             for(const [name,width,height] of [['desktop',1440,900],['mobile',390,844]]){
               const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
-              page.on('pageerror',error=>errors.push(name+': '+error.message));
-              await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
-              await page.locator('.product-panel').first().waitFor({timeout:20000});
-              await page.waitForTimeout(2000);
-              await page.screenshot({path:'qa-screenshots/'+name+'.png',fullPage:true});
-              const count=await page.locator('.product-panel').count();
-              const models=await page.locator('.model-tab').count();
-              const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3);
-              if(count!==1)errors.push(name+': expected one product showroom, got '+count);
-              if(models!==6)errors.push(name+': expected 6 model tabs, got '+models);
-              if(await page.locator('.feature, .cinema-band, .steps').count())errors.push(name+': duplicated sections remain');
-              if(overflow)errors.push(name+': horizontal overflow detected');
+              page.on('pageerror',e=>errors.push(name+': '+e.message));
+              await page.goto('http://127.0.0.1:8765/index.html',{waitUntil:'domcontentloaded'});
+              await page.locator('.hero-slide.active').waitFor({timeout:20000});
+              if(await page.locator('.category-tile').count()!==7)errors.push(name+': homepage missing 7 categories');
+              await page.waitForTimeout(1800);
+              await page.screenshot({path:'qa-screenshots/home-'+name+'.png',fullPage:true});
+              if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3))errors.push(name+': horizontal overflow on home');
               if(name==='mobile'){
-                await page.locator('#menuToggle').click();
-                if(!(await page.locator('#mobileNav').isVisible()))errors.push('Mobile menu did not open');
-                await page.locator('#menuToggle').click();
+                await page.locator('#menuButton').click();
+                if(!(await page.locator('#mobileMenu').isVisible()))errors.push('Mobile menu failed');
+                await page.locator('#menuButton').click();
               }
-              await page.locator('[data-model-select="18pro"]').click();
-              if(!(await page.locator('.product-panel h3').innerText()).includes('iPhone 18 Pro Max'))errors.push(name+': model switch failed');
-              await page.locator('[data-buy="18pro"]').first().click();
-              if(!(await page.locator('#checkout').evaluate(el=>el.open)))errors.push(name+': buy dialog not open');
-              await page.locator('#buyerName').fill('Cliente Teste');
-              await page.locator('#buyerPhone').fill('33999999999');
-              await page.locator('#buyerConsent').check();
-              await page.evaluate(()=>{window.__waCaptured='';const f=HTMLAnchorElement.prototype.click;HTMLAnchorElement.prototype.click=function(){window.__waCaptured=this.href;};});
-              await page.locator('#checkoutForm button[type=submit]').click();
-              const whatsapp=await page.evaluate(()=>window.__waCaptured);
-              if(!whatsapp.startsWith('https://wa.me/5533987044866?text='))errors.push(name+': no valid WhatsApp purchase URL');
-              console.log(JSON.stringify({screen:name,count,models,overflow,whatsappAttempted:!!whatsapp}));
+              await page.goto('http://127.0.0.1:8765/iphone.html',{waitUntil:'domcontentloaded'});
+              await page.locator('.model-stage').waitFor({timeout:20000});
+              if(await page.locator('.model-tab').count()<6)errors.push(name+': iPhone models missing');
+              if(await page.locator('.model-stage').count()!==1)errors.push(name+': duplicated product showcase');
+              await page.locator('[data-select-product="iphone-13-pro"]').click();
+              if(!(await page.locator('#modelStage').innerText()).includes('iPhone 13 Pro'))errors.push(name+': model switch failed');
+              await page.screenshot({path:'qa-screenshots/iphone-'+name+'.png',fullPage:true});
+              if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3))errors.push(name+': horizontal overflow on iPhone');
+              await page.locator('[data-consult="iphone-13-pro"]').click();
+              if(!(await page.locator('#checkout').evaluate(el=>el.open)))errors.push(name+': checkout failed to open');
+              await page.locator('#name').fill('Cliente Teste');
+              await page.locator('#phone').fill('33999999999');
+              await page.locator('#city').fill('Governador Valadares/MG');
+              await page.locator('#address').fill('Rua de teste, 123');
+              await page.locator('#consent').check();
+              await page.evaluate(()=>{window.__wa='';HTMLAnchorElement.prototype.click=function(){window.__wa=this.href}});
+              await page.locator('#checkoutForm button[type="submit"]').click();
+              const w=await page.evaluate(()=>window.__wa);
+              if(!w.startsWith('https://wa.me/5533987044866?text='))errors.push(name+': checkout WhatsApp URL missing');
+              if(!decodeURIComponent(w).includes('Cliente Teste'))errors.push(name+': customer data missing');
+              await page.goto('http://127.0.0.1:8765/produto.html?id=iphone-13-pro',{waitUntil:'domcontentloaded'});
+              await page.locator('[data-variant="2"]').click();
+              if(!(await page.locator('#productDetails').innerText()).includes('Tela e bateria substituídas'))errors.push(name+': variant repair disclosure missing');
+              await page.screenshot({path:'qa-screenshots/product-'+name+'.png',fullPage:true});
+              await page.goto('http://127.0.0.1:8765/comparar.html',{waitUntil:'domcontentloaded'});
+              if(await page.locator('.compare-col').count()!==2)errors.push(name+': compare page failed');
               await page.close();
+            }
+            for(const slug of ['mac','ipad','watch','airpods','casa','acessorios','sobre']){
+              const p=await browser.newPage();
+              p.on('pageerror',e=>errors.push(slug+': '+e.message));
+              await p.goto('http://127.0.0.1:8765/'+slug+'.html',{waitUntil:'domcontentloaded'});
+              if(await p.locator('#app').innerText()==='')errors.push(slug+': empty page');
+              if(slug!=='sobre'&&await p.locator('.model-stage').count()!==1)errors.push(slug+': model stage missing');
+              await p.close();
             }
             await browser.close();
             if(errors.length){console.error('QA FAILED',errors);process.exit(1)}
-            console.log('QA PASSED');
+            console.log('MD PHONE Universe QA PASSED');
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
-      - name: Guardar capturas
+      - name: Capturas desktop e celular
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: md-phone-desktop-mobile
+          name: md-phone-universe-desktop-mobile
           path: qa-screenshots/
           if-no-files-found: warn
-      - name: Registrar capturas para conferência visual
+      - name: Guardar capturas no repositório
         if: always()
         shell: bash
         run: |
@@ -91,6 +111,6 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add qa-snapshots/
           if ! git diff --cached --quiet; then
-            git commit -m "QA: capturas atuais desktop e celular da MD PHONE"
+            git commit -m "QA: capturas MD PHONE Universe em desktop e celular"
             git push
           fi
