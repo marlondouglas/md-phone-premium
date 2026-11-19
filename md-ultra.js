@@ -19,7 +19,7 @@ if(promises)promises.innerHTML=[
 const video=$('#mdCinemaVideo');if(video){video.autoplay=true;video.muted=true;video.defaultMuted=true;video.loop=true;video.playsInline=true;video.controls=false;video.removeAttribute('controls')}
 const sec=$('#destaques');
 if(sec){
-  const h=sec.querySelector('.section-title h2');if(h)h.innerHTML='A experiência <em>iPhone</em><br>começa nos detalhes.';
+  const h=sec.querySelector('.section-title h2');if(h)h.innerHTML='A experiência <em>iPhone</em> começa nos detalhes.';
   const p=sec.querySelector('.section-title p');if(p)p.textContent='Fotos em destaque, design impressionante e modelos para cada estilo.';
   const k=sec.querySelector('.section-title .eyebrow');if(k)k.textContent='DESTAQUES DA MD PHONE';
   const products=[
