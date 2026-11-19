@@ -344,3 +344,122 @@ body{overflow-x:hidden}
 .md-cinema-frame.is-playing video{opacity:1}
 .md-cinema-frame .md-cinema-fallback{visibility:visible}
 .md-cinema-frame.is-playing .md-cinema-fallback{visibility:hidden}
+
+
+/* MD PHONE / hotfix cirúrgico — corrigir as falhas vistas no iPhone real, não mudar o layout */
+.md-phone-catalog .md-phone-tile,
+.md-phone-catalog .md-tile-visual,
+.model-stage,.model-art,.product-photo {
+  background-color:#071b10!important;
+}
+.md-phone-catalog .md-phone-tile {
+ background-image:radial-gradient(ellipse at 48% 42%,#235c3d,#071b10 75%)!important;
+}
+.md-phone-catalog .md-tile-visual {
+ background:transparent!important;
+ overflow:hidden;
+ isolation:isolate;
+}
+.md-phone-catalog .md-tile-visual img {
+ object-fit:contain!important;
+ object-position:center;
+ width:100%!important;
+ height:100%!important;
+ max-width:none!important;
+ padding:0!important;
+ mix-blend-mode:normal!important;
+ background:transparent!important;
+}
+.md-phone-catalog .md-tile-symbol{display:none!important}
+.model-art img,.product-photo img{
+ object-fit:contain!important;
+ object-position:center!important;
+ background:transparent!important;
+}
+/* O filme fornecido é horizontal: nunca colocá-lo num quadro vertical no iPhone. */
+.md-cinema-frame {
+ aspect-ratio:16 / 9;
+ max-height:min(80svh,730px);
+ background:#06170d;
+}
+.md-cinema-frame video{
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;
+ object-position:center!important;
+ filter:brightness(1.22) contrast(1.04) saturate(1.07);
+ transform:scale(1.14);
+}
+.md-cinema-frame .md-cinema-fallback img{
+ width:90%;height:92%;object-fit:contain;
+}
+.md-cinema-watermark{background:#07150bb8;max-width:calc(100% - 24px)}
+.md-cinema-watermark span{white-space:nowrap}
+@media(max-width:700px){
+ .md-cinema-premium{padding:41px 17px 43px!important}
+ .md-cinema-heading{margin-bottom:20px!important}
+ .md-cinema-heading p{margin:8px 0 0!important}
+ .md-cinema-frame{
+   aspect-ratio:16 / 10!important;
+   max-height:none!important;
+   border-radius:19px!important;
+ }
+ .md-cinema-frame video{
+   object-fit:cover!important;
+   transform:scale(1.32);
+ }
+ .md-cinema-frame .md-cinema-fallback img{
+   width:90%!important;height:94%!important;
+ }
+ .md-cinema-watermark{top:9px!important;left:9px!important;padding:6px 9px!important}
+ .md-cinema-watermark span{display:none}
+ .md-cinema-caption{font-size:9px!important;text-align:left;margin-top:10px!important}
+ /* Mascote e botão continuam, mas deixam de cobrir metade da tela. */
+ .md-mascot-trigger{
+   right:9px!important;
+   bottom:max(10px,env(safe-area-inset-bottom))!important;
+   min-height:54px!important;
+   height:54px!important;
+   max-width:124px!important;
+   width:auto!important;
+   padding:3px 11px 3px 1px!important;
+   gap:4px!important;
+   border-radius:40px!important;
+   box-shadow:0 6px 22px #000a!important;
+   font-size:0!important;
+   white-space:nowrap!important;
+ }
+ .md-mascot-avatar{
+   width:51px!important;
+   height:53px!important;
+   object-fit:contain!important;
+   flex:none!important;
+ }
+ .md-mascot-trigger span:first-of-type{
+   font-size:0!important;
+   display:inline-flex!important;
+   align-items:center;
+ }
+ .md-mascot-trigger span:first-of-type::after{
+   content:"Ajuda";
+   font-size:11px;
+   font-weight:850;
+   color:#effff2;
+ }
+ .md-mascot-trigger span:last-of-type{
+   font-size:10px!important;
+ }
+ .md-phone-catalog .md-phone-tile{
+   border-radius:22px!important;
+   padding:14px 16px 25px!important;
+ }
+ .md-phone-catalog .md-tile-visual{
+   height:min(86vw,430px)!important;
+   min-height:0!important;
+   margin-bottom:12px!important;
+ }
+ .md-phone-catalog .md-tile-name{font-size:clamp(27px,7.5vw,38px)!important;line-height:1.17!important}
+ .md-phone-catalog .md-tile-price{font-size:17px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .md-cinema-frame video{transform:none!important}
+}
