@@ -9,6 +9,7 @@ on:
       - md-universe.js
       - md-universe-data.js
       - scripts/prepare-catalog-media.cjs
+      - scripts/clean-product-photography.py
       - assets/**
       - assets/md-phone-brand-mark.svg
       - .github/workflows/pages.yml
@@ -52,6 +53,9 @@ jobs:
           cp index.html md-universe.css md-universe.js md-universe-data.js _site/
           cp -R assets/. _site/assets/
           node scripts/prepare-catalog-media.cjs
+          python3 -m venv /tmp/md-photo-env
+          /tmp/md-photo-env/bin/python -m pip install --quiet pillow
+          /tmp/md-photo-env/bin/python scripts/clean-product-photography.py
           test -s _site/md-photo-manifest.js
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
