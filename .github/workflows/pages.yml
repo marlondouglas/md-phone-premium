@@ -1,4 +1,4 @@
-name: MD PHONE — publicar GitHub Pages
+name: MD PHONE — publicar nova experiência 2026
 
 on:
   push:
@@ -16,43 +16,36 @@ concurrency:
 
 jobs:
   deploy:
-    name: Publicar somente a MD PHONE
+    name: Publicar MD PHONE 2026
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Validar os arquivos e preparar pasta pública
+      - name: Validar reconstrução integral
+        shell: bash
         run: |
           set -euo pipefail
-          node --check app.js
-          node --check md-order.js
-          node --check md-concierge.js
-          node --check md-cinema.js
-          node tests/site-smoke.cjs
-          test -f md-cinematic.css
-          test -s assets/mdphone-cinematic.mp4
-          test -s assets/md-assistant-live.mp4
-          test -f index.html
-          test -f md-storefront.css
-          test -f md-retail.css
-          test -f estoque.json
-          test -f assets/md-assistant-avatar.svg
-          grep -q 'md-storefront.css' index.html
-          grep -q 'md-order.js' index.html
-          mkdir -p _site
-          cp index.html app.js styles.css md-cinematic.css md-cinema.js premium-effects.css premium-effects.js \
-            md-atelier.css md-atelier.js md-concierge.js md-editorial.css \
-            md-order.js md-product-photo.css md-signature.css md-storefront.css \
-            md-retail.css estoque.json _site/
-          cp -R assets _site/
+          node --check md-2026.js
+          test -s index.html
+          test -s md-2026.css
+          test -s md-2026.js
+          test -s assets/md-phone-brand-mark.svg
+          grep -q 'md-2026.css' index.html
+          grep -q 'md-2026.js' index.html
+          grep -q 'id="checkoutForm"' index.html
+          ! grep -q 'md-retail.css' index.html
+          ! grep -q 'md-ultra.css' index.html
+          mkdir -p _site/assets
+          cp index.html md-2026.css md-2026.js _site/
+          cp assets/md-phone-brand-mark.svg _site/assets/
           touch _site/.nojekyll
-      - name: Configurar GitHub Pages para este repositório público
-        uses: actions/configure-pages@v5
+          echo "Nova página MD PHONE pronta para publicação"
+      - uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Enviar site estático MD PHONE
+      - name: Enviar site estático
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
