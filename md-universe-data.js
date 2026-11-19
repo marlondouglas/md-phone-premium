@@ -1,11 +1,11 @@
-/* MD PHONE: catálogo, cores e preços informados. Fotos promocionais; estoque sob confirmação. */
+/* MD PHONE — somente os 14 modelos informados para venda pela loja. Fotos e condições sob confirmação. */
 window.MD_UNIVERSE = {
   "categories": [
     {
       "id": "iphone",
       "label": "iPhone",
-      "line": "O próximo capítulo está nas suas mãos.",
-      "sub": "Do iPhone XR ao 18 Pro Max. Modelos seminovos e novas gerações, com valores a partir de R$ 699.",
+      "line": "A sua escolha começa com aparelhos que a loja realmente anunciou.",
+      "sub": "Seleção real da MD PHONE: 14 modelos, do XR ao 18 Pro Max. Preços informados pela loja, a partir de R$ 699.",
       "accent": "#6deda8",
       "kind": "phone",
       "source": "https://www.apple.com/br/iphone/"
@@ -117,7 +117,8 @@ window.MD_UNIVERSE = {
           "hex": "#c52330"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-11",
@@ -172,78 +173,8 @@ window.MD_UNIVERSE = {
           "hex": "#c52330"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-11-pro",
-      "name": "iPhone 11 Pro",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-pro-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566801",
-      "seriesOrder": 2,
-      "colors": [
-        {
-          "name": "Cinza-espacial",
-          "hex": "#60676b"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#d8d9df"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#d3bc92"
-        },
-        {
-          "name": "Verde-meia-noite",
-          "hex": "#4e665d"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-11-pro-max",
-      "name": "iPhone 11 Pro Max",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://store.gorecell.ca/cdn/shop/files/b97f2706493244458b86246c722b43f5.jpg?v=1726494243&width=1500",
-      "seriesOrder": 3,
-      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
-      "colors": [
-        {
-          "name": "Cinza-espacial",
-          "hex": "#60676b"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#d8d9df"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#d3bc92"
-        },
-        {
-          "name": "Verde-meia-noite",
-          "hex": "#4e665d"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-12",
@@ -299,123 +230,8 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Preto"
-    },
-    {
-      "id": "iphone-12-pro",
-      "name": "iPhone 12 Pro",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://cdn.mafrservices.com/sys-master-root/h93/h24/12833099972638/650437_main.jpg",
-      "seriesOrder": 5,
-      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
-      "colors": [
-        {
-          "name": "Grafite",
-          "hex": "#505459"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#dce0e2"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#e4d2ae"
-        },
-        {
-          "name": "Azul-pacífico",
-          "hex": "#587e98"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-12-pro-max",
-      "name": "iPhone 12 Pro Max",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://phonehero.cdn.imgeng.in/img/bigmodelpics/iphone-12-pro-max-pacific-blue-1.png",
-      "seriesOrder": 6,
-      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
-      "colors": [
-        {
-          "name": "Grafite",
-          "hex": "#505459"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#dce0e2"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#e4d2ae"
-        },
-        {
-          "name": "Azul-pacífico",
-          "hex": "#587e98"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-13-mini",
-      "name": "iPhone 13 mini",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Tecnologia e design para acompanhar cada dia.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://images.kabum.com.br/produtos/fotos/239787/iphone-13-mini-256gb-estelar-5g-tela-de-5-4-camera-dupla-12mp-mlk63bz-a_1634225593_gg.jpg",
-      "seriesOrder": 7,
-      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
-      "colors": [
-        {
-          "name": "Rosa",
-          "hex": "#eed4dc"
-        },
-        {
-          "name": "Azul",
-          "hex": "#497fba"
-        },
-        {
-          "name": "Meia-noite",
-          "hex": "#222d3a"
-        },
-        {
-          "name": "Estelar",
-          "hex": "#e5e4dc"
-        },
-        {
-          "name": "(PRODUCT)RED",
-          "hex": "#c52330"
-        },
-        {
-          "name": "Verde",
-          "hex": "#466b55"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "defaultColor": "Preto",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-13",
@@ -471,7 +287,8 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Estelar"
+      "defaultColor": "Estelar",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-13-pro",
@@ -556,47 +373,8 @@ window.MD_UNIVERSE = {
         "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=900&hei=1112&fmt=png-alpha",
         "Grafite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=900&hei=1112&fmt=png-alpha"
       },
-      "defaultColor": "Azul-sierra"
-    },
-    {
-      "id": "iphone-13-pro-max",
-      "name": "iPhone 13 Pro Max",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://static01.galaxus.com/productimages/4/8/8/9/9/4/7/2/iPhone_13_Pro_Max_Sierra_Blue_PDP_Image_Position-1A__WWEN.jpg_sea.jpeg",
-      "seriesOrder": 10,
-      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
-      "colors": [
-        {
-          "name": "Grafite",
-          "hex": "#555b5d"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#d7c9a6"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#d9dfdf"
-        },
-        {
-          "name": "Azul-sierra",
-          "hex": "#a2bccc"
-        },
-        {
-          "name": "Verde-alpino",
-          "hex": "#637967"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "defaultColor": "Azul-sierra",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-14",
@@ -648,59 +426,8 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Azul"
-    },
-    {
-      "id": "iphone-14-plus",
-      "name": "iPhone 14 Plus",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Tecnologia e design para acompanhar cada dia.",
-      "accent": "#6deda8",
-      "availability": "oferta_informada",
-      "specs": [
-        "Preço informado pela MD PHONE",
-        "Configuração conforme a opção escolhida",
-        "Consulte condição e disponibilidade"
-      ],
-      "variants": [
-        {
-          "label": "128 GB",
-          "price": 2500
-        }
-      ],
-      "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-blue?wid=900&hei=1112&fmt=png-alpha",
-      "seriesOrder": 12,
-      "priceFrom": 2500,
-      "colors": [
-        {
-          "name": "Meia-noite",
-          "hex": "#272d36"
-        },
-        {
-          "name": "Estelar",
-          "hex": "#e7e3d9"
-        },
-        {
-          "name": "(PRODUCT)RED",
-          "hex": "#c52330"
-        },
-        {
-          "name": "Azul",
-          "hex": "#a9c4e7"
-        },
-        {
-          "name": "Roxo",
-          "hex": "#d4c8e5"
-        },
-        {
-          "name": "Amarelo",
-          "hex": "#f9e277"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Azul"
+      "defaultColor": "Azul",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-14-pro",
@@ -752,7 +479,8 @@ window.MD_UNIVERSE = {
       "colorPhotos": {
         "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
       },
-      "defaultColor": "Roxo-profundo"
+      "defaultColor": "Roxo-profundo",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-14-pro-max",
@@ -804,7 +532,61 @@ window.MD_UNIVERSE = {
       "colorPhotos": {
         "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
       },
-      "defaultColor": "Roxo-profundo"
+      "defaultColor": "Roxo-profundo",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
+    },
+    {
+      "id": "iphone-14-plus",
+      "name": "iPhone 14 Plus",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 2500
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-blue?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 12,
+      "priceFrom": 2500,
+      "colors": [
+        {
+          "name": "Meia-noite",
+          "hex": "#272d36"
+        },
+        {
+          "name": "Estelar",
+          "hex": "#e7e3d9"
+        },
+        {
+          "name": "(PRODUCT)RED",
+          "hex": "#c52330"
+        },
+        {
+          "name": "Azul",
+          "hex": "#a9c4e7"
+        },
+        {
+          "name": "Roxo",
+          "hex": "#d4c8e5"
+        },
+        {
+          "name": "Amarelo",
+          "hex": "#f9e277"
+        }
+      ],
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "defaultColor": "Azul",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-15",
@@ -852,47 +634,8 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Azul"
-    },
-    {
-      "id": "iphone-15-plus",
-      "name": "iPhone 15 Plus",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Tecnologia e design para acompanhar cada dia.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://www.dateks.lv/images/pic/2400/2400/973/1647.jpg",
-      "seriesOrder": 16,
-      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
-      "colors": [
-        {
-          "name": "Rosa",
-          "hex": "#f4c8d5"
-        },
-        {
-          "name": "Amarelo",
-          "hex": "#f8e7a7"
-        },
-        {
-          "name": "Verde",
-          "hex": "#c2dcca"
-        },
-        {
-          "name": "Azul",
-          "hex": "#d0dee8"
-        },
-        {
-          "name": "Preto",
-          "hex": "#343735"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "defaultColor": "Azul",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-15-pro",
@@ -936,159 +679,8 @@ window.MD_UNIVERSE = {
         }
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
-      "defaultColor": "Titânio-azul"
-    },
-    {
-      "id": "iphone-15-pro-max",
-      "name": "iPhone 15 Pro Max",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://www.pbtech.co.nz/imgprod/M/P/MPHAPP215300__1.jpg",
-      "seriesOrder": 18,
-      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
-      "colors": [
-        {
-          "name": "Titânio-natural",
-          "hex": "#aaa6a1"
-        },
-        {
-          "name": "Titânio-azul",
-          "hex": "#384d66"
-        },
-        {
-          "name": "Titânio-branco",
-          "hex": "#e6e5e0"
-        },
-        {
-          "name": "Titânio-preto",
-          "hex": "#434342"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-16",
-      "category": "iphone",
-      "name": "iPhone 16",
-      "kind": "phone",
-      "desc": "Uma geração que ainda encanta.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-color-lineup-240909_big.jpg.large.jpg",
-      "featured": false,
-      "tag": null,
-      "seriesOrder": 19,
-      "colors": [
-        {
-          "name": "Preto",
-          "hex": "#2e3034"
-        },
-        {
-          "name": "Branco",
-          "hex": "#f1f0e9"
-        },
-        {
-          "name": "Rosa",
-          "hex": "#ed80b2"
-        },
-        {
-          "name": "Verde-acinzentado",
-          "hex": "#70afaf"
-        },
-        {
-          "name": "Ultramarino",
-          "hex": "#4b60be"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-16-plus",
-      "name": "iPhone 16 Plus",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Tecnologia e design para acompanhar cada dia.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://static.k-tuin.com/media/catalog/product/i/p/iphone-16-plus-color-verde-azulado-de-256-gb.jpg",
-      "seriesOrder": 20,
-      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
-      "colors": [
-        {
-          "name": "Preto",
-          "hex": "#2e3034"
-        },
-        {
-          "name": "Branco",
-          "hex": "#f1f0e9"
-        },
-        {
-          "name": "Rosa",
-          "hex": "#ed80b2"
-        },
-        {
-          "name": "Verde-acinzentado",
-          "hex": "#70afaf"
-        },
-        {
-          "name": "Ultramarino",
-          "hex": "#4b60be"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-16-pro",
-      "name": "iPhone 16 Pro",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://cdn.cimri.io/image/1000x1000/apple-iphone-16-pro-256gb-col-titanyum_917069445.jpg",
-      "seriesOrder": 21,
-      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
-      "colors": [
-        {
-          "name": "Titânio-preto",
-          "hex": "#363637"
-        },
-        {
-          "name": "Titânio-branco",
-          "hex": "#f0eee9"
-        },
-        {
-          "name": "Titânio-natural",
-          "hex": "#b3aea5"
-        },
-        {
-          "name": "Titânio-deserto",
-          "hex": "#c6ad93"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "defaultColor": "Titânio-azul",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-16-pro-max",
@@ -1134,112 +726,8 @@ window.MD_UNIVERSE = {
           "hex": "#c6ad93"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-17e",
-      "category": "iphone",
-      "name": "iPhone 17e",
-      "kind": "phone",
-      "desc": "Essencial na medida certa.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://applefans.today/wp-content/uploads/2026/03/Apple-iPhone-17e-family-lineup-ROW-260302.jpg",
-      "featured": false,
-      "tag": null,
-      "seriesOrder": 23,
-      "visualDisclaimer": "Fotografia promocional da família iPhone 17e; não representa unidade específica da loja.",
-      "colors": [
-        {
-          "name": "Rosa-pálido",
-          "hex": "#edcfd5"
-        },
-        {
-          "name": "Branco",
-          "hex": "#f4f3ef"
-        },
-        {
-          "name": "Preto",
-          "hex": "#353535"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-17",
-      "category": "iphone",
-      "name": "iPhone 17",
-      "kind": "phone",
-      "desc": "Desempenho para a rotina, com elegância.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/newsroom/images/2025/09/apple-introduces-iphone-17/article/Apple-iPhone-17-color-lineup-250909_big.jpg.large.jpg",
-      "featured": false,
-      "tag": null,
-      "seriesOrder": 24,
-      "colors": [
-        {
-          "name": "Preto",
-          "hex": "#23272b"
-        },
-        {
-          "name": "Branco",
-          "hex": "#f6f5f1"
-        },
-        {
-          "name": "Azul-névoa",
-          "hex": "#9fc1d6"
-        },
-        {
-          "name": "Sálvia",
-          "hex": "#a1bbab"
-        },
-        {
-          "name": "Lavanda",
-          "hex": "#c1b1d9"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-17-pro",
-      "name": "iPhone 17 Pro",
-      "category": "iphone",
-      "kind": "phone",
-      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "featured": false,
-      "image": "https://cache.cil.ahamo.com/products/iphone/iphone-17-pro/APL85320/APL85320_L_01.jpg",
-      "seriesOrder": 25,
-      "visualDisclaimer": "Imagem profissional ilustrativa do modelo; não representa a unidade em estoque.",
-      "colors": [
-        {
-          "name": "Prateado",
-          "hex": "#d9dce1"
-        },
-        {
-          "name": "Laranja-cósmico",
-          "hex": "#f08342"
-        },
-        {
-          "name": "Azul-intenso",
-          "hex": "#263c68"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-17-pro-max",
@@ -1284,79 +772,8 @@ window.MD_UNIVERSE = {
           "hex": "#263c68"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-air",
-      "category": "iphone",
-      "name": "iPhone Air",
-      "kind": "phone",
-      "desc": "O equilíbrio entre leveza e desempenho.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/newsroom/images/2025/09/apple-debuts-iphone-air/article/Apple-iPhone-Air-color-lineup-250909_big.jpg.large.jpg",
-      "featured": false,
-      "tag": null,
-      "seriesOrder": 27,
-      "colors": [
-        {
-          "name": "Preto-espacial",
-          "hex": "#2b3137"
-        },
-        {
-          "name": "Branco-nuvem",
-          "hex": "#f3f2e9"
-        },
-        {
-          "name": "Dourado-claro",
-          "hex": "#e8d7b5"
-        },
-        {
-          "name": "Azul-céu",
-          "hex": "#b9d1df"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-18-pro",
-      "category": "iphone",
-      "name": "iPhone 18 Pro",
-      "kind": "phone",
-      "desc": "Tecnologia de ponta com visual de tirar o fôlego.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg",
-      "featured": false,
-      "tag": "Novo",
-      "seriesOrder": 28,
-      "colors": [
-        {
-          "name": "Bordô",
-          "hex": "#622b43"
-        },
-        {
-          "name": "Glacial",
-          "hex": "#c8d9e3"
-        },
-        {
-          "name": "Prateado",
-          "hex": "#d9dbdf"
-        },
-        {
-          "name": "Preto",
-          "hex": "#24262b"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "iphone-18-pro-max",
@@ -1401,35 +818,8 @@ window.MD_UNIVERSE = {
           "hex": "#24262b"
         }
       ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
-    },
-    {
-      "id": "iphone-duo",
-      "category": "iphone",
-      "name": "iPhone Duo",
-      "kind": "phone",
-      "desc": "Um novo formato para abrir possibilidades.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Preço e configuração sob consulta"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/br/homepage/built/heroes/26_iphone-duo_09/images/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg",
-      "featured": false,
-      "tag": "Novo",
-      "seriesOrder": 30,
-      "colors": [
-        {
-          "name": "Branco-estrela",
-          "hex": "#ecebe6"
-        },
-        {
-          "name": "Céu noturno",
-          "hex": "#25333f"
-        }
-      ],
-      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada."
+      "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
+      "catalogSource": "Lista de venda informada pela MD PHONE"
     },
     {
       "id": "macbook-neo",
