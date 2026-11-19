@@ -288,7 +288,15 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Estelar",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Rosa": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pink-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "Meia-noite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "Estelar": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "(PRODUCT)RED": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-red-select-2021?wid=1200&hei=1460&fmt=png-alpha",
+        "Verde": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-green-select-2022?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-13-pro",
@@ -369,9 +377,11 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "colorPhotos": {
-        "Azul-sierra": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
-        "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=900&hei=1112&fmt=png-alpha",
-        "Grafite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=900&hei=1112&fmt=png-alpha"
+        "Azul-sierra": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Grafite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Prateado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-silver-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Verde-alpino": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-green-select?wid=1200&hei=1460&fmt=png-alpha"
       },
       "defaultColor": "Azul-sierra",
       "catalogSource": "Lista de venda informada pela MD PHONE"
@@ -427,7 +437,15 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Azul",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Meia-noite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-midnight-select-202209?wid=1200&hei=1460&fmt=png-alpha",
+        "Estelar": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-starlight-select-202209?wid=1200&hei=1460&fmt=png-alpha",
+        "(PRODUCT)RED": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-red-select-202209?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?wid=1200&hei=1460&fmt=png-alpha",
+        "Roxo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-purple-select-202209?wid=1200&hei=1460&fmt=png-alpha",
+        "Amarelo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-yellow-select-202303?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-14-pro",
@@ -477,7 +495,10 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "colorPhotos": {
-        "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
+        "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=1200&hei=1460&fmt=png-alpha",
+        "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-gold?wid=1200&hei=1460&fmt=png-alpha",
+        "Prateado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-silver?wid=1200&hei=1460&fmt=png-alpha",
+        "Preto-espacial": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-spaceblack?wid=1200&hei=1460&fmt=png-alpha"
       },
       "defaultColor": "Roxo-profundo",
       "catalogSource": "Lista de venda informada pela MD PHONE"
@@ -530,7 +551,10 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "colorPhotos": {
-        "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=900&hei=1112&fmt=png-alpha"
+        "Roxo-profundo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=1200&hei=1460&fmt=png-alpha",
+        "Dourado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-gold?wid=1200&hei=1460&fmt=png-alpha",
+        "Prateado": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-silver?wid=1200&hei=1460&fmt=png-alpha",
+        "Preto-espacial": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-spaceblack?wid=1200&hei=1460&fmt=png-alpha"
       },
       "defaultColor": "Roxo-profundo",
       "catalogSource": "Lista de venda informada pela MD PHONE"
@@ -586,7 +610,15 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Azul",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Meia-noite": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-midnight?wid=1200&hei=1460&fmt=png-alpha",
+        "Estelar": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-starlight?wid=1200&hei=1460&fmt=png-alpha",
+        "(PRODUCT)RED": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-red?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-blue?wid=1200&hei=1460&fmt=png-alpha",
+        "Roxo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-purple?wid=1200&hei=1460&fmt=png-alpha",
+        "Amarelo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202303-yellow?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-15",
@@ -635,7 +667,14 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Azul",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Rosa": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pink-select-202309?wid=1200&hei=1460&fmt=png-alpha",
+        "Amarelo": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-yellow-select-202309?wid=1200&hei=1460&fmt=png-alpha",
+        "Verde": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-green-select-202309?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-blue-select-202309?wid=1200&hei=1460&fmt=png-alpha",
+        "Preto": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-black-select-202309?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-15-pro",
@@ -680,7 +719,13 @@ window.MD_UNIVERSE = {
       ],
       "colorAvailabilityNote": "Cores oficiais do modelo; a disponibilidade na MD PHONE deve ser confirmada.",
       "defaultColor": "Titânio-azul",
-      "catalogSource": "Lista de venda informada pela MD PHONE"
+      "catalogSource": "Lista de venda informada pela MD PHONE",
+      "colorPhotos": {
+        "Titânio-natural": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-azul": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-branco": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-preto": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-16-pro-max",
@@ -730,7 +775,13 @@ window.MD_UNIVERSE = {
       "catalogSource": "Lista de venda informada pela MD PHONE",
       "photoFallback": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
       "defaultColor": "Titânio-deserto",
-      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior.",
+      "colorPhotos": {
+        "Titânio-preto": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-max-blacktitanium-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-branco": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-max-whitetitanium-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-natural": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-max-naturaltitanium-select?wid=1200&hei=1460&fmt=png-alpha",
+        "Titânio-deserto": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-16-pro-max-deserttitanium-select?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-17-pro-max",
@@ -779,7 +830,12 @@ window.MD_UNIVERSE = {
       "catalogSource": "Lista de venda informada pela MD PHONE",
       "photoFallback": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
       "defaultColor": "Prateado",
-      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior.",
+      "colorPhotos": {
+        "Prateado": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-max-finish-select-silver-202509?wid=1200&hei=1460&fmt=png-alpha",
+        "Laranja-cósmico": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-max-finish-select-cosmicorange-202509?wid=1200&hei=1460&fmt=png-alpha",
+        "Azul-intenso": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-17-pro-max-finish-select-deepblue-202509?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "iphone-18-pro-max",
@@ -828,7 +884,13 @@ window.MD_UNIVERSE = {
       "catalogSource": "Lista de venda informada pela MD PHONE",
       "photoFallback": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
       "defaultColor": "Prateado",
-      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior."
+      "preferredPhotography": "Fotografia de produto individual em fundo transparente. Caso indisponível, usar imagem de referência anterior.",
+      "colorPhotos": {
+        "Bordô": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-max-finish-select-burgundy-202609?wid=1200&hei=1460&fmt=png-alpha",
+        "Glacial": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-max-finish-select-glacier-202609?wid=1200&hei=1460&fmt=png-alpha",
+        "Prateado": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-max-finish-select-silver-202609?wid=1200&hei=1460&fmt=png-alpha",
+        "Preto": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-max-finish-select-black-202609?wid=1200&hei=1460&fmt=png-alpha"
+      }
     },
     {
       "id": "macbook-neo",
