@@ -279,3 +279,37 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
  .help-intro p{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+
+/* MD PHONE — Destinos nacionais e internacionais / seção editorial */
+.shipping-global{
+  margin-top:clamp(50px,6vw,90px);
+  border-top:1px solid #c2f3cf25;
+  padding:clamp(38px,5vw,65px) 0 clamp(34px,4vw,57px);
+}
+.shipping-top{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;max-width:1020px}
+.shipping-kicker{display:block;color:#79eaa0;font-weight:850;font-size:10px;letter-spacing:.17em;margin-bottom:16px}
+.shipping-top h2{font-size:clamp(31px,4.7vw,61px);line-height:1.18;color:#f4fff6;letter-spacing:-.05em;max-width:840px;margin:0 0 16px}
+.shipping-top h2 em{font-style:normal;color:#68f49a}
+.shipping-top p{color:#accab5;max-width:660px;font-size:13px;line-height:1.8;margin:0 0 28px}
+.shipping-icon{font-size:58px;line-height:1;color:#5be58c;opacity:.4;flex:none}
+.shipping-countries{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.footer .shipping-country{display:flex;align-items:center;gap:11px;min-width:0;padding:17px 14px;background:#0c2b1b;border:1px solid #7edba84d;border-radius:17px;min-height:86px;color:#f2fff5;line-height:1.25;transition:background .2s,border-color .2s,transform .2s}
+.footer .shipping-country:hover{transform:translateY(-2px);background:#15472b;border-color:#83f6ab;color:#fff}
+.shipping-flag{font-size:32px;line-height:1.1;flex:none}
+.shipping-country-name{font-size:clamp(11px,1vw,14px);font-weight:800;overflow-wrap:break-word;flex:1;min-width:0}
+.shipping-arrow{font-size:15px;line-height:1;color:#88efa9;flex:none}
+.footer .shipping-disclaimer{max-width:100%;color:#8fae9a;font-size:10px;line-height:1.7;margin:18px 0 0}
+@media(max-width:1070px){.shipping-countries{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){
+  .shipping-global{margin-top:34px;padding:36px 0 32px}
+  .shipping-top h2{font-size:clamp(32px,8.1vw,46px)}
+  .shipping-top p{font-size:12px;margin-bottom:22px}
+  .shipping-icon{display:none}
+  .shipping-countries{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .footer .shipping-country{min-height:74px;padding:12px 10px;gap:7px;border-radius:14px}
+  .shipping-flag{font-size:27px}
+  .shipping-country-name{font-size:11px}
+  .shipping-arrow{font-size:12px}
+  .footer .shipping-disclaimer{font-size:10px}
+}
