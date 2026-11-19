@@ -73,15 +73,28 @@ function header(){
 return '<a class="skip" href="#principal">Ir ao conteúdo</a><header class="site-head"><div class="head-inner">'+
 '<a class="brand" href="index.html" aria-label="MD PHONE — início"><img src="assets/md-phone-brand-mark.svg" alt="" width="42" height="42"> <b>MD</b> PHONE</a>'+
 '<nav class="site-nav" aria-label="Categorias">'+D.categories.map(c=>'<a href="'+linkCat(c.id)+'">'+esc(c.label)+'</a>').join('')+'</nav>'+
-'<div class="head-actions"><a href="index.html?comparar=1" class="head-cta" title="Comparar modelos">Comparar ↗</a><a href="'+wa('Olá, MD PHONE! Gostaria de atendimento.')+'" class="head-cta" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><button type="button" class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">☰</button></div></div>'+
+'<div class="head-actions"><button type="button" id="headerAssistant" class="head-cta md-assistant-top-link">Assistente MD ↗</button><a href="index.html?comparar=1" class="head-cta" title="Comparar modelos">Comparar ↗</a><a href="'+wa('Olá, MD PHONE! Gostaria de atendimento.')+'" class="head-cta" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><button type="button" class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">☰</button></div></div>'+
 '<nav class="mobile-menu" id="mobileMenu" hidden aria-label="Menu móvel">'+
 '<a href="index.html">Início</a>'+D.categories.map(c=>'<a href="'+linkCat(c.id)+'">'+esc(c.label)+'</a>').join('')+
-'<a href="index.html?comparar=1">Comparar produtos</a></nav></header>';
+'<button type="button" id="mobileAssistant" class="md-mobile-assistant">Assistente MD ↗</button><a href="index.html?comparar=1">Comparar produtos</a></nav></header>';
 }
 function footer(){return '<footer class="footer"><div class="footer-inner"><div><a class="brand" href="index.html"><img src="assets/md-phone-brand-mark.svg" alt="" width="42" height="42"><b>MD</b> PHONE</a><p>Uma experiência premium para descobrir, escolher e consultar produtos Apple. Loja independente.</p></div><div class="footer-links"><strong>Produtos</strong>'+D.categories.slice(0,4).map(c=>'<a href="'+linkCat(c.id)+'">'+esc(c.label)+'</a>').join('')+'</div><div class="footer-links"><strong>Explore</strong>'+D.categories.slice(4).map(c=>'<a href="'+linkCat(c.id)+'">'+esc(c.label)+'</a>').join('')+'<a href="index.html?comparar=1">Comparar</a></div><div class="footer-links"><strong>Atendimento</strong><a href="'+wa('Olá! Quero conhecer a MD PHONE.')+'" target="_blank" rel="noopener noreferrer">WhatsApp: (33) 98704-4866 ↗</a><small>Preços e disponibilidade sempre sob confirmação. A MD PHONE não é a Apple.</small></div></div><div class="footer-base"><span>© 2026 MD PHONE · Nova identidade MD Use Imports.</span><span>Apple e nomes de produtos pertencem a seus titulares. Imagens promocionais meramente ilustrativas.</span></div></footer>';}
 function button(text,href,kind='primary'){return '<a class="btn '+kind+'" href="'+href+'">'+text+' <span aria-hidden="true">↗</span></a>'}
+function cinemaSection(){
+ return '<section class="md-cinema-premium" id="cinema" aria-labelledby="mdFilmTitle">'+
+ '<div class="md-cinema-heading"><span class="kicker">MD PHONE / FILME ORIGINAL</span>'+
+ '<h2 id="mdFilmTitle">A tecnologia.<br><em>Em movimento.</em></h2>'+
+ '<p>Uma apresentação original MD PHONE. Vídeo automático, sem YouTube, sem anúncios ou controles visíveis.</p></div>'+
+ '<div class="md-cinema-frame" id="mdCinemaFrame">'+
+ '<video id="mdCinemaVideo" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-label="Filme de produto MD PHONE">'+
+ '<source src="assets/mdphone-cinematic.mp4" type="video/mp4"></video>'+
+ '<div class="md-cinema-fallback" aria-hidden="true"><img src="'+esc(srcOf(prodOf('iphone-18-pro-max')))+'" alt=""></div>'+
+ '<div class="md-cinema-watermark"><img src="assets/md-phone-brand-mark.svg" alt="">MD PHONE <span>ORIGINAL FILM</span></div>'+
+ '</div><div class="md-cinema-caption">Produção visual MD PHONE · aparelho ilustrativo · reprodução silenciosa em loop</div></section>';
+}
 function home(){
 return '<section class="hero" aria-label="Apresentação MD PHONE">'+heroTitles.map((h,i)=>'<div class="hero-slide '+(i===0?'active':'')+'" data-slide="'+i+'" style="--glow:'+h.glow+'"><div class="hero-media '+(h.category==='iphone'?'photo-dark':'photo-light')+'">'+imageEl(h.image,'','')+'</div><div class="hero-inner"><div class="hero-content"><div class="kicker">'+h.tag+'</div><h1>'+h.title+'</h1><p class="hero-desc">'+h.desc+'</p><div class="action-row">'+button(h.label,linkCat(h.category))+button('Falar com a loja',wa('Olá, MD PHONE! Quero escolher meu próximo produto Apple.'),'secondary')+'</div><div class="hero-foot"><span>DESIGN · TECNOLOGIA · CONFIANÇA</span><span>MD PHONE / 2026</span></div></div></div></div>').join('')+'<div class="hero-timeline" aria-hidden="true">'+heroTitles.map((_,i)=>'<span class="timeline-item '+(i===0?'active':'')+'"></span>').join('')+'</div></section>'+
+cinemaSection()+
 '<section class="marquee" aria-label="Linhas Apple"><div class="marquee-track">'+[...D.categories,...D.categories,...D.categories,...D.categories].map(c=>'<span><b>✦</b> '+esc(c.label.toUpperCase())+'</span>').join('')+'</div></section>'+
 '<section class="section universe" id="colecoes"><div class="section-inner"><div class="section-top"><div><div class="kicker">MD PHONE / UNIVERSO APPLE</div><h2 class="section-heading">Tudo o que você ama.<br><em>Em um só lugar.</em></h2></div><p class="section-sub">Explore cada família com apresentação dedicada, fotos amplas e a liberdade de escolher o modelo ideal.</p></div><div class="category-grid">'+D.categories.map((c,i)=>'<a href="'+linkCat(c.id)+'" class="category-tile reveal image-'+esc(c.id)+'" style="--tile-glow:'+COLORS[c.id]+'"><div class="tile-visual">'+imageEl(PHOTO[c.id]||PHOTO.iphone,'Foto ilustrativa de '+c.label,'',c.label)+'</div><div class="tile-content"><span class="tile-eyebrow">MD PHONE · '+String(i+1).padStart(2,'0')+'</span><h3>'+esc(c.label)+'</h3><p>'+esc(c.sub)+'</p><span class="tile-arrow">Explorar coleção ↗</span></div></a>').join('')+'</div></div></section>'+
 '<section class="immersive-strip"><div class="strip-copy"><span class="kicker">MD PHONE / FILME CONCEITUAL</span><h2>O detalhe<br>faz a diferença.</h2><p>Fotografia de produto em primeiro plano, transições naturais e um catálogo que valoriza cada escolha.</p>'+button('Conhecer iPhone 18 Pro Max',linkProd('iphone-18-pro-max'))+'</div><div class="strip-photo">'+imageEl(PHOTO.iphone,'Imagem promocional do iPhone Pro')+'<video class="brand-film" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true"><source src="https://resource2.heygen.ai/videos/ee161397c93a4dbda4b7e524885f995f/ee161397c93a4dbda4b7e524885f995f/01a1f13d-3fdc-7e47-ac0b-58b2c3d50310.mp4" type="video/mp4"></video></div></section>'+
@@ -93,7 +106,7 @@ function phoneCatalog(items,activeId){
  if(items[0]?.category!=='iphone')return '';
  return '<section class="md-phone-catalog" id="catalogo-completo" aria-labelledby="mdAllPhonesTitle">'+
  '<div class="md-catalog-head"><div><div class="kicker">MD PHONE / CATÁLOGO COMPLETO</div>'+
- '<h2 id="mdAllPhonesTitle">Todos os <em>iPhones.</em></h2><p>31 modelos, do XR ao 18 Pro Max, além do Duo. Toque em um aparelho para ver a apresentação completa acima.</p></div>'+
+ '<h2 id="mdAllPhonesTitle">Todos os <em>iPhones.</em></h2><p>A seleção real da MD PHONE: fotos amplas e preços claros. Toque em um modelo para conferir a unidade.</p></div>'+
  '<span class="md-catalog-counter" id="mdCatalogCounter">'+items.length+' modelos</span></div>'+
  '<div class="md-catalog-grid" id="mdPhoneCatalog">'+items.map(p=>{
   const src=srcOf(p),fallback=p.image&&src!==p.image?p.image:'';
@@ -123,8 +136,8 @@ function categoryPage(c){
  const hero='<section class="category-hero '+(isPhone?'md-iphone-banner':'')+'" style="--hero-glow:'+COLORS[c.id]+'">'+
  (isPhone?'':'<div class="category-photo '+(c.id==='iphone'?'photo-dark':'photo-light')+'">'+imageEl(srcOf(featured),'Imagem ilustrativa da linha '+c.label)+'</div>')+
  '<div class="category-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span>'+
- '<h1>'+esc(c.label)+'</h1><p>'+esc(isPhone?'Do XR ao 18 Pro Max. Um aparelho por vez, com imagem grande, cores, capacidades e preço organizado.':c.line)+'</p>'+
- '<div class="action-row">'+button('Escolher modelo','#modelos')+button(isPhone?'Ver todos os 31 modelos':'Falar com a loja',isPhone?'#catalogo-completo':wa('Olá, MD PHONE! Quero informações sobre a linha '+c.label+'.'),'secondary')+'</div></div></section>';
+ '<h1>'+esc(c.label)+'</h1><p>'+esc(isPhone?'Do XR ao 18 Pro Max. Aparelhos anunciados pela MD PHONE, com fotos grandes, cores, capacidades e preços bem apresentados.':c.line)+'</p>'+
+ '<div class="action-row">'+button('Escolher modelo','#modelos')+button(isPhone?'Ver os 14 modelos à venda':'Falar com a loja',isPhone?'#catalogo-completo':wa('Olá, MD PHONE! Quero informações sobre a linha '+c.label+'.'),'secondary')+'</div></div></section>';
  const picker=isPhone?
  '<div class="md-model-picker"><label for="mdPhoneModel"><span>ESCOLHA SEU IPHONE</span><select id="mdPhoneModel" aria-label="Escolher modelo do iPhone">'+
  items.map(p=>'<option value="'+esc(p.id)+'" '+(p.id===featured.id?'selected':'')+'>'+esc(p.name)+(p.priceFrom!=null?' · a partir de '+priceBRL(p.priceFrom):'')+'</option>').join('')+
@@ -141,7 +154,7 @@ function categoryPage(c){
  '<p class="small-note">As imagens são ilustrativas. Preços informados pela loja; cores, condição, peças, estoque e garantia precisam de confirmação.</p></div></section>';
  const other=isPhone?'':'<section class="section universe"><div class="section-inner"><div class="section-top"><h2 class="section-heading">Explore outras <em>linhas.</em></h2></div><div class="category-grid">'+
  D.categories.filter(x=>x.id!==c.id).slice(0,3).map(x=>'<a href="'+linkCat(x.id)+'" class="category-tile" style="--tile-glow:'+COLORS[x.id]+'"><div class="tile-visual">'+imageEl(PHOTO[x.id],'Foto da linha '+x.label)+'</div><div class="tile-content"><h3>'+esc(x.label)+'</h3><span class="tile-arrow">Descobrir ↗</span></div></a>').join('')+'</div></div></section>';
- return hero+showcase+other;
+ return hero+(isPhone?cinemaSection():'')+showcase+other;
 }
 function selectedColor(p){
  if(!p?.colors?.length)return '';
