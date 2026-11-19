@@ -1,4 +1,4 @@
-/* MD PHONE: preços e fotos promocionais ilustrativas; disponibilidade sob consulta. */
+/* MD PHONE: catálogo e imagens de referência profissionais. Estoque/cores sob confirmação. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -313,10 +313,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://cdn.mafrservices.com/sys-master-root/h93/h24/12833099972638/650437_main.jpg",
       "seriesOrder": 5,
-      "imageFamilyReference": "iPhone 12",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 12, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
       "colors": [
         {
           "name": "Grafite",
@@ -386,10 +385,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://images.kabum.com.br/produtos/fotos/239787/iphone-13-mini-256gb-estelar-5g-tela-de-5-4-camera-dupla-12mp-mlk63bz-a_1634225593_gg.jpg",
       "seriesOrder": 7,
-      "imageFamilyReference": "iPhone 13",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 13, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
       "colors": [
         {
           "name": "Rosa",
@@ -1020,10 +1018,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-color-lineup-240909_big.jpg.large.jpg",
+      "image": "https://static.k-tuin.com/media/catalog/product/i/p/iphone-16-plus-color-verde-azulado-de-256-gb.jpg",
       "seriesOrder": 20,
-      "imageFamilyReference": "iPhone 16",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 16, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Imagem ilustrativa do modelo, não da unidade em estoque.",
       "colors": [
         {
           "name": "Preto",
