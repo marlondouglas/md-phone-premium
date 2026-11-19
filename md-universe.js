@@ -139,10 +139,10 @@ function colorSelector(p){
 function applyColorChoice(p,color){
  if(!p||!p.colors?.some(c=>c.name===color))return;
  state.colorModel=p.id;state.colorName=color;
- $('[data-color-model]').filter(btn=>btn.dataset.colorModel===p.id).forEach(btn=>{
+ $$('[data-color-model]').filter(btn=>btn.dataset.colorModel===p.id).forEach(btn=>{
   const active=btn.dataset.colorName===color;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));
  });
- $('.md-color-current').forEach(el=>{el.textContent=color});
+ $$('.md-color-current').forEach(el=>{el.textContent=color});
  const art=$('.model-art')||$('.product-photo');
  if(art){
   art.style.setProperty('--selected-color',p.colors.find(c=>c.name===color).hex);
