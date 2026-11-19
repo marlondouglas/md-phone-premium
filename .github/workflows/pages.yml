@@ -1,10 +1,15 @@
-name: MD PHONE Universe · publicar site
+name: MD PHONE Universe — publicar loja premium
 
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'qa-snapshots/**'
+    paths:
+      - index.html
+      - md-universe.css
+      - md-universe.js
+      - md-universe-data.js
+      - assets/md-phone-brand-mark.svg
+      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
@@ -18,40 +23,39 @@ concurrency:
 
 jobs:
   deploy:
-    name: Publicar experiência MD PHONE
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Validar todas as páginas e arquivos
+      - name: Validar nova loja MD PHONE Universe
         shell: bash
         run: |
           set -euo pipefail
           node --check md-universe-data.js
-          node --check md-universe-app.js
+          node --check md-universe.js
+          test -s index.html
           test -s md-universe.css
+          test -s md-universe-data.js
+          test -s md-universe.js
           test -s assets/md-phone-brand-mark.svg
-          for file in index.html iphone.html mac.html ipad.html watch.html airpods.html casa.html acessorios.html produto.html comparar.html sobre.html; do
-            test -s "$file"
-            grep -q 'md-universe-app.js' "$file"
-            grep -q 'md-universe-data.js' "$file"
-          done
-          ! grep -q 'md-retail.css' index.html
+          grep -q 'md-universe.css' index.html
+          grep -q 'md-universe-data.js' index.html
+          grep -q 'md-universe.js' index.html
+          ! grep -q 'md-2026.css' index.html
+          ! grep -q 'app.js' index.html
           mkdir -p _site/assets
-          cp index.html iphone.html mac.html ipad.html watch.html airpods.html casa.html acessorios.html produto.html comparar.html sobre.html _site/
-          cp md-universe.css md-universe-data.js md-universe-app.js _site/
+          cp index.html md-universe.css md-universe.js md-universe-data.js _site/
           cp assets/md-phone-brand-mark.svg _site/assets/
           touch _site/.nojekyll
-          echo "MD PHONE Universe validado e preparado"
       - uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Enviar site
+      - name: Enviar MD PHONE Universe
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-      - name: Publicar no GitHub Pages
+      - name: Publicar GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
