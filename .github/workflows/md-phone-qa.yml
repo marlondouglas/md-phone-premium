@@ -53,12 +53,11 @@ jobs:
               await page.locator('#buyerName').fill('Cliente Teste');
               await page.locator('#buyerPhone').fill('33999999999');
               await page.locator('#buyerConsent').check();
-              const hrefs=[];
-              await page.route('https://wa.me/**',route=>{hrefs.push(route.request().url());route.abort()});
+              await page.evaluate(()=>{window.__waCaptured='';const f=HTMLAnchorElement.prototype.click;HTMLAnchorElement.prototype.click=function(){window.__waCaptured=this.href;};});
               await page.locator('#checkoutForm button[type=submit]').click();
-              await page.waitForTimeout(400);
-              if(hrefs.length===0)errors.push(name+': no WhatsApp link triggered');
-              console.log(JSON.stringify({screen:name,count,overflow,whatsappAttempted:hrefs.length>0}));
+              const whatsapp=await page.evaluate(()=>window.__waCaptured);
+              if(!whatsapp.startsWith('https://wa.me/5533987044866?text='))errors.push(name+': no valid WhatsApp purchase URL');
+              console.log(JSON.stringify({screen:name,count,overflow,whatsappAttempted:!!whatsapp}));
               await page.close();
             }
             await browser.close();
