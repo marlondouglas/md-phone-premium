@@ -80,6 +80,15 @@ function selectedColor(p){
  const saved=state.colorModel===p.id?state.colorName:null;
  return p.colors.some(c=>c.name===saved)?saved:p.colors[0].name;
 }
+function variantColor(p,v){
+ if(!v||!p?.colors?.length)return '';
+ const hint=(v.color||v.label||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ if(!v.color&&!/[·]\s*(azul|dourado|grafite|roxo|branco|preto|prateado|verde|rosa|amarelo)/i.test(v.label||''))return '';
+ const aliases=[['azul','azul'],['dourado','dourado'],['grafite','grafite'],['roxo','roxo'],['branco','estelar'],['preto','preto'],['prateado','prateado'],['verde','verde'],['rosa','rosa'],['amarelo','amarelo']];
+ const key=(aliases.find(([a])=>hint.includes(a))||[])[1];
+ if(!key)return '';
+ return p.colors.find(c=>c.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().startsWith(key))?.name||'';
+}
 function colorPhoto(p,color){
  return p?.colorPhotos?.[color]||null;
 }
@@ -91,7 +100,7 @@ function colorSelector(p){
   '<div class="md-color-swatch-list" role="group" aria-label="Escolher cor desejada">'+p.colors.map(c=>
    '<button class="md-color-swatch'+(c.name===selected?' active':'')+'" type="button" data-color-model="'+esc(p.id)+'" data-color-name="'+esc(c.name)+'" title="'+esc(c.name)+'" aria-label="Cor '+esc(c.name)+'" aria-pressed="'+(c.name===selected)+'" style="--swatch:'+esc(c.hex)+'"><span class="md-color-dot"></span></button>'
   ).join('')+'</div>'+
-  '<p class="md-color-disclaimer">Cores de fábrica. Consulte a disponibilidade de cada cor com a MD PHONE. As imagens são ilustrativas.</p></div>';
+  '<p class="md-color-disclaimer">Cores de fábrica, não confirmação de estoque. Se a opção de memória/condição escolhida tiver outra cor, consulte a loja. Fotos ilustrativas.</p></div>';
 }
 function applyColorChoice(p,color){
  if(!p||!p.colors?.some(c=>c.name===color))return;
@@ -180,7 +189,7 @@ document.addEventListener('click',e=>{
  const color=e.target.closest('[data-color-model]');if(color){applyColorChoice(prodOf(color.dataset.colorModel),color.dataset.colorName);return;}
  const b=e.target.closest('[data-buy]');if(b){openBuy(b.dataset.buy);return;}
  const v=e.target.closest('[data-variant]');if(v&&prod){state.variant=Number(v.dataset.variant);$$('[data-variant]').forEach(x=>{const active=x===v;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});const det=$('.product-details');if(det)det.innerHTML=detailSpecs(prod,state.variant);const offer=$('#productOffer');if(offer)offer.innerHTML=priceHtml(prod,state.variant);
- const item=picked(prod,state.variant);const selected=selectedColor(prod);
+ const item=picked(prod,state.variant);const matchedColor=variantColor(prod,item);if(matchedColor)applyColorChoice(prod,matchedColor);const selected=selectedColor(prod);
  const img=$('.product-photo img');if(img){const src=colorPhoto(prod,selected)||item?.image||srcOf(prod);if(src)img.src=src;img.alt='Imagem promocional ilustrativa de '+prod.name+' '+(item?.label||'');}
  return;}
  const c=e.target.closest('[data-close]');if(c){const d=document.getElementById(c.dataset.close);if(d.open)d.close();return;}
