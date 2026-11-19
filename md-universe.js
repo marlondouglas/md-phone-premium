@@ -289,6 +289,17 @@ const root=$('#root');if(!root)return;root.innerHTML=header()+'<main id="princip
 document.title=(prod?prod.name+' | ':cat?cat.label+' | ':compare?'Comparar produtos | ':'')+'MD PHONE — Universo Apple';
 $$('.site-nav a').forEach(a=>{if(cat&&a.getAttribute('href')===linkCat(cat.id))a.classList.add('active')});
 $('#hamburger')?.addEventListener('click',()=>{const m=$('#mobileMenu'),b=$('#hamburger');m.hidden=!m.hidden;b.setAttribute('aria-expanded',String(!m.hidden))});
+const cinemaVideo=$('#mdCinemaVideo'),cinemaFrame=$('#mdCinemaFrame');
+if(cinemaVideo&&cinemaFrame){
+ const showFilm=()=>cinemaFrame.classList.add('is-playing');
+ const showPoster=()=>cinemaFrame.classList.remove('is-playing');
+ cinemaVideo.muted=true;
+ cinemaVideo.addEventListener('playing',showFilm);
+ cinemaVideo.addEventListener('canplay',()=>{if(!document.hidden&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)cinemaVideo.play().catch(showPoster);});
+ cinemaVideo.addEventListener('error',showPoster);
+ cinemaVideo.addEventListener('stalled',()=>{if(cinemaVideo.readyState<2)showPoster()});
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)cinemaVideo.play().catch(showPoster);
+}
 if(!prod&&!cat&&!compare)startHero();
 if(cat)setupCategory(cat);
 if(compare){$('#compA')?.addEventListener('change',renderCompare);$('#compB')?.addEventListener('change',renderCompare);renderCompare();}
