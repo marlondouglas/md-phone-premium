@@ -92,6 +92,7 @@ jobs:
             if(film!=='assets/md-elevate-film.mp4')errors.push(device+': filme novo não foi integrado');
             const filmResponse=await page.request.get('http://127.0.0.1:8765/assets/md-elevate-film.mp4');
             if(!filmResponse.ok())errors.push(device+': filme não existe na versão montada');
+            await page.screenshot({path:'qa-snapshots/elevate-'+device+'-home-viewport.png',fullPage:false,animations:'disabled'});
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-home.png',fullPage:true,animations:'disabled'});
             await page.locator('[data-filter="old"]').click();
             const oldCount=await page.locator('.product-card:visible').count();
@@ -119,19 +120,27 @@ jobs:
             await page.close();
           }
           await browser.close();
+          const fs=require('fs');
+          fs.writeFileSync('qa-snapshots/elevate-audit-status.json',JSON.stringify({passed:errors.length===0,errors,results,commit:process.env.GITHUB_SHA},null,2));
           console.log('MD PHONE AUDIT:',JSON.stringify(results));
           if(errors.length){console.error('AUDITORIA REPROVADA:',JSON.stringify(errors));process.exit(1)}
           console.log('AUDITORIA APROVADA');
           })().catch(e=>{console.error(e);process.exit(1)});
           JS
-      - name: Registrar capturas de auditoria
-        if: success()
+      - name: Registrar capturas e resultado da auditoria
+        if: always()
         run: |
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          for image in Path('qa-snapshots').glob('elevate-*-viewport.png'):
+              image.with_suffix('.base64.txt').write_text(base64.b64encode(image.read_bytes()).decode('ascii'))
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa-snapshots/elevate-*.png
+          git add qa-snapshots/elevate-*.png qa-snapshots/elevate-*.base64.txt qa-snapshots/elevate-audit-status.json
           if ! git diff --cached --quiet; then
-            git commit -m "Visual QA: MD PHONE Elevate desktop e mobile"
+            git commit -m "Visual QA: MD PHONE Elevate resultado e capturas"
             git push
           fi
       - uses: actions/upload-artifact@v4
