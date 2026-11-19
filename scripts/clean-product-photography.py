@@ -21,7 +21,7 @@ stats = {"cleaned": 0, "skipped": 0, "failed": 0}
 
 def light_neutral(pixel):
     r,g,b,a = pixel
-    return a > 245 and min(r,g,b) >= 225 and max(r,g,b)-min(r,g,b) <= 24
+    return a > 245 and min(r,g,b) >= 234 and max(r,g,b)-min(r,g,b) <= 24
 
 def transform(file_path):
     with Image.open(file_path) as original:
@@ -40,7 +40,7 @@ def transform(file_path):
         # An enclosed pale iPhone back or white details cannot be reached.
         for point in qualified:
             if light_neutral(image.getpixel(point)):
-                ImageDraw.floodfill(image, point, (255,255,255,0), thresh=39)
+                ImageDraw.floodfill(image, point, (255,255,255,0), thresh=23)
     bbox = image.getchannel("A").point(lambda x: 255 if x > 28 else 0).getbbox()
     if not bbox:
         return None
