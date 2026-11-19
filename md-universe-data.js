@@ -1,4 +1,4 @@
-/* MD PHONE: apenas os 14 iPhones anunciados pela loja; preços preservados, foto de produto individual com fallback. */
+/* MD PHONE: catálogo da loja; preços e variantes preservados. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -87,7 +87,7 @@ window.MD_UNIVERSE = {
         }
       ],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-xr-segment?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1535393884526",
+      "image": "https://www.apple.com/newsroom/images/product/iphone/standard/iPhone_XR_black-back_09122018_carousel.jpg.large.jpg",
       "seriesOrder": 0,
       "priceFrom": 699,
       "condition": "Seminovo",
@@ -144,7 +144,7 @@ window.MD_UNIVERSE = {
         }
       ],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566851",
+      "image": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone11-black-select-2019?wid=1200&hei=1460&fmt=png-alpha",
       "seriesOrder": 1,
       "priceFrom": 1200,
       "colors": [
@@ -595,7 +595,7 @@ window.MD_UNIVERSE = {
         }
       ],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-blue?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-plus-blue-select-202209?.v=1660749882264&fmt=jpeg&hei=1897&qlt=95&wid=2000",
       "seriesOrder": 12,
       "priceFrom": 2500,
       "colors": [
