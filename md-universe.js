@@ -46,7 +46,23 @@ const heroTitles=[
 ];
 const state={category:'iphone',index:0,variant:0,cart:null,colorModel:null,colorName:null};
 let heroTimer=null,observer=null;
-function imageEl(src,alt='',cls='',picture=''){if(!src)return '<div class="tile-fallback">'+esc(picture||'MD PHONE')+'</div>';return '<img class="'+esc(cls)+'" loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(alt)+'" onerror="this.hidden=true;this.parentElement.classList.add(\'image-error\')">'}
+window.mdPhotoFallback=function(img){
+ if(!img||!img.parentElement)return;
+ const parent=img.parentElement;
+ img.hidden=true;
+ parent.classList.add('image-error');
+ if(!parent.querySelector('.md-missing-photo')){
+  const note=document.createElement('span');
+  note.className='md-missing-photo';
+  note.setAttribute('role','status');
+  note.textContent='Foto deste modelo em atualização. Solicite uma imagem real à MD PHONE.';
+  parent.appendChild(note);
+ }
+};
+function imageEl(src,alt='',cls='',picture=''){
+ if(!src)return '<div class="md-missing-photo">Foto do modelo em atualização. Solicite à MD PHONE.</div>';
+ return '<img class="'+esc(cls)+'" loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(alt)+'" onerror="window.mdPhotoFallback(this)">';
+}
 function header(){
 return '<a class="skip" href="#principal">Ir ao conteúdo</a><header class="site-head"><div class="head-inner">'+
 '<a class="brand" href="index.html" aria-label="MD PHONE — início"><img src="assets/md-phone-brand-mark.svg" alt="" width="42" height="42"> <b>MD</b> PHONE</a>'+
@@ -132,7 +148,12 @@ function applyColorChoice(p,color){
   art.style.setProperty('--selected-color',p.colors.find(c=>c.name===color).hex);
   const img=art.querySelector('img');
   const src=colorPhoto(p,color)||picked(p,state.variant)?.image||srcOf(p);
-  if(img&&src){if(img.getAttribute('src')!==src)img.src=src;img.alt='Imagem ilustrativa '+p.name+' · cor desejada: '+color;}
+  if(img&&src){
+   if(img.getAttribute('src')!==src){
+    img.hidden=false;art.classList.remove('image-error');art.querySelector('.md-missing-photo')?.remove();img.src=src;
+   }
+   img.alt='Imagem ilustrativa '+p.name+' · cor desejada: '+color;
+  }
  }
 }
 function initColorPreference(p){
@@ -208,7 +229,8 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('[data-buy]');if(b){openBuy(b.dataset.buy);return;}
  const v=e.target.closest('[data-variant]');if(v&&prod){state.variant=Number(v.dataset.variant);$$('[data-variant]').forEach(x=>{const active=x===v;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});const det=$('.product-details');if(det)det.innerHTML=detailSpecs(prod,state.variant);const offer=$('#productOffer');if(offer)offer.innerHTML=priceHtml(prod,state.variant);
  const item=picked(prod,state.variant);const matchedColor=variantColor(prod,item);if(matchedColor)applyColorChoice(prod,matchedColor);const selected=selectedColor(prod);
- const img=$('.product-photo img');if(img){const src=colorPhoto(prod,selected)||item?.image||srcOf(prod);if(src)img.src=src;img.alt='Imagem promocional ilustrativa de '+prod.name+' '+(item?.label||'');}
+ const img=$('.product-photo img');if(img){const src=colorPhoto(prod,selected)||item?.image||srcOf(prod);if(src){img.hidden=false;img.parentElement.classList.remove('image-error');img.parentElement.querySelector('.md-missing-photo')?.remove();img.src=src;}
+ img.alt='Imagem promocional ilustrativa de '+prod.name+' '+(item?.label||'');}
  return;}
  const c=e.target.closest('[data-close]');if(c){const d=document.getElementById(c.dataset.close);if(d.open)d.close();return;}
 });
