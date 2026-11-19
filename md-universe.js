@@ -109,7 +109,7 @@ function phoneCatalog(items,activeId){
  '<h2 id="mdAllPhonesTitle">Todos os <em>iPhones.</em></h2><p>A seleção real da MD PHONE: fotos amplas e preços claros. Toque em um modelo para conferir a unidade.</p></div>'+
  '<span class="md-catalog-counter" id="mdCatalogCounter">'+items.length+' modelos</span></div>'+
  '<div class="md-catalog-grid" id="mdPhoneCatalog">'+items.map(p=>{
-  const src=srcOf(p),fallback=p.image&&src!==p.image?p.image:'';
+  const src=srcOf(p),fallback=p.photoFallback||((p.image&&src!==p.image)?p.image:'');
   const photo=src?'<img src="'+esc(src)+'"'+(fallback?' data-fallback="'+esc(fallback)+'"':'')+' loading="lazy" decoding="async" alt="Foto ilustrativa do '+esc(p.name)+'" onerror="window.mdTileFallback(this)">':'';
   return '<button type="button" class="md-phone-tile'+(p.id===activeId?' active':'')+'" data-show-iphone="'+esc(p.id)+'" data-phone-period="'+phoneGroup(p)+'" aria-pressed="'+(p.id===activeId)+'" aria-label="Ver '+esc(p.name)+(Number.isFinite(p.priceFrom)?', a partir de '+priceBRL(p.priceFrom):', preço sob consulta')+'">'+
   '<span class="md-tile-visual">'+photo+'<span class="md-tile-symbol" aria-hidden="true">✦</span></span>'+
@@ -215,7 +215,7 @@ function modelStage(p){
  const info=iphone?'Selecione a cor e veja as configurações. Consulte o estoque da unidade desejada.':p.desc;
  const conditionText=stock?'UNIDADE INFORMADA':'DISPONIBILIDADE SOB CONFIRMAÇÃO';
  return '<div class="model-stage" style="--model-glow:'+esc(p.accent||COLORS[p.category])+'">'+
- '<div class="model-art'+(iphone?' md-iphone-motion':'')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem ilustrativa do '+p.name,'','',p.image)+
+ '<div class="model-art'+(iphone?' md-iphone-motion':'')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem ilustrativa do '+p.name,'','',p.photoFallback||p.image)+
  '<span class="model-art-label">'+(p.imageFamilyReference?'FOTO DE REFERÊNCIA DA LINHA '+esc(p.imageFamilyReference.toUpperCase()):'FOTO DE REFERÊNCIA · CONFIRME O APARELHO REAL')+'</span></div>'+
  '<div class="model-info"><div class="kicker">MD PHONE / '+esc(conditionText)+'</div>'+
  '<h3>'+esc(p.name)+'</h3><p class="md-model-summary">'+esc(info)+'</p>'+
@@ -226,7 +226,7 @@ function modelStage(p){
 function productPage(p){
  const c=catOf(p.category),stock=p.availability==='estoque_informado';
  return '<section class="product-hero" style="--prod-glow:'+esc(p.accent||COLORS[p.category])+'">'+
- '<div class="product-photo '+(p.category==='iphone'?'photo-dark md-iphone-motion':'photo-light')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name,'','',p.image)+'</div>'+
+ '<div class="product-photo '+(p.category==='iphone'?'photo-dark md-iphone-motion':'photo-light')+pictureFormat(p)+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name,'','',p.photoFallback||p.image)+'</div>'+
  '<div class="product-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span>'+
  '<h1>'+esc(p.name)+'</h1><p>'+esc(p.desc)+'</p><div class="stock-label">'+
  (stock?'Unidade informada · confirme disponibilidade':p.variants?.length?'Preço informado · estoque sob confirmação':'Modelo sob consulta')+
