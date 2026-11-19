@@ -8,6 +8,8 @@ on:
       - md-universe.css
       - md-universe.js
       - md-universe-data.js
+      - scripts/prepare-catalog-media.cjs
+      - assets/**
       - assets/md-phone-brand-mark.svg
       - .github/workflows/pages.yml
   workflow_dispatch:
@@ -35,6 +37,7 @@ jobs:
           set -euo pipefail
           node --check md-universe-data.js
           node --check md-universe.js
+          node --check scripts/prepare-catalog-media.cjs
           test -s index.html
           test -s md-universe.css
           test -s md-universe-data.js
@@ -47,7 +50,9 @@ jobs:
           ! grep -q 'app.js' index.html
           mkdir -p _site/assets
           cp index.html md-universe.css md-universe.js md-universe-data.js _site/
-          cp assets/md-phone-brand-mark.svg _site/assets/
+          cp -R assets/. _site/assets/
+          node scripts/prepare-catalog-media.cjs
+          test -s _site/md-photo-manifest.js
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
         with:
