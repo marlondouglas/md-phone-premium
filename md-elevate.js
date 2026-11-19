@@ -13,7 +13,7 @@ function price(n){return Number(n).toLocaleString('pt-BR',{style:'currency',curr
 function firstPrice(p){return Math.min.apply(null,p.variants.map(function(v){return v.price}))}
 function group(p){return /^iphone-(xr|11|12)(-|$)/.test(p.id)?'old':/^iphone-(13|14|15)(-|$)/.test(p.id)?'middle':'new'}
 function preferred(p){return p.defaultColor||(p.colors||[])[0]?.name||''}
-function imageSrc(p){return M[p.id]||p.image||''}
+function imageSrc(p){return M[p.id]||M[p.id+'::color::'+preferred(p)]||p.image||''}
 function whatsapp(message){return 'https://wa.me/5533987044866?text='+encodeURIComponent(message)}
 function img(p,cl,alt){
  var src=imageSrc(p),fallback=p.photoFallback||p.image||'';
@@ -25,10 +25,10 @@ function header(){
 return '<a class="skip" href="#conteudo">Ir para conteúdo</a>'+
 '<header class="site-header" id="inicio"><div class="shell nav-inner">'+
 '<a class="brand" href="#inicio"><img src="assets/md-phone-brand-mark.svg" alt=""><span><b>MD</b> PHONE</span></a>'+
-'<nav class="desktop-nav" aria-label="Menu principal"><a href="#destaques">Destaques</a><a href="#catalogo">iPhones</a><a href="#filme">Studio Film</a><a href="#porque">Nossa proposta</a><button type="button" data-help>Assistente MD</button></nav>'+
+'<nav class="desktop-nav" aria-label="Menu principal"><a href="#destaques">Destaques</a><a href="#catalogo">iPhones</a><a href="#filme">Apresentações</a><a href="#porque">Nossa proposta</a><button type="button" data-help>Assistente MD</button></nav>'+
 '<div class="nav-actions"><a class="nav-whatsapp" href="'+whatsapp('Olá, MD PHONE! Quero saber os modelos disponíveis.')+'" target="_blank" rel="noopener noreferrer">Falar com a loja ↗</a>'+
 '<button class="menu-button" id="menuButton" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="Abrir menu"><span></span></button></div></div>'+
-'<nav class="mobile-nav" id="mobileNav" aria-label="Menu no celular"><a href="#destaques">Destaques</a><a href="#catalogo">iPhones disponíveis</a><a href="#filme">Studio Film</a><a href="#porque">Nossa proposta</a><button type="button" data-help>Assistente MD ↗</button></nav></header>';
+'<nav class="mobile-nav" id="mobileNav" aria-label="Menu no celular"><a href="#destaques">Destaques</a><a href="#catalogo">iPhones disponíveis</a><a href="#filme">Apresentações</a><a href="#porque">Nossa proposta</a><button type="button" data-help>Assistente MD ↗</button></nav></header>';
 }
 function hero(){
  var first=phone.variants[0];
@@ -96,13 +96,13 @@ function studioStories(){
  '<div class="studio-story-list">'+presentations.map(function(c,i){
    var p=phones.find(function(x){return x.id===c.kind});
    var photo=c.key==='airpods-pro'?(M['media::airpods-pro-3']||'https://www.apple.com/newsroom/images/2025/09/introducing-airpods-pro-3-the-ultimate-audio-experience/article/Apple-AirPods-Pro-3-hero-250909_inline.jpg.large.jpg'):(p?imageSrc(p):'');
-   var hasVideo=Boolean(window.MD_STORIES?.[c.key]);
+   var hasVideo=false; // Suspender vídeos editoriais com movimento rejeitado; manter apenas fotos e links oficiais.
    var asset='assets/md-story-'+c.key+'.mp4';
    var image='<img loading="lazy" src="'+safe(photo)+'" alt="Imagem oficial de referência de '+safe(c.title)+'">';
    return '<article class="studio-story '+(i===0?'active':'')+'" data-story-index="'+i+'" aria-hidden="'+(i!==0)+'">'+
      '<div class="studio-screen">'+image+
      (hasVideo?'<video muted loop playsinline preload="'+(i===0?'metadata':'none')+'" aria-label="Apresentação editorial de '+safe(c.title)+'"><source src="'+asset+'" type="video/mp4"></video>':'')+
-     '<span class="studio-mark">MD PHONE / STUDIO</span></div>'+
+     '<span class="studio-mark">MD PHONE</span></div>'+
      '<div class="studio-story-info"><div><span class="studio-ordinal">0'+(i+1)+' / 03</span><h3>'+safe(c.title)+'</h3><p>'+safe(c.lead)+'</p></div>'+
      '<div class="studio-story-links"><a href="'+safe(c.link)+'" target="_blank" rel="noopener noreferrer" class="button dark">'+safe(c.label)+' ↗</a>'+
      (p?'<button class="button ghost" type="button" data-product="'+safe(p.id)+'">Ver na loja</button>':'')+
@@ -111,7 +111,7 @@ function studioStories(){
  '<div class="studio-controls" aria-label="Navegar pelas apresentações"><button type="button" id="studioPrev" aria-label="Vídeo anterior">←</button>'+
  '<div id="studioDots" class="studio-dots">'+presentations.map(function(c,i){return '<button type="button" aria-label="Exibir '+safe(c.title)+'" aria-pressed="'+(i===0)+'" data-story-dot="'+i+'" class="'+(i===0?'active':'')+'"></button>'}).join('')+'</div>'+
  '<button type="button" id="studioNext" aria-label="Próximo vídeo">→</button></div>'+
- '</div><p class="studio-legal">Filmes editoriais da MD PHONE. Para assistir aos vídeos e eventos oficiais completos, acesse a Apple pelos links acima.</p></div></section>';
+ '</div><p class="studio-legal">Conheça os produtos e acesse os conteúdos oficiais da Apple pelos links acima.</p></div></section>';
 }
 function promises(){
 return '<section class="section promise-section" id="porque"><div class="shell"><div class="chapter-head">'+
@@ -127,7 +127,7 @@ function footer(){
 return '<footer class="footer"><div class="shell"><div class="footer-inner">'+
 '<div><a class="brand" href="#inicio"><img src="assets/md-phone-brand-mark.svg" alt=""><span><b>MD</b> PHONE</span></a>'+
 '<p>Tecnologia, design e atendimento personalizado para a sua próxima escolha.</p></div>'+
-'<div><h4>Explorar</h4><a href="#destaques">Destaques</a><a href="#catalogo">Modelos e preços</a><a href="#filme">Studio Film</a></div>'+
+'<div><h4>Explorar</h4><a href="#destaques">Destaques</a><a href="#catalogo">Modelos e preços</a><a href="#filme">Apresentações</a></div>'+
 '<div><h4>Atendimento</h4><a href="'+whatsapp('Olá, MD PHONE! Quero atendimento.')+'" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="#porque">Como comprar</a><a href="#inicio">Voltar ao início ↑</a></div>'+
 '<section class="shipping-global" aria-labelledby="shippingTitle"><div class="shipping-top"><div><span class="shipping-kicker">MD PHONE / ALCANCE INTERNACIONAL</span><h2 id="shippingTitle">O seu próximo iPhone. <em>Onde você estiver.</em></h2><p>Consulte a possibilidade de envio, frete e prazos para os destinos abaixo. A disponibilidade e as condições são confirmadas pela loja antes de qualquer compra.</p></div><div class="shipping-icon" aria-hidden="true">✦</div></div><div class="shipping-countries">'+
 '<a class="shipping-country" href="'+whatsapp('Olá, MD PHONE! Gostaria de consultar se vocês realizam entregas para o Brasil, além do frete, prazos e condições.')+'" target="_blank" rel="noopener noreferrer" aria-label="Consultar envio para Brasil pelo WhatsApp"><span class="shipping-flag" aria-hidden="true">🇧🇷</span><span class="shipping-country-name">Brasil</span><span class="shipping-arrow" aria-hidden="true">↗</span></a>'+
