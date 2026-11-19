@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "errors": [],
+  "results": [
+    {
+      "device": "desktop",
+      "models": 14,
+      "loaded": 13,
+      "overflow": 0,
+      "composition": {
+        "headingOverlap": false,
+        "footOverlap": false,
+        "photoHeight": 565,
+        "cardPhotoHeight": 480
+      },
+      "oldCount": 3,
+      "variantCount": 20,
+      "video": 200
+    },
+    {
+      "device": "mobile",
+      "models": 14,
+      "loaded": 13,
+      "overflow": 0,
+      "composition": {
+        "headingOverlap": false,
+        "footOverlap": false,
+        "photoHeight": 430,
+        "cardPhotoHeight": 401.6875
+      },
+      "oldCount": 3,
+      "variantCount": 20,
+      "video": 200
+    }
+  ],
+  "commit": "6737960c2b3452c0514be806b182fbb137e8b7cc"
+}
