@@ -182,3 +182,17 @@ body{background:var(--ultra-bg)!important;color:#f6fff8!important;font-family:"M
  .hero-frame:before{animation:none!important}
  .hero-frame .hero-iphone.hero-auto-slide{transition:none!important}
 }
+/* Experiences: verifiable information, never fabricated testimonials. */
+#md-ultra-trust{padding:100px 0;background:radial-gradient(ellipse at 50% 0%,#123924,#050b08 74%);border-top:1px solid #274e34}
+.md-ultra-trust-head{max-width:810px;margin-bottom:40px}
+.md-ultra-trust-head>span{color:#67f584;font-size:11px;font-weight:850;letter-spacing:.18em}
+.md-ultra-trust-head h2{font-size:clamp(37px,5.2vw,72px);letter-spacing:-.07em;line-height:1.06;color:#fff;margin:18px 0}
+.md-ultra-trust-head h2 em{font-style:normal;color:#6efb87}
+.md-ultra-trust-head p{max-width:680px;color:#b2cdb8;font-size:15px;line-height:1.72}
+.md-ultra-trust-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.md-ultra-trust-points>div{padding:30px 25px;border-radius:19px;background:#0f2618;border:1px solid #2c5635;display:grid;gap:10px}
+.md-ultra-trust-points b{font-size:11px;color:#60f878;letter-spacing:.17em}
+.md-ultra-trust-points strong{color:#fff;font-size:18px}
+.md-ultra-trust-points small{color:#a9c8b0;font-size:13px;line-height:1.65}
+.md-ultra-google{display:inline-flex;margin-top:25px;color:#07220e!important;background:#62fb83;border-radius:99px;padding:15px 22px;font-size:12px;font-weight:850;text-decoration:none}
+@media(max-width:740px){#md-ultra-trust{padding:65px 0}.md-ultra-trust-points{grid-template-columns:1fr}.md-ultra-trust-head{margin-bottom:25px}}
