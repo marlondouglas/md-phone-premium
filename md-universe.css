@@ -338,3 +338,9 @@ body{overflow-x:hidden}
  .md-phone-catalog .md-phone-tile{min-height:405px}
 }
 @media(prefers-reduced-motion:reduce){.md-mascot-avatar,.md-cinema-fallback img{animation:none!important}}
+
+/* A imagem original permanece visível enquanto o vídeo não iniciar */
+.md-cinema-frame video{opacity:0;transition:opacity .55s ease}
+.md-cinema-frame.is-playing video{opacity:1}
+.md-cinema-frame .md-cinema-fallback{visibility:visible}
+.md-cinema-frame.is-playing .md-cinema-fallback{visibility:hidden}
