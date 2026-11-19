@@ -7,6 +7,8 @@ on:
       - md-universe.css
       - md-universe.js
       - md-universe-data.js
+      - scripts/prepare-catalog-media.cjs
+      - .github/workflows/pages.yml
       - .github/workflows/md-phone-qa.yml
   workflow_dispatch:
 
@@ -31,8 +33,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p qa-screenshots
-          python3 -m http.server 8765 >/tmp/md-phone-server.log 2>&1 &
+          mkdir -p qa-screenshots _site/assets
+          cp index.html md-universe.css md-universe.js md-universe-data.js _site/
+          cp -R assets/. _site/assets/
+          node scripts/prepare-catalog-media.cjs
+          python3 -m http.server 8765 --directory _site >/tmp/md-phone-server.log 2>&1 &
           node <<'NODE'
           const {chromium}=require('playwright');
           (async()=>{
@@ -81,6 +86,9 @@ jobs:
               if(vitrine.photoFit!=='contain')errors.push(name+': foto não usa enquadramento contain');
               if(vitrine.titleWidth>vitrine.titleVisible+5)errors.push(name+': título da vitrine ultrapassa a coluna');
               if(!vitrine.modelSelectVisible)errors.push(name+': seletor compacto oculto');
+              await page.waitForTimeout(1400);
+              const modelPhoto=await page.locator('.model-art img').evaluate(img=>({loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc}));
+              if(!modelPhoto.loaded)errors.push(name+': foto do iPhone 13 Pro não carregou');
               await page.screenshot({path:'qa-screenshots/'+name+'-iphone.png',fullPage:true});
               await page.goto(u+'?produto=iphone-18-pro-max',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.product-hero',{timeout:20000});
@@ -90,6 +98,9 @@ jobs:
               if(colors!==4)errors.push(name+': iPhone 18 Pro Max deveria apresentar quatro cores, encontrou '+colors);
               await page.locator('[data-color-name="Preto"]').click();
               if((await page.locator('.md-color-current').innerText())!=='Preto')errors.push(name+': cor Preto não selecionada');
+              await page.waitForTimeout(1400);
+              const productPhoto=await page.locator('.product-photo img').evaluate(img=>({loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc}));
+              if(!productPhoto.loaded)errors.push(name+': foto do iPhone 18 Pro Max não carregou');
               await page.screenshot({path:'qa-screenshots/'+name+'-produto.png',fullPage:true});
               await page.locator('[data-buy]').first().click();
               if(!(await page.locator('#buyDialog').evaluate(el=>el.open)))errors.push(name+': compra não abriu');
