@@ -11,6 +11,7 @@ on:
       - scripts/clean-product-photography.py
       - scripts/render-elevate-film.py
       - scripts/render-elevate-stories.py
+      - scripts/audit-photo-framing.py
       - .github/workflows/md-phone-qa.yml
   workflow_dispatch:
 permissions:
@@ -46,6 +47,7 @@ jobs:
           /tmp/md-elevate-py/bin/python -m pip install --quiet pillow imageio-ffmpeg
           /tmp/md-elevate-py/bin/python scripts/clean-product-photography.py
           /tmp/md-elevate-py/bin/python scripts/render-elevate-stories.py
+          /tmp/md-elevate-py/bin/python scripts/audit-photo-framing.py
           test -s _site/md-stories-manifest.js
           test -s _site/md-photo-audit.json
           python3 - <<'PY'
@@ -170,6 +172,8 @@ jobs:
           import base64
           from pathlib import Path
           for image in Path('qa-snapshots').glob('elevate-*-viewport.png'):
+              image.with_suffix('.base64.txt').write_text(base64.b64encode(image.read_bytes()).decode('ascii'))
+          for image in Path('qa-snapshots').glob('elevate-*contact-sheet.jpg'):
               image.with_suffix('.base64.txt').write_text(base64.b64encode(image.read_bytes()).decode('ascii'))
           PY
           git config user.name "github-actions[bot]"
