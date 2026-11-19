@@ -6,11 +6,11 @@
 const D=window.MD_UNIVERSE;if(!D||!D.categories||!D.products)return;
 const WA='5533987044866';
 const PHOTO={
- iphone:'https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg',
- mac:'https://cdn.visaovip.com/img/prod/apple-macbook-pro-mgdr4lla-a3426-m5-pro-15-core-tela-retina-142-24gb-de-ram-1tb-ssd-space-black-2026/57454/733468.jpg',
- ipad:'https://cdn.shopify.com/s/files/1/0024/9803/5810/files/807680-Product-0-I-639080812803357965_600x600.jpg?v=1772484545',
- watch:'https://i5.samsclubimages.com/asr/65c9cb05-6604-4fb7-844a-e44584ad46e1.73e284e97b471f4cdff25aa0e57dd3ad.jpeg?odnBg=FFFFFF&odnHeight=576&odnWidth=576',
- airpods:'https://istore.am/product_image/2487/1757939902_b3e47e53c727475095da.jpgAirPods_Pro_3_N_PDP_Image_Position_2__ce-WW.jpg',
+ iphone:'https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg',
+ mac:'https://www.apple.com/v/homepage/images/macbook-pro-proled-xdr/a/hero_macbook_pro_proled_xdr_preorder__df38n593sxg2_large.jpg',
+ ipad:'https://www.apple.com/v/homepage/images/ipad-mini/a/promo_ipad_mini_a20_announce__efc6vmmxg58i_large.jpg',
+ watch:'https://www.apple.com/br/homepage/built/promos/26_apple-watch-series-12_10/images/promo_apple_watch_series_12__gnlprtt8526a_large.jpg',
+ airpods:'https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg',
  casa:'https://bfasset.costco-static.com/U447IH35/as/r5k55cb7n2g5ps96f2kmpfg/8897200-847__1?auto=webp&canvas=1024%2C1024&fit=bounds&format=jpg&height=1024&width=1024',
  acessorios:'https://www.celudmovil.com.co/cdn/shop/files/MAGSAFEDUO_1024x1024.png?v=1697827277'
 };
