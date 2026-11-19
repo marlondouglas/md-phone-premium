@@ -98,6 +98,12 @@ jobs:
                 try {await img.decode()} catch(e) {}
               }));
             });
+            const photoAudit=JSON.parse(require('fs').readFileSync('qa-snapshots/elevate-photo-quality.json','utf8'));
+            for(const id of ['iphone-14-pro','iphone-15-pro','iphone-17-pro-max','iphone-18-pro-max']){
+             const ratio=photoAudit[id]?.visual_height_ratio||0;
+             console.log(device,'foto ocuppancy',id,ratio);
+             if(ratio<0.57)errors.push(device+': foto do '+id+' ocupa apenas '+Math.round(ratio*100)+'% da altura da imagem');
+            }
             const photos=await page.locator('.product-card img').evaluateAll(nodes=>nodes.map(img=>({loaded:img.complete&&img.naturalWidth>150,src:img.currentSrc})));
             const loaded=photos.filter(p=>p.loaded).length;
             console.log(device,'fotos carregadas:',loaded,'de',photos.length,'falhas:',JSON.stringify(photos.filter(p=>!p.loaded).slice(0,6)));
@@ -111,7 +117,7 @@ jobs:
             const storyMedia=await page.evaluate(()=>window.MD_STORIES||{});
             console.log(device,'studio stories:',JSON.stringify(storyMedia));
             const availableStories=Object.values(storyMedia).filter(Boolean).length;
-            if(availableStories<2)errors.push(device+': faltam vídeos editoriais para os produtos (disponíveis '+availableStories+')');
+            if(availableStories<3)errors.push(device+': devem existir vídeos de iPhone 18, iPhone 17 e AirPods Pro (disponíveis '+availableStories+')');
             const filmResponse=await page.request.get('http://127.0.0.1:8765/md-stories-manifest.js');
             if(!filmResponse.ok())errors.push(device+': lista de vídeos indisponível');
             await page.locator('#studioNext').click();
@@ -138,6 +144,7 @@ jobs:
             if(!await page.locator('#productWhatsapp').innerText().then(v=>v.includes('Comprar')))errors.push(device+': detalhe não tem Comprar');
             const colorPhotos=await page.evaluate(()=>Object.keys(window.MD_PHOTOS||{}).filter(k=>k.startsWith('iphone-14-pro::color::')));
             console.log(device,'fotos iPhone 14 Pro por cor:',JSON.stringify(colorPhotos));
+            if(!colorPhotos.some(k=>k.endsWith('::Dourado')))errors.push(device+': foto Dourado do iPhone 14 Pro não foi obtida');
             const startSrc=await page.locator('#detailVisual img').getAttribute('src');
             await page.locator('[data-color="Dourado"]').click();
             const colorText=await page.locator('#selectedColor').innerText();
