@@ -19,6 +19,14 @@ const ICONS={iphone:'⌁',mac:'▱',ipad:'▣',watch:'◉',airpods:'♫',casa:'�
 const $=(q,root=document)=>root.querySelector(q),$$=(q,root=document)=>Array.from(root.querySelectorAll(q));
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const srcOf=p=>p?.image||PHOTO[p?.category]||'';
+const priceBRL=n=>Number.isFinite(n)?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(n):'Sob consulta';
+const picked=(p,i=0)=>p?.variants?.[i]||null;
+const condition=(p,i=0)=>picked(p,i)?.condition||(p?.availability==='estoque_informado'?'Seminovo':p?.availability==='sob_consulta'?'Sob consulta':'Condição a confirmar');
+function priceHtml(p,i=0){
+ const v=picked(p,i),pr=v?.price??p.priceFrom;
+ const price=Number.isFinite(pr)?priceBRL(pr):'Sob consulta';
+ return '<div class="md-offer" aria-live="polite"><span class="md-offer-caption">'+(Number.isFinite(pr)?'PREÇO INFORMADO · CONFIRMAR DISPONIBILIDADE':'CONSULTE PREÇO E DISPONIBILIDADE')+'</span><strong class="md-offer-price">'+price+'</strong>'+(v?.needsVerification?'<span class="md-offer-warning">Capacidade do aparelho precisa ser conferida</span>':'')+'</div>';
+}
 const catOf=id=>D.categories.find(c=>c.id===id);
 const prodOf=id=>D.products.find(p=>p.id===id);
 const linkCat=id=>'index.html?categoria='+encodeURIComponent(id);
@@ -60,18 +68,48 @@ return '<section class="category-hero" style="--hero-glow:'+COLORS[c.id]+'"><div
 '<section class="section universe"><div class="section-inner"><div class="section-top"><h2 class="section-heading">Outras linhas.<br><em>Novas possibilidades.</em></h2></div><div class="category-grid">'+D.categories.filter(x=>x.id!==c.id).slice(0,3).map((x,i)=>'<a href="'+linkCat(x.id)+'" class="category-tile" style="--tile-glow:'+COLORS[x.id]+'"><div class="tile-visual">'+imageEl(PHOTO[x.id]||PHOTO.iphone,'Linha '+x.label)+'</div><div class="tile-content"><span class="tile-eyebrow">EXPLORE</span><h3>'+esc(x.label)+'</h3><p>'+esc(x.sub)+'</p><span class="tile-arrow">Descobrir ↗</span></div></a>').join('')+'</div></div></section>';
 }
 function modelStage(p){
-if(!p)return '<div>Modelos sob consulta</div>';
-const stock=p.availability==='estoque_informado';
-return '<div class="model-stage" style="--model-glow:'+esc(p.accent||COLORS[p.category])+'"><div class="model-art">'+imageEl(srcOf(p),'Foto de catálogo ilustrativa: '+p.name)+'<span class="model-art-label">FOTO ILUSTRATIVA · CONFIRME CONFIGURAÇÃO E ESTADO REAL</span></div><div class="model-info"><div class="kicker">'+(stock?'SEMINOVO CADASTRADO':'SOB CONSULTA')+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><div class="model-specs">'+(p.specs||[]).slice(0,3).map(x=>'<span class="spec-pill">'+esc(x)+'</span>').join('')+'</div><div class="model-actions">'+button('Conhecer o produto',linkProd(p.id))+('<button type="button" class="btn secondary" data-buy="'+esc(p.id)+'">Consultar compra ↗</button>')+'</div></div></div>';
+ if(!p)return '<div>Modelos sob consulta.</div>';
+ const stock=p.availability==='estoque_informado';
+ const heroPhoto=p.category==='iphone'?' md-iphone-motion':'';
+ return '<div class="model-stage" style="--model-glow:'+esc(p.accent||COLORS[p.category])+'">'+
+ '<div class="model-art'+heroPhoto+'">'+imageEl(srcOf(p),'Foto de referência do '+p.name)+
+ '<span class="model-art-label">FOTO ILUSTRATIVA · CONSULTE A UNIDADE REAL</span></div>'+
+ '<div class="model-info"><div class="kicker">'+esc(condition(p).toUpperCase())+' · '+(stock?'UNIDADE INFORMADA':'CONFIRME DISPONIBILIDADE')+'</div>'+
+ '<h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p>'+priceHtml(p)+
+ '<div class="model-specs">'+(p.specs||[]).slice(0,3).map(x=>'<span class="spec-pill">'+esc(x)+'</span>').join('')+'</div>'+
+ '<div class="model-actions">'+button('Escolher configuração',linkProd(p.id))+
+ '<button type="button" class="btn secondary" data-buy="'+esc(p.id)+'">Solicitar ↗</button></div></div></div>';
 }
 function productPage(p){
-const c=catOf(p.category),stock=p.availability==='estoque_informado';
-return '<section class="product-hero" style="--prod-glow:'+esc(p.accent||COLORS[p.category])+'"><div class="product-photo '+(p.category==='iphone'?'photo-dark':'photo-light')+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name)+'</div><div class="product-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span><h1>'+esc(p.name)+'</h1><p>'+esc(p.desc)+'</p><div class="stock-label">'+(stock?'Unidade informada · confirme disponibilidade':'Modelo sob consulta · confirme disponibilidade')+'</div>'+variantButtons(p)+'<div class="product-details" id="productDetails">'+detailSpecs(p,0)+'</div><div class="action-row"><button type="button" class="btn primary" data-buy="'+esc(p.id)+'">Solicitar este produto ↗</button>'+button('Outros '+c.label,linkCat(c.id),'secondary')+'</div><p class="small-note">Fotos de catálogo ilustrativas. Valor e condições só são confirmados pela loja; não há pagamento pelo site.</p></div></section>'+
-'<section class="section model-section"><div class="section-inner"><div class="section-top"><div><div class="kicker">DETALHES QUE IMPORTAM</div><h2 class="section-heading">Escolha com<br><em>confiança.</em></h2></div><p class="section-sub">Tudo que foi informado sobre o modelo. Antes da compra, solicite fotos atuais e confirme os detalhes.</p></div><div class="model-stage" style="--model-glow:'+esc(p.accent||COLORS[p.category])+'"><div class="model-art">'+imageEl(srcOf(p),'Imagem de catálogo do '+p.name)+'</div><div class="model-info"><div class="kicker">MODELO / '+esc(p.name.toUpperCase())+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><div class="model-specs">'+(p.specs||[]).map(x=>'<span class="spec-pill">'+esc(x)+'</span>').join('')+'</div><div class="model-actions"><button class="btn primary" data-buy="'+esc(p.id)+'">Pedir avaliação e preço ↗</button></div></div></div></div></section>';
+ const c=catOf(p.category),stock=p.availability==='estoque_informado';
+ return '<section class="product-hero" style="--prod-glow:'+esc(p.accent||COLORS[p.category])+'">'+
+ '<div class="product-photo '+(p.category==='iphone'?'photo-dark md-iphone-motion':'photo-light')+'">'+imageEl(srcOf(p),'Imagem promocional do modelo '+p.name)+'</div>'+
+ '<div class="product-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span>'+
+ '<h1>'+esc(p.name)+'</h1><p>'+esc(p.desc)+'</p><div class="stock-label">'+
+ (stock?'Unidade informada · confirme disponibilidade':p.variants?.length?'Preço informado · estoque sob confirmação':'Modelo sob consulta')+
+ '</div><div id="productOffer">'+priceHtml(p,0)+'</div>'+variantButtons(p)+
+ '<div class="product-details" id="productDetails">'+detailSpecs(p,0)+'</div>'+
+ '<div class="action-row"><button type="button" class="btn primary" data-buy="'+esc(p.id)+'">Solicitar este produto ↗</button>'+
+ button('Ver outros '+c.label,linkCat(c.id),'secondary')+'</div>'+
+ '<p class="small-note">Valores informados pela MD PHONE. Condição, preço final e disponibilidade precisam de confirmação. Fotos ilustrativas, não representam o estado físico dos seminovos.</p></div></section>';
 }
-function variantButtons(p){if(!p.variants?.length)return '';return '<div class="variant-list" aria-label="Variações disponíveis">'+p.variants.map((v,i)=>'<button type="button" class="'+(i===0?'active':'')+'" data-variant="'+i+'">'+esc(v.label)+'</button>').join('')+'</div>';}
-function detailSpecs(p,i){const v=p.variants?.[i];if(!v)return (p.specs||[]).map(x=>'<div><b>Característica:</b> '+esc(x)+'</div>').join('')||'<div>Configurações sob consulta</div>';
-const items=['<div><b>Variação:</b> '+esc(v.label)+'</div>','<div><b>Bateria:</b> '+(v.battery==null?'A confirmar':esc(v.battery)+'% informado')+'</div>','<div><b>Histórico de peças:</b> '+esc(v.repairs||'A confirmar')+'</div>'];return items.join('')}
+function variantButtons(p){
+ if(!p.variants?.length)return '';
+ return '<div class="variant-list" role="group" aria-label="Escolha a capacidade e condição">'+p.variants.map((v,i)=>
+  '<button type="button" data-variant="'+i+'" class="'+(i===0?'active':'')+'" aria-pressed="'+(i===0)+'">'+
+  esc(v.label)+(Number.isFinite(v.price)?' · '+priceBRL(v.price):'')+'</button>').join('')+'</div>';
+}
+function detailSpecs(p,i){
+ const v=picked(p,i);
+ if(!v)return (p.specs||[]).map(x=>'<div><b>Característica:</b> '+esc(x)+'</div>').join('')||'<div>Configurações sob consulta</div>';
+ const items=['<div><b>Configuração:</b> '+esc(v.label)+'</div>',
+ '<div><b>Condição:</b> '+esc(condition(p,i))+'</div>',
+ '<div><b>Preço anunciado:</b> '+priceBRL(v.price)+'</div>'];
+ if(v.battery!=null)items.push('<div><b>Bateria:</b> '+esc(v.battery)+'% informado</div>');
+ if(v.repairs)items.push('<div><b>Histórico de peças:</b> '+esc(v.repairs)+'</div>');
+ if(v.needsVerification)items.push('<div class="md-offer-warning"><b>Verificação necessária:</b> '+esc(v.verificationNote||'Verificar a configuração do aparelho.')+'</div>');
+ return items.join('');
+}
 function comparePage(){
 const list=D.products.filter(p=>p.category==='iphone').slice(0,12);
 return '<section class="section compare"><div class="section-inner"><div class="kicker">MD PHONE / COMPARAÇÃO</div><h1 class="section-heading">Dois modelos.<br><em>Uma escolha.</em></h1><p class="section-sub">Compare os modelos cadastrados. Valores e disponibilidade sempre sob confirmação.</p><div class="compare-toolbar"><select id="compA" aria-label="Primeiro modelo">'+list.map((p,i)=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('')+'</select><select id="compB" aria-label="Segundo modelo">'+list.map((p,i)=>'<option value="'+esc(p.id)+'" '+(i===1?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select></div><div class="compare-table" id="compareContent"></div></div></section>';
@@ -94,7 +132,7 @@ if(cat)setupCategory(cat);
 if(compare){$('#compA')?.addEventListener('change',renderCompare);$('#compB')?.addEventListener('change',renderCompare);renderCompare();}
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-buy]');if(b){openBuy(b.dataset.buy);return;}
- const v=e.target.closest('[data-variant]');if(v&&prod){state.variant=Number(v.dataset.variant);$$('[data-variant]').forEach(x=>x.classList.toggle('active',x===v));const det=$('.product-details');if(det)det.innerHTML=detailSpecs(prod,state.variant);return;}
+ const v=e.target.closest('[data-variant]');if(v&&prod){state.variant=Number(v.dataset.variant);$$('[data-variant]').forEach(x=>{const active=x===v;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});const det=$('.product-details');if(det)det.innerHTML=detailSpecs(prod,state.variant);const offer=$('#productOffer');if(offer)offer.innerHTML=priceHtml(prod,state.variant);return;}
  const c=e.target.closest('[data-close]');if(c){const d=document.getElementById(c.dataset.close);if(d.open)d.close();return;}
 });
 for(const id of ['buyDialog','helpDialog']){const d=document.getElementById(id);d?.addEventListener('click',e=>{if(e.target===d)d.close()})}
@@ -106,8 +144,8 @@ if('IntersectionObserver'in window){observer=new IntersectionObserver(entries=>e
 }
 function startHero(){const slides=$$('.hero-slide');if(slides.length<2)return;let i=0;heroTimer=setInterval(()=>{if(document.hidden||matchMedia('(prefers-reduced-motion: reduce)').matches)return;slides[i].classList.remove('active');$$('.timeline-item')[i]?.classList.remove('active');i=(i+1)%slides.length;slides[i].classList.add('active');$$('.timeline-item')[i]?.classList.add('active')},6500)}
 function setupCategory(cat){const items=D.products.filter(p=>p.category===cat.id);$$('[data-model-index]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.modelIndex);if(!items[i])return;$$('[data-model-index]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-selected',String(x===b))});$('#modelStage').innerHTML=modelStage(items[i]);}));}
-function openBuy(id){const p=prodOf(id);if(!p)return;state.cart=p;const selection=p.variants?.[state.variant]||p.variants?.[0];$('#buyChoice').textContent=p.name+(selection?' · '+selection.label:'')+' · preço sob consulta';$('#buyForm').reset();$('#addressLabel').hidden=false;$('#buyDialog').showModal();$('#buyerName').focus({preventScroll:true})}
+function openBuy(id){const p=prodOf(id);if(!p)return;state.cart=p;if(new URLSearchParams(location.search).get('produto')!==id)state.variant=0;const selection=p.variants?.[state.variant]||p.variants?.[0];$('#buyChoice').textContent=p.name+(selection?' · '+selection.label:'')+' · '+priceBRL(selection?.price);$('#buyForm').reset();$('#addressLabel').hidden=false;$('#buyDialog').showModal();$('#buyerName').focus({preventScroll:true})}
 function openWhatsapp(msg){const href=wa(msg);const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener noreferrer';document.body.appendChild(a);a.click();a.remove()}
-function submitBuy(e){e.preventDefault();if(!e.currentTarget.reportValidity()||!state.cart)return;const p=state.cart,v=p.variants?.[state.variant]||p.variants?.[0],nm=$('#buyerName').value.trim(),tel=$('#buyerPhone').value.trim();if(nm.length<2||tel.replace(/\D/g,'').length<10){$('#buyerPhone').setCustomValidity('Informe um telefone válido com DDD.');$('#buyerPhone').reportValidity();$('#buyerPhone').setCustomValidity('');return;}const parts=['Olá, MD PHONE! Vim pelo site e quero consultar um produto.','Nome: '+nm,'WhatsApp: '+tel,'Produto: '+p.name,'Linha: '+catOf(p.category).label];if(v){parts.push('Opção: '+v.label);if(v.battery!=null)parts.push('Bateria informada: '+v.battery+'%');if(v.repairs)parts.push('Histórico: '+v.repairs)}parts.push('Modalidade: '+$('#shipping').value);if($('#buyerCity').value.trim())parts.push('Cidade: '+$('#buyerCity').value.trim());if($('#shipping').value!=='Retirada com a loja'&&$('#buyerAddress').value.trim())parts.push('Endereço para consulta: '+$('#buyerAddress').value.trim());if($('#buyerCep').value.trim())parts.push('CEP: '+$('#buyerCep').value.trim());if($('#buyerNotes').value.trim())parts.push('Detalhes: '+$('#buyerNotes').value.trim());parts.push('Pode confirmar preço, disponibilidade, fotos reais e condições?');openWhatsapp(parts.join('\n'));}
+function submitBuy(e){e.preventDefault();if(!e.currentTarget.reportValidity()||!state.cart)return;const p=state.cart,v=p.variants?.[state.variant]||p.variants?.[0],nm=$('#buyerName').value.trim(),tel=$('#buyerPhone').value.trim();if(nm.length<2||tel.replace(/\D/g,'').length<10){$('#buyerPhone').setCustomValidity('Informe um telefone válido com DDD.');$('#buyerPhone').reportValidity();$('#buyerPhone').setCustomValidity('');return;}const parts=['Olá, MD PHONE! Vim pelo site e quero consultar um produto.','Nome: '+nm,'WhatsApp: '+tel,'Produto: '+p.name,'Linha: '+catOf(p.category).label];if(v){parts.push('Opção: '+v.label);parts.push('Condição: '+condition(p,state.variant));if(Number.isFinite(v.price))parts.push('Valor anunciado: '+priceBRL(v.price));if(v.battery!=null)parts.push('Bateria informada: '+v.battery+'%');if(v.repairs)parts.push('Histórico: '+v.repairs);if(v.needsVerification)parts.push('Atenção: confirmar a capacidade real do aparelho antes da compra.')}parts.push('Modalidade: '+$('#shipping').value);if($('#buyerCity').value.trim())parts.push('Cidade: '+$('#buyerCity').value.trim());if($('#shipping').value!=='Retirada com a loja'&&$('#buyerAddress').value.trim())parts.push('Endereço para consulta: '+$('#buyerAddress').value.trim());if($('#buyerCep').value.trim())parts.push('CEP: '+$('#buyerCep').value.trim());if($('#buyerNotes').value.trim())parts.push('Detalhes: '+$('#buyerNotes').value.trim());parts.push('Pode confirmar preço, disponibilidade, fotos reais e condições?');openWhatsapp(parts.join('\n'));}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
