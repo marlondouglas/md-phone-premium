@@ -1,4 +1,4 @@
-/* MD PHONE: catálogo, valores informados pela loja e paletas de cores de fábrica. Cores/estoque sujeitos a confirmação. */
+/* MD PHONE: imagens ilustrativas profissionais e preços informados pela loja. Confirmar unidade e condição. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -222,10 +222,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-pro-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566801",
+      "image": "https://store.gorecell.ca/cdn/shop/files/b97f2706493244458b86246c722b43f5.jpg?v=1726494243&width=1500",
       "seriesOrder": 3,
-      "imageFamilyReference": "iPhone 11 Pro",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 11 Pro, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
       "colors": [
         {
           "name": "Cinza-espacial",
@@ -351,10 +350,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://phonehero.cdn.imgeng.in/img/bigmodelpics/iphone-12-pro-max-pacific-blue-1.png",
       "seriesOrder": 6,
-      "imageFamilyReference": "iPhone 12",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 12, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
       "colors": [
         {
           "name": "Grafite",
@@ -948,10 +946,9 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=900&hei=1112&fmt=png-alpha",
+      "image": "https://www.pbtech.co.nz/imgprod/M/P/MPHAPP215300__1.jpg",
       "seriesOrder": 18,
-      "imageFamilyReference": "iPhone 15 Pro",
-      "visualDisclaimer": "Imagem de referência da linha iPhone 15 Pro, ilustrativa do design. Confirme o modelo exato.",
+      "visualDisclaimer": "Fotografia ilustrativa do modelo; não representa a unidade disponível na MD PHONE.",
       "colors": [
         {
           "name": "Titânio-natural",
