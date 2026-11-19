@@ -48,3 +48,8 @@ main{min-height:60vh}.hero{height:min(900px,100svh);min-height:690px;position:re
 .strip-photo .brand-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.95;mix-blend-mode:screen;pointer-events:none}
 .strip-photo .brand-film:focus{outline:0}
 @media(max-width:700px){.hero-media img{transform:scale(1.23)}.hero-slide.active .hero-media img{transform:scale(1.32)}.category-hero .category-photo img{transform:scale(1.23)}.model-art img{transform:scale(1.32)}.product-photo img{transform:scale(1.22)}.strip-photo .brand-film{object-fit:cover}}
+
+/* Correct background compositing for photographic assets with white/black matte */
+.hero-media.photo-light{background:transparent!important}.hero-media.photo-light img,.category-photo.photo-light img,.product-photo.photo-light img{mix-blend-mode:multiply!important}
+.hero-media.photo-dark img,.category-photo.photo-dark img,.product-photo.photo-dark img{mix-blend-mode:screen!important}
+.category-tile:not(.image-iphone) .tile-visual img{mix-blend-mode:multiply!important}
