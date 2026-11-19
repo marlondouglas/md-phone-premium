@@ -93,8 +93,8 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
 .product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .product-card{position:relative;display:flex;flex-direction:column;border:1px solid #e0e7df;border-radius:29px;overflow:hidden;background:#f8f9f6;min-width:0;box-shadow:0 11px 38px #173d1809;transition:box-shadow .28s,transform .28s;text-align:left}
 .product-card:hover{transform:translateY(-4px);box-shadow:0 23px 42px #173d1817}
-.product-card .product-visual{display:grid;place-items:center;position:relative;min-height:480px;height:480px;overflow:hidden;padding:12px 24px 0;background:#f8f9f6}
-.product-card .product-visual img{height:100%;width:100%;object-fit:contain;object-position:center;mix-blend-mode:multiply;filter:drop-shadow(0 20px 21px #173d181a);transition:transform .45s}
+.product-card .product-visual{display:flex;align-items:center;justify-content:center;position:relative;min-height:480px;height:480px;overflow:hidden;padding:20px 22px 24px;background:#f8f9f6}
+.product-card .product-visual img{display:block;flex:none;min-width:0;min-height:0;max-width:100%;max-height:100%;height:100%;width:100%;object-fit:contain;object-position:center;mix-blend-mode:multiply;filter:drop-shadow(0 14px 20px #173d1813);transition:transform .45s}
 .product-card:hover .product-visual img{transform:scale(1.025)}
 .product-tag{position:absolute;top:23px;left:23px;z-index:2;background:#e4f6e9;color:#146239;font-size:10px;font-weight:850;border-radius:99px;padding:9px 12px}
 .product-copy{padding:14px clamp(22px,3vw,38px) 32px}
@@ -218,9 +218,9 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
  .button-row{gap:10px}
  .hero .button-row .button{flex:1;min-width:145px;font-size:12px;min-height:47px;padding:13px 14px}
  .hero-submeta{margin-top:21px;font-size:9px}
- .hero-visual{min-height:400px;border-radius:20px;margin-top:19px}
+ .hero-visual{min-height:460px;border-radius:20px;margin-top:19px}
  .hero-visual::before{inset:9% 2%}
- .hero-visual img{height:430px;max-height:none;width:100%;object-fit:contain}
+ .hero-visual img{height:420px;max-height:100%;width:100%;object-fit:contain}
  .hero-flag{bottom:10px;left:10px;right:10px;padding:11px 12px;border-radius:12px}
  .hero-flag strong{font-size:12px}
  .hero-flag b{font-size:17px}
@@ -244,7 +244,7 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
  .catalog-counter{font-size:11px}
  .product-grid{grid-template-columns:1fr;gap:16px}
  .product-card{border-radius:22px}
- .product-card .product-visual{height:clamp(360px,103vw,490px);min-height:0;padding:8px 17px 0}
+ .product-card .product-visual{height:clamp(395px,109vw,530px);min-height:0;padding:19px 13px 23px}
  .product-card .product-visual img{height:100%;width:100%}
  .product-tag{top:17px;left:17px;font-size:9px;padding:8px 11px}
  .product-copy{padding:10px 20px 25px}
@@ -262,8 +262,8 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
  .promise{padding:23px}
  .promise-number{margin-bottom:21px}
  .footer{padding-top:59px}.footer-inner{grid-template-columns:1fr;gap:16px}.footer-bottom{margin-top:33px}
- .assistant-launcher{right:10px;bottom:max(10px,env(safe-area-inset-bottom));width:58px;height:58px;border-width:1px}
- .assistant-launcher img{height:50px;width:50px}
+ .assistant-launcher{right:7px;bottom:max(12px,env(safe-area-inset-bottom));width:43px;height:43px;border-width:1px}
+ .assistant-launcher img{height:40px;width:40px}
  .dialog{width:100%;height:min(92dvh,1000px);max-height:92dvh;border-radius:20px 20px 0 0;margin:auto 0 0;max-width:none}
  .dialog-top{padding:19px 19px 16px}
  .dialog-content{padding:18px 19px 25px}
@@ -367,7 +367,7 @@ a.button:hover,button.button:hover{transform:translateY(-2px)}
  .studio-story-links{justify-content:flex-start}
 }
 @media(max-width:620px){
- .product-card .product-visual{height:clamp(350px,102vw,500px);padding:8px 7px}
+ .product-card .product-visual{height:clamp(395px,109vw,530px);padding:19px 13px 23px}
  .product-card .product-copy{padding:12px 19px 24px}
  .product-copy h3{font-size:clamp(32px,8vw,45px)}
  .product-actions{gap:9px}
