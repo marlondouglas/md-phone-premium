@@ -88,6 +88,33 @@ return '<section class="hero" aria-label="Apresentação MD PHONE">'+heroTitles.
 '<section class="trust-strip"><div class="trust-items"><div class="trust-item"><strong>01 / ESCOLHA</strong><p>Conheça a linha Apple em páginas individuais, sem repetir os mesmos modelos por toda a loja.</p></div><div class="trust-item"><strong>02 / INFORMAÇÃO</strong><p>Consulte configuração, memória, bateria e histórico conhecido dos seminovos.</p></div><div class="trust-item"><strong>03 / ATENDIMENTO</strong><p>Escolha o produto e envie a solicitação por WhatsApp, com seus dados prontos.</p></div></div></section>'+
 '<section class="story"><div><div class="kicker">A NOSSA HISTÓRIA</div><h2>Nova identidade.<br>Mais possibilidades.</h2><p>MD PHONE é a nova identidade da MD Use Imports. Reunimos a linha Apple em uma experiência de escolha dedicada e atendimento personalizado, com informações transparentes sobre cada aparelho.</p>'+button('Conversar com a equipe',wa('Olá, MD PHONE! Quero informações sobre os produtos.'),'secondary')+'</div><div class="story-logo"><img src="assets/md-phone-brand-mark.svg" alt="Marca MD PHONE"></div></section>';
 }
+
+function phoneCatalog(items,activeId){
+ if(items[0]?.category!=='iphone')return '';
+ return '<section class="md-phone-catalog" id="catalogo-completo" aria-labelledby="mdAllPhonesTitle">'+
+ '<div class="md-catalog-head"><div><div class="kicker">MD PHONE / CATÁLOGO COMPLETO</div>'+
+ '<h2 id="mdAllPhonesTitle">Todos os <em>iPhones.</em></h2><p>31 modelos, do XR ao 18 Pro Max, além do Duo. Toque em um aparelho para ver a apresentação completa acima.</p></div>'+
+ '<span class="md-catalog-counter" id="mdCatalogCounter">'+items.length+' modelos</span></div>'+
+ '<div class="md-catalog-grid" id="mdPhoneCatalog">'+items.map(p=>{
+  const src=srcOf(p),fallback=p.image&&src!==p.image?p.image:'';
+  const photo=src?'<img src="'+esc(src)+'"'+(fallback?' data-fallback="'+esc(fallback)+'"':'')+' loading="lazy" decoding="async" alt="Foto ilustrativa do '+esc(p.name)+'" onerror="window.mdTileFallback(this)">':'';
+  return '<button type="button" class="md-phone-tile'+(p.id===activeId?' active':'')+'" data-show-iphone="'+esc(p.id)+'" data-phone-period="'+phoneGroup(p)+'" aria-pressed="'+(p.id===activeId)+'" aria-label="Ver '+esc(p.name)+(Number.isFinite(p.priceFrom)?', a partir de '+priceBRL(p.priceFrom):', preço sob consulta')+'">'+
+  '<span class="md-tile-visual">'+photo+'<span class="md-tile-symbol" aria-hidden="true">✦</span></span>'+
+  '<span class="md-tile-name">'+esc(p.name)+'</span>'+
+  '<span class="md-tile-price">'+(Number.isFinite(p.priceFrom)?'A partir de '+priceBRL(p.priceFrom):'Sob consulta')+'</span>'+
+  '</button>';
+ }).join('')+'</div>'+
+ '<p class="md-catalog-note">Fotos promocionais de referência. As cores, condições, valores e disponibilidade das unidades devem ser confirmados com a loja.</p></section>';
+}
+window.mdTileFallback=function(img){
+ if(!img)return;
+ if(img.dataset.fallback&&!img.dataset.retried){
+  img.dataset.retried='1';
+  img.src=img.dataset.fallback;
+ }else{
+  img.remove();
+ }
+};
 function categoryPage(c){
  const items=D.products.filter(p=>p.category===c.id);
  state.category=c.id;state.index=0;
@@ -97,7 +124,7 @@ function categoryPage(c){
  (isPhone?'':'<div class="category-photo '+(c.id==='iphone'?'photo-dark':'photo-light')+'">'+imageEl(srcOf(featured),'Imagem ilustrativa da linha '+c.label)+'</div>')+
  '<div class="category-copy"><span class="kicker">MD PHONE / '+esc(c.label.toUpperCase())+'</span>'+
  '<h1>'+esc(c.label)+'</h1><p>'+esc(isPhone?'Do XR ao 18 Pro Max. Um aparelho por vez, com imagem grande, cores, capacidades e preço organizado.':c.line)+'</p>'+
- '<div class="action-row">'+button('Escolher modelo','#modelos')+button('Falar com a loja',wa('Olá, MD PHONE! Quero informações sobre a linha '+c.label+'.'),'secondary')+'</div></div></section>';
+ '<div class="action-row">'+button('Escolher modelo','#modelos')+button(isPhone?'Ver todos os 31 modelos':'Falar com a loja',isPhone?'#catalogo-completo':wa('Olá, MD PHONE! Quero informações sobre a linha '+c.label+'.'),'secondary')+'</div></div></section>';
  const picker=isPhone?
  '<div class="md-model-picker"><label for="mdPhoneModel"><span>ESCOLHA SEU IPHONE</span><select id="mdPhoneModel" aria-label="Escolher modelo do iPhone">'+
  items.map(p=>'<option value="'+esc(p.id)+'" '+(p.id===featured.id?'selected':'')+'>'+esc(p.name)+(p.priceFrom!=null?' · a partir de '+priceBRL(p.priceFrom):'')+'</option>').join('')+
@@ -105,10 +132,11 @@ function categoryPage(c){
  '<div class="model-rail" role="tablist" aria-label="Modelos '+esc(c.label)+'">'+items.map((p,i)=>'<button class="model-tab '+(i===0?'active':'')+'" data-model-index="'+i+'" role="tab" aria-selected="'+(i===0)+'">'+esc(p.name)+'</button>').join('')+'</div>';
  const showcase='<section class="section model-section" id="modelos"><div class="section-inner">'+
  '<div class="model-intro"><div class="kicker">COLEÇÃO / '+esc(c.label.toUpperCase())+'</div>'+
- '<h2 class="section-heading">'+(isPhone?'Escolha. <em>Confira.</em>':'Escolha seu <em>favorito.</em>')+'</h2>'+
+ '<h2 class="section-heading">'+(isPhone?'Seu iPhone. <em>Sua escolha.</em>':'Escolha seu <em>favorito.</em>')+'</h2>'+
  '<p class="section-sub">'+esc(isPhone?'Selecione uma geração e um modelo. O produto aparece sozinho, sem dezenas de imagens ou textos disputando espaço.':c.sub)+'</p></div>'+
  (isPhone?phoneFilterUI(items):'')+picker+
  '<div id="modelStage" aria-live="polite">'+modelStage(featured)+'</div>'+
+ (isPhone?phoneCatalog(items,featured.id):'')+
  (isPhone?priceTable(items):'')+
  '<p class="small-note">As imagens são ilustrativas. Preços informados pela loja; cores, condição, peças, estoque e garantia precisam de confirmação.</p></div></section>';
  const other=isPhone?'':'<section class="section universe"><div class="section-inner"><div class="section-top"><h2 class="section-heading">Explore outras <em>linhas.</em></h2></div><div class="category-grid">'+
@@ -253,20 +281,45 @@ if('IntersectionObserver'in window){observer=new IntersectionObserver(entries=>e
 function startHero(){const slides=$$('.hero-slide');if(slides.length<2)return;let i=0;heroTimer=setInterval(()=>{if(document.hidden||matchMedia('(prefers-reduced-motion: reduce)').matches)return;slides[i].classList.remove('active');$$('.timeline-item')[i]?.classList.remove('active');i=(i+1)%slides.length;slides[i].classList.add('active');$$('.timeline-item')[i]?.classList.add('active')},6500)}
 function setupCategory(cat){
  const items=D.products.filter(p=>p.category===cat.id);
- const render=(p)=>{if(!p)return;state.variant=0;initColorPreference(p);const stage=$('#modelStage');if(stage)stage.innerHTML=modelStage(p)};
+ const render=p=>{
+  if(!p)return;
+  state.variant=0;initColorPreference(p);
+  const stage=$('#modelStage');if(stage)stage.innerHTML=modelStage(p);
+ };
  if(cat.id==='iphone'){
   const select=$('#mdPhoneModel');
   if(!select)return;
-  select.addEventListener('change',()=>render(prodOf(select.value)));
+  const syncTiles=id=>$$('[data-show-iphone]').forEach(b=>{
+   const on=b.dataset.showIphone===id;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));
+  });
+  const choose=(id,scroll)=>{
+   const p=prodOf(id);if(!p||p.category!=='iphone')return;
+   if(![...select.options].some(x=>x.value===id)){
+    const era=phoneGroup(p);
+    const filter=$$('[data-phone-era]').find(b=>b.dataset.phoneEra===era);
+    if(filter)filter.click();
+   }
+   select.value=id;render(p);syncTiles(id);
+   if(scroll){
+    const stage=$('#modelStage');
+    stage?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   }
+  };
+  select.addEventListener('change',()=>choose(select.value,false));
+  $$('[data-show-iphone]').forEach(tile=>tile.addEventListener('click',()=>choose(tile.dataset.showIphone,true)));
   $$('[data-phone-era]').forEach(button=>button.addEventListener('click',()=>{
    const era=button.dataset.phoneEra;
-   $$('[data-phone-era]').forEach(x=>{const on=x===button;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});
+   $$('[data-phone-era]').forEach(x=>{
+    const on=x===button;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on));
+   });
    const options=items.filter(p=>era==='todos'||phoneGroup(p)===era);
    select.innerHTML=options.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+(Number.isFinite(p.priceFrom)?' · a partir de '+priceBRL(p.priceFrom):'')+'</option>').join('');
+   $$('[data-show-iphone]').forEach(tile=>{tile.hidden=era!=='todos'&&tile.dataset.phonePeriod!==era});
+   const counter=$('#mdCatalogCounter');if(counter)counter.textContent=options.length+' modelos';
    const chosen=options.find(p=>p.id==='iphone-18-pro-max')||options.find(p=>p.priceFrom!=null)||options[0];
-   if(chosen){select.value=chosen.id;render(chosen)}
+   if(chosen)choose(chosen.id,false);
   }));
-  const selected=prodOf(select.value);if(selected)render(selected);
+  choose(select.value,false);
   return;
  }
  $$('[data-model-index]').forEach(button=>button.addEventListener('click',()=>{
