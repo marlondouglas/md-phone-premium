@@ -1,4 +1,4 @@
-/* Catálogo MD PHONE. Linhas Apple de referência; disponibilidade e preço sob consulta. */
+/* MD PHONE — preços fornecidos pela loja em 18/11/2026. Disponibilidade, condição, cores e reparos sob confirmação. */
 window.MD_UNIVERSE = {
   "categories": [
     {
@@ -67,212 +67,166 @@ window.MD_UNIVERSE = {
   ],
   "products": [
     {
-      "id": "iphone-duo",
+      "id": "iphone-xr",
+      "name": "iPhone XR",
       "category": "iphone",
-      "name": "iPhone Duo",
       "kind": "phone",
-      "desc": "Um novo formato para abrir possibilidades.",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
       "accent": "#6deda8",
-      "availability": "sob_consulta",
+      "availability": "oferta_informada",
       "specs": [
-        "Design dobrável",
-        "Duas áreas de visualização",
-        "Consulte capacidades e cores"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/br/homepage/built/heroes/26_iphone-duo_09/images/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg",
-      "featured": true,
-      "tag": "Novo"
-    },
-    {
-      "id": "iphone-18-pro-max",
-      "category": "iphone",
-      "name": "iPhone 18 Pro Max",
-      "kind": "phone",
-      "desc": "Um Pro feito para quem quer tudo no máximo.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Linha Pro",
-        "Tela ampla",
-        "Consulte a configuração"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
-      "featured": true,
-      "tag": "Novo"
-    },
-    {
-      "id": "iphone-18-pro",
-      "category": "iphone",
-      "name": "iPhone 18 Pro",
-      "kind": "phone",
-      "desc": "Tecnologia de ponta com visual de tirar o fôlego.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Linha Pro",
-        "Sistema de câmeras avançado",
-        "Consulte cores e armazenamento"
-      ],
-      "variants": [],
-      "image": "https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg",
-      "featured": true,
-      "tag": "Novo"
-    },
-    {
-      "id": "iphone-air",
-      "category": "iphone",
-      "name": "iPhone Air",
-      "kind": "phone",
-      "desc": "O equilíbrio entre leveza e desempenho.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Perfil ultrafino",
-        "Design leve",
-        "Consulte cores e armazenamento"
-      ],
-      "variants": [],
-      "image": null,
-      "featured": false,
-      "tag": null
-    },
-    {
-      "id": "iphone-17",
-      "category": "iphone",
-      "name": "iPhone 17",
-      "kind": "phone",
-      "desc": "Desempenho para a rotina, com elegância.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Geração 17",
-        "Câmeras avançadas",
-        "Consulte configurações"
-      ],
-      "variants": [],
-      "image": null,
-      "featured": false,
-      "tag": null
-    },
-    {
-      "id": "iphone-17e",
-      "category": "iphone",
-      "name": "iPhone 17e",
-      "kind": "phone",
-      "desc": "Essencial na medida certa.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Linha e",
-        "Recursos do ecossistema Apple",
-        "Consulte capacidade"
-      ],
-      "variants": [],
-      "image": null,
-      "featured": false,
-      "tag": null
-    },
-    {
-      "id": "iphone-16",
-      "category": "iphone",
-      "name": "iPhone 16",
-      "kind": "phone",
-      "desc": "Uma geração que ainda encanta.",
-      "accent": "#6deda8",
-      "availability": "sob_consulta",
-      "specs": [
-        "Geração 16",
-        "Recursos do iOS",
-        "Consulte variantes"
-      ],
-      "variants": [],
-      "image": null,
-      "featured": false,
-      "tag": null
-    },
-    {
-      "id": "iphone-14-pro-max",
-      "category": "iphone",
-      "name": "iPhone 14 Pro Max",
-      "kind": "phone",
-      "desc": "A experiência Pro em um seminovo selecionado.",
-      "accent": "#6deda8",
-      "availability": "estoque_informado",
-      "specs": [
-        "128 GB",
-        "Roxo profundo",
-        "Bateria informada: 86%"
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
       ],
       "variants": [
         {
-          "label": "Roxo profundo · 128 GB",
-          "battery": 86,
-          "repairs": "A confirmar"
+          "label": "Capacidade a confirmar",
+          "price": 699,
+          "condition": "Seminovo"
         }
       ],
-      "image": null,
       "featured": false,
-      "tag": "Seminovo"
+      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-xr-segment?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1535393884526",
+      "seriesOrder": 0,
+      "priceFrom": 699,
+      "condition": "Seminovo"
     },
     {
-      "id": "iphone-14-pro",
+      "id": "iphone-11",
+      "name": "iPhone 11",
       "category": "iphone",
-      "name": "iPhone 14 Pro",
       "kind": "phone",
-      "desc": "Compacto na medida, Pro em cada detalhe.",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
       "accent": "#6deda8",
-      "availability": "estoque_informado",
+      "availability": "oferta_informada",
       "specs": [
-        "128 GB",
-        "Roxo",
-        "Bateria informada: 85%"
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
       ],
       "variants": [
         {
-          "label": "Roxo · 128 GB",
-          "battery": 85,
-          "repairs": "A confirmar"
-        }
-      ],
-      "image": null,
-      "featured": false,
-      "tag": "Seminovo"
-    },
-    {
-      "id": "iphone-13-pro",
-      "category": "iphone",
-      "name": "iPhone 13 Pro",
-      "kind": "phone",
-      "desc": "Seu Pro favorito, em três opções de acabamento.",
-      "accent": "#6deda8",
-      "availability": "estoque_informado",
-      "specs": [
-        "1 TB",
-        "Opções azul, dourado e grafite",
-        "Verifique o histórico da unidade"
-      ],
-      "variants": [
-        {
-          "label": "Azul · 1 TB",
-          "battery": 77,
-          "repairs": "Não informado"
+          "label": "64 GB",
+          "price": 1200
         },
         {
-          "label": "Dourado · 1 TB",
-          "battery": 74,
-          "repairs": "Tela substituída"
-        },
-        {
-          "label": "Grafite · 1 TB",
-          "battery": null,
-          "repairs": "Tela e bateria substituídas"
+          "label": "128 GB",
+          "price": 1450
         }
       ],
-      "image": null,
       "featured": false,
-      "tag": "Seminovo"
+      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566851",
+      "seriesOrder": 1,
+      "priceFrom": 1200
+    },
+    {
+      "id": "iphone-11-pro",
+      "name": "iPhone 11 Pro",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-pro-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566801",
+      "seriesOrder": 2
+    },
+    {
+      "id": "iphone-11-pro-max",
+      "name": "iPhone 11 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 3
+    },
+    {
+      "id": "iphone-12",
+      "name": "iPhone 12",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "64 GB",
+          "price": 1500
+        },
+        {
+          "label": "128 GB",
+          "price": 1750
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 4,
+      "priceFrom": 1500
+    },
+    {
+      "id": "iphone-12-pro",
+      "name": "iPhone 12 Pro",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 5
+    },
+    {
+      "id": "iphone-12-pro-max",
+      "name": "iPhone 12 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 6
+    },
+    {
+      "id": "iphone-13-mini",
+      "name": "iPhone 13 mini",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 7
     },
     {
       "id": "iphone-13",
@@ -283,20 +237,512 @@ window.MD_UNIVERSE = {
       "accent": "#6deda8",
       "availability": "estoque_informado",
       "specs": [
-        "Branco",
-        "128 GB",
-        "Bateria informada: 92%"
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
       ],
       "variants": [
         {
-          "label": "Branco · 128 GB",
-          "battery": 92,
+          "label": "128 GB",
+          "price": 2000,
+          "condition": "Seminovo",
+          "color": "Branco",
+          "battery": 92
+        }
+      ],
+      "image": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=900&hei=1112&fmt=png-alpha",
+      "featured": false,
+      "tag": "Seminovo",
+      "seriesOrder": 8,
+      "priceFrom": 2000
+    },
+    {
+      "id": "iphone-13-pro",
+      "category": "iphone",
+      "name": "iPhone 13 Pro",
+      "kind": "phone",
+      "desc": "Seu Pro favorito, em três opções de acabamento.",
+      "accent": "#6deda8",
+      "availability": "estoque_informado",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 2700,
+          "condition": "Seminovo",
+          "color": "A confirmar",
+          "battery": null,
+          "repairs": "A confirmar"
+        },
+        {
+          "label": "1 TB · Azul",
+          "price": 3100,
+          "condition": "Seminovo",
+          "color": "Azul",
+          "battery": 77,
+          "repairs": "Não informado"
+        },
+        {
+          "label": "1 TB · Dourado",
+          "price": 3100,
+          "condition": "Seminovo",
+          "color": "Dourado",
+          "battery": 74,
+          "repairs": "Tela substituída"
+        },
+        {
+          "label": "1 TB · Grafite",
+          "price": 3100,
+          "condition": "Seminovo",
+          "color": "Grafite",
+          "battery": null,
+          "repairs": "Tela e bateria substituídas"
+        }
+      ],
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
+      "featured": true,
+      "tag": "Seminovo",
+      "seriesOrder": 9,
+      "priceFrom": 2700
+    },
+    {
+      "id": "iphone-13-pro-max",
+      "name": "iPhone 13 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 10
+    },
+    {
+      "id": "iphone-14",
+      "name": "iPhone 14",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 2200
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 11,
+      "priceFrom": 2200
+    },
+    {
+      "id": "iphone-14-plus",
+      "name": "iPhone 14 Plus",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 2500
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-plus-finish-select-202209-blue?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 12,
+      "priceFrom": 2500
+    },
+    {
+      "id": "iphone-14-pro",
+      "category": "iphone",
+      "name": "iPhone 14 Pro",
+      "kind": "phone",
+      "desc": "Compacto na medida, Pro em cada detalhe.",
+      "accent": "#6deda8",
+      "availability": "estoque_informado",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB · Roxo",
+          "price": 3300,
+          "condition": "Seminovo",
+          "color": "Roxo",
+          "battery": 85,
           "repairs": "A confirmar"
         }
       ],
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=900&hei=1112&fmt=png-alpha",
+      "featured": false,
+      "tag": "Seminovo",
+      "seriesOrder": 13,
+      "priceFrom": 3300
+    },
+    {
+      "id": "iphone-14-pro-max",
+      "category": "iphone",
+      "name": "iPhone 14 Pro Max",
+      "kind": "phone",
+      "desc": "A experiência Pro em um seminovo selecionado.",
+      "accent": "#6deda8",
+      "availability": "estoque_informado",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB · Roxo profundo",
+          "price": 3799,
+          "condition": "Seminovo",
+          "color": "Roxo profundo",
+          "battery": 86,
+          "repairs": "A confirmar"
+        }
+      ],
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=900&hei=1112&fmt=png-alpha",
+      "featured": true,
+      "tag": "Seminovo",
+      "seriesOrder": 14,
+      "priceFrom": 3799
+    },
+    {
+      "id": "iphone-15",
+      "name": "iPhone 15",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 2799
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-blue-select-202309?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 15,
+      "priceFrom": 2799
+    },
+    {
+      "id": "iphone-15-plus",
+      "name": "iPhone 15 Plus",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 16
+    },
+    {
+      "id": "iphone-15-pro",
+      "name": "iPhone 15 Pro",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "128 GB",
+          "price": 3699
+        }
+      ],
+      "featured": false,
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 17,
+      "priceFrom": 3699
+    },
+    {
+      "id": "iphone-15-pro-max",
+      "name": "iPhone 15 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 18
+    },
+    {
+      "id": "iphone-16",
+      "category": "iphone",
+      "name": "iPhone 16",
+      "kind": "phone",
+      "desc": "Uma geração que ainda encanta.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-color-lineup-240909_big.jpg.large.jpg",
+      "featured": false,
+      "tag": null,
+      "seriesOrder": 19
+    },
+    {
+      "id": "iphone-16-plus",
+      "name": "iPhone 16 Plus",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Tecnologia e design para acompanhar cada dia.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 20
+    },
+    {
+      "id": "iphone-16-pro",
+      "name": "iPhone 16 Pro",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 21
+    },
+    {
+      "id": "iphone-16-pro-max",
+      "name": "iPhone 16 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "Capacidade informada: 128 GB — confirmar",
+          "price": 5499,
+          "condition": "A confirmar",
+          "needsVerification": true,
+          "verificationNote": "A Apple lista o 16 Pro Max a partir de 256 GB; conferir a capacidade real do aparelho."
+        }
+      ],
+      "featured": false,
+      "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
+      "seriesOrder": 22,
+      "priceFrom": 5499
+    },
+    {
+      "id": "iphone-17e",
+      "category": "iphone",
+      "name": "iPhone 17e",
+      "kind": "phone",
+      "desc": "Essencial na medida certa.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
       "image": null,
       "featured": false,
-      "tag": "Seminovo"
+      "tag": null,
+      "seriesOrder": 23
+    },
+    {
+      "id": "iphone-17",
+      "category": "iphone",
+      "name": "iPhone 17",
+      "kind": "phone",
+      "desc": "Desempenho para a rotina, com elegância.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "image": null,
+      "featured": false,
+      "tag": null,
+      "seriesOrder": 24
+    },
+    {
+      "id": "iphone-17-pro",
+      "name": "iPhone 17 Pro",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro para quem valoriza câmera, desempenho e acabamento.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "featured": false,
+      "image": null,
+      "seriesOrder": 25
+    },
+    {
+      "id": "iphone-17-pro-max",
+      "name": "iPhone 17 Pro Max",
+      "category": "iphone",
+      "kind": "phone",
+      "desc": "Uma experiência Pro Max com tela ampla e recursos avançados.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "256 GB · Seminovo",
+          "price": 6799,
+          "condition": "Seminovo"
+        },
+        {
+          "label": "256 GB · Novo lacrado",
+          "price": 7499,
+          "condition": "Novo lacrado"
+        }
+      ],
+      "featured": true,
+      "image": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
+      "seriesOrder": 26,
+      "priceFrom": 6799
+    },
+    {
+      "id": "iphone-air",
+      "category": "iphone",
+      "name": "iPhone Air",
+      "kind": "phone",
+      "desc": "O equilíbrio entre leveza e desempenho.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "image": null,
+      "featured": false,
+      "tag": null,
+      "seriesOrder": 27
+    },
+    {
+      "id": "iphone-18-pro",
+      "category": "iphone",
+      "name": "iPhone 18 Pro",
+      "kind": "phone",
+      "desc": "Tecnologia de ponta com visual de tirar o fôlego.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "image": "https://www.apple.com/v/homepage/images/iphone-18-pro/a/promo_iphone_18_pro__9nn5m4mt2bmy_large.jpg",
+      "featured": false,
+      "tag": "Novo",
+      "seriesOrder": 28
+    },
+    {
+      "id": "iphone-18-pro-max",
+      "category": "iphone",
+      "name": "iPhone 18 Pro Max",
+      "kind": "phone",
+      "desc": "Um Pro feito para quem quer tudo no máximo.",
+      "accent": "#6deda8",
+      "availability": "oferta_informada",
+      "specs": [
+        "Preço informado pela MD PHONE",
+        "Configuração conforme a opção escolhida",
+        "Consulte condição e disponibilidade"
+      ],
+      "variants": [
+        {
+          "label": "256 GB",
+          "price": 10399,
+          "condition": "A confirmar"
+        }
+      ],
+      "image": "https://www.apple.com/newsroom/images/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/article/Apple-iPhone-18-Pro-color-lineup-260909_big.jpg.large.jpg",
+      "featured": true,
+      "tag": "Novo",
+      "seriesOrder": 29,
+      "priceFrom": 10399
+    },
+    {
+      "id": "iphone-duo",
+      "category": "iphone",
+      "name": "iPhone Duo",
+      "kind": "phone",
+      "desc": "Um novo formato para abrir possibilidades.",
+      "accent": "#6deda8",
+      "availability": "sob_consulta",
+      "specs": [
+        "Preço e configuração sob consulta"
+      ],
+      "variants": [],
+      "image": "https://www.apple.com/br/homepage/built/heroes/26_iphone-duo_09/images/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg",
+      "featured": false,
+      "tag": "Novo",
+      "seriesOrder": 30
     },
     {
       "id": "macbook-neo",
