@@ -118,7 +118,7 @@ function categoryPage(c){
 function selectedColor(p){
  if(!p?.colors?.length)return '';
  const saved=state.colorModel===p.id?state.colorName:null;
- return p.colors.some(c=>c.name===saved)?saved:p.colors[0].name;
+ return p.colors.some(c=>c.name===saved)?saved:(p.defaultColor||p.colors[0].name);
 }
 function variantColor(p,v){
  if(!v||!p?.colors?.length)return '';
@@ -140,7 +140,7 @@ function colorSelector(p){
   '<div class="md-color-swatch-list" role="group" aria-label="Escolher cor desejada">'+p.colors.map(c=>
    '<button class="md-color-swatch'+(c.name===selected?' active':'')+'" type="button" data-color-model="'+esc(p.id)+'" data-color-name="'+esc(c.name)+'" title="'+esc(c.name)+'" aria-label="Cor '+esc(c.name)+'" aria-pressed="'+(c.name===selected)+'" style="--swatch:'+esc(c.hex)+'"><span class="md-color-dot"></span></button>'
   ).join('')+'</div>'+
-  '<p class="md-color-disclaimer">Cores de fábrica, não confirmação de estoque. Se a opção de memória/condição escolhida tiver outra cor, consulte a loja. Fotos ilustrativas.</p></div>';
+  '<p class="md-color-disclaimer">Cores disponíveis de fábrica, não necessariamente em estoque. Fotos ilustrativas; nem todas as cores têm fotografia individual.</p></div>';
 }
 function applyColorChoice(p,color){
  if(!p||!p.colors?.some(c=>c.name===color))return;
@@ -165,7 +165,7 @@ function applyColorChoice(p,color){
  }
 }
 function initColorPreference(p){
- state.colorModel=p?.id||null;state.colorName=p?.colors?.[0]?.name||null;
+ state.colorModel=p?.id||null;state.colorName=p?.defaultColor||p?.colors?.[0]?.name||null;
 }
 
 function modelStage(p){
