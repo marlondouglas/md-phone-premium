@@ -5,11 +5,12 @@ on:
     branches: [main]
     paths:
       - index.html
-      - md-universe.css
-      - md-universe.js
+      - md-elevate.css
+      - md-elevate.js
       - md-universe-data.js
       - scripts/prepare-catalog-media.cjs
       - scripts/clean-product-photography.py
+      - scripts/render-elevate-film.py
       - assets/**
       - assets/md-phone-brand-mark.svg
       - .github/workflows/pages.yml
@@ -37,25 +38,29 @@ jobs:
         run: |
           set -euo pipefail
           node --check md-universe-data.js
-          node --check md-universe.js
+          node --check md-elevate.js
+          python3 -m py_compile scripts/clean-product-photography.py scripts/render-elevate-film.py
           node --check scripts/prepare-catalog-media.cjs
           test -s index.html
-          test -s md-universe.css
+          test -s md-elevate.css
           test -s md-universe-data.js
-          test -s md-universe.js
+          test -s md-elevate.js
           test -s assets/md-phone-brand-mark.svg
-          grep -q 'md-universe.css' index.html
+          grep -q 'md-elevate.css' index.html
           grep -q 'md-universe-data.js' index.html
-          grep -q 'md-universe.js' index.html
+          grep -q 'md-elevate.js' index.html
+          ! grep -q 'md-universe.css' index.html
           ! grep -q 'md-2026.css' index.html
           ! grep -q 'app.js' index.html
           mkdir -p _site/assets
-          cp index.html md-universe.css md-universe.js md-universe-data.js _site/
+          cp index.html md-elevate.css md-elevate.js md-universe-data.js _site/
           cp -R assets/. _site/assets/
           node scripts/prepare-catalog-media.cjs
           python3 -m venv /tmp/md-photo-env
-          /tmp/md-photo-env/bin/python -m pip install --quiet pillow
+          /tmp/md-photo-env/bin/python -m pip install --quiet pillow imageio-ffmpeg
           /tmp/md-photo-env/bin/python scripts/clean-product-photography.py
+          /tmp/md-photo-env/bin/python scripts/render-elevate-film.py
+          test -s _site/assets/md-elevate-film.mp4
           test -s _site/md-photo-manifest.js
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
