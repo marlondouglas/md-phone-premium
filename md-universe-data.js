@@ -1,11 +1,11 @@
-/* MD PHONE — preços fornecidos pela loja em 18/11/2026. Disponibilidade, condição, cores e reparos sob confirmação. */
+/* MD PHONE · Preços informados pela loja. Produto, fotos, condições e disponibilidade sob confirmação. */
 window.MD_UNIVERSE = {
   "categories": [
     {
       "id": "iphone",
       "label": "iPhone",
       "line": "O próximo capítulo está nas suas mãos.",
-      "sub": "Dos novos lançamentos aos seminovos selecionados. Seu iPhone, do seu jeito.",
+      "sub": "Do iPhone XR ao 18 Pro Max. Modelos seminovos e novas gerações, com valores a partir de R$ 699.",
       "accent": "#6deda8",
       "kind": "phone",
       "source": "https://www.apple.com/br/iphone/"
@@ -149,8 +149,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 3
+      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-11-pro-segment-201909?wid=800&hei=600&fmt=png-alpha&qlt=80&.v=1567201566801",
+      "seriesOrder": 3,
+      "imageFamilyReference": "iPhone 11 Pro",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 11 Pro, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-12",
@@ -193,8 +195,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 5
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 5,
+      "imageFamilyReference": "iPhone 12",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 12, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-12-pro-max",
@@ -209,8 +213,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 6
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 6,
+      "imageFamilyReference": "iPhone 12",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 12, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-13-mini",
@@ -225,8 +231,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 7
+      "image": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 7,
+      "imageFamilyReference": "iPhone 13",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 13, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-13",
@@ -322,8 +330,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 10
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 10,
+      "imageFamilyReference": "iPhone 13 Pro",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 13 Pro, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-14",
@@ -468,8 +478,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 16
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-blue-select-202309?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 16,
+      "imageFamilyReference": "iPhone 15",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 15, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-15-pro",
@@ -508,8 +520,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 18
+      "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=900&hei=1112&fmt=png-alpha",
+      "seriesOrder": 18,
+      "imageFamilyReference": "iPhone 15 Pro",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 15 Pro, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-16",
@@ -541,8 +555,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 20
+      "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-color-lineup-240909_big.jpg.large.jpg",
+      "seriesOrder": 20,
+      "imageFamilyReference": "iPhone 16",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 16, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-16-pro",
@@ -557,8 +573,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 21
+      "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-color-lineup-240909_big.jpg.large.jpg",
+      "seriesOrder": 21,
+      "imageFamilyReference": "iPhone 16 Pro Max",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 16 Pro Max, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-16-pro-max",
@@ -616,7 +634,7 @@ window.MD_UNIVERSE = {
         "Preço e configuração sob consulta"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/newsroom/images/2025/09/apple-introduces-iphone-17/article/Apple-iPhone-17-color-lineup-250909_big.jpg.large.jpg",
       "featured": false,
       "tag": null,
       "seriesOrder": 24
@@ -634,8 +652,10 @@ window.MD_UNIVERSE = {
       ],
       "variants": [],
       "featured": false,
-      "image": null,
-      "seriesOrder": 25
+      "image": "https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg",
+      "seriesOrder": 25,
+      "imageFamilyReference": "iPhone 17 Pro Max",
+      "visualDisclaimer": "Imagem de referência da linha iPhone 17 Pro Max, ilustrativa do design. Confirme o modelo exato."
     },
     {
       "id": "iphone-17-pro-max",
@@ -679,7 +699,7 @@ window.MD_UNIVERSE = {
         "Preço e configuração sob consulta"
       ],
       "variants": [],
-      "image": null,
+      "image": "https://www.apple.com/newsroom/images/2025/09/apple-debuts-iphone-air/article/Apple-iPhone-Air-color-lineup-250909_big.jpg.large.jpg",
       "featured": false,
       "tag": null,
       "seriesOrder": 27
