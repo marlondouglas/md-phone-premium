@@ -50,6 +50,23 @@ jobs:
               const u='http://127.0.0.1:8765/index.html';
               await page.goto(u,{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.category-tile',{timeout:20000});
+              const film=page.locator('#mdCinemaVideo');
+              if(await film.count()!==1)errors.push(name+': filme original MD PHONE não está na página');
+              else {
+                const a=await film.evaluate(el=>({src:el.querySelector('source')?.getAttribute('src'),autoplay:el.autoplay,muted:el.muted,loop:el.loop,controls:el.controls}));
+                if(a.src!=='assets/mdphone-cinematic.mp4'||!a.autoplay||!a.muted||!a.loop||a.controls)errors.push(name+': vídeo próprio não está configurado corretamente');
+              }
+              const mascot=page.locator('#concierge img.md-mascot-avatar');
+              if(await mascot.count()!==1)errors.push(name+': personagem original do Assistente MD sumiu');
+              else if(!(await mascot.evaluate(el=>el.complete&&el.naturalWidth>0)))errors.push(name+': imagem do personagem não carregou');
+              await page.locator('#concierge').click();
+              if(!(await page.locator('#helpDialog').evaluate(el=>el.open)))errors.push(name+': assistente não abre');
+              for(const id of ['helpModel','helpBudget','helpCondition','helpPurchase','helpTiming','helpNote']){
+                if(await page.locator('#'+id).count()!==1)errors.push(name+': assistente perdeu a opção '+id);
+              }
+              if(await page.locator('#helpModel option').count()!==15)errors.push(name+': assistente não mostra os 14 iPhones anunciados');
+              await page.locator('[data-close="helpDialog"]').click();
+              if(await page.locator('#helpDialog').evaluate(el=>el.open))errors.push(name+': assistente não fecha');
               await page.screenshot({path:'qa-screenshots/'+name+'-home.png',fullPage:true});
               let count=await page.locator('.category-tile').count();
               if(count!==7)errors.push(name+': 7 categorias esperadas, recebidas '+count);
@@ -62,16 +79,23 @@ jobs:
               }
               await page.goto(u+'?categoria=iphone',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.model-stage',{timeout:20000});
+              const iphoneFilm=await page.locator('#mdCinemaVideo').count();
+              if(iphoneFilm!==1)errors.push(name+': vídeo original também precisa estar na seção iPhone');
               const modelCount=await page.locator('#mdPhoneModel option').count();
-              if(modelCount!==31)errors.push(name+': esperado 31 modelos no seletor, encontrado '+modelCount);
+              if(modelCount!==14)errors.push(name+': esperado 14 modelos no seletor, encontrado '+modelCount);
               const galleryCount=await page.locator('[data-show-iphone]').count();
-              if(galleryCount!==31)errors.push(name+': esperado 31 miniaturas no catálogo completo, encontrado '+galleryCount);
-              if(await page.locator('[data-show-iphone]:visible').count()!==31)errors.push(name+': nem todos os modelos aparecem no catálogo inicial');
+              if(galleryCount!==14)errors.push(name+': esperado 14 miniaturas no catálogo completo, encontrado '+galleryCount);
+              const galleryPhotoSize=await page.locator('.md-tile-visual').first().evaluate(el=>el.getBoundingClientRect().height);
+              if(galleryPhotoSize<320)errors.push(name+': fotos da vitrine voltaram a ser pequenas '+galleryPhotoSize);
+              const listed=await page.evaluate(()=>window.MD_UNIVERSE.products.filter(p=>p.category==='iphone').map(p=>p.id));
+              const expected=['iphone-xr','iphone-11','iphone-12','iphone-13','iphone-13-pro','iphone-14','iphone-14-pro','iphone-14-pro-max','iphone-14-plus','iphone-15','iphone-15-pro','iphone-16-pro-max','iphone-17-pro-max','iphone-18-pro-max'];
+              if(JSON.stringify(listed)!==JSON.stringify(expected))errors.push(name+': há modelos não anunciados ou falta item da lista real');
+              if(await page.locator('[data-show-iphone]:visible').count()!==14)errors.push(name+': nem todos os modelos aparecem no catálogo inicial');
               await page.locator('[data-show-iphone="iphone-14-plus"]').click();
               if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 14 Plus'))errors.push(name+': tocar no cartão não abre o aparelho grande');
               if((await page.locator('#mdPhoneModel').inputValue())!=='iphone-14-plus')errors.push(name+': seletor e galeria não ficaram sincronizados');
               if(await page.locator('.model-stage').count()!==1)errors.push(name+': deveria haver apenas um iPhone em destaque');
-              if(await page.locator('.model-tab').count()!==0)errors.push(name+': faixa de 31 modelos deveria estar oculta');
+              if(await page.locator('.model-tab').count()!==0)errors.push(name+': a lista duplicada de nomes deveria estar oculta');
               if(await page.locator('[data-phone-era]').count()!==4)errors.push(name+': filtros por geração ausentes');
               await page.locator('#mdPhoneModel').selectOption('iphone-xr');
               if((await page.locator('.md-color-swatch').count())!==6)errors.push(name+': cores do iPhone XR incompletas');
@@ -81,7 +105,7 @@ jobs:
               const visibleModels=await page.locator('[data-show-iphone]:visible').count();
               if(visibleModels<7||visibleModels>13)errors.push(name+': filtro 13 ao 15 incorreto, encontrados '+visibleModels);
               await page.locator('[data-phone-era="todos"]').click();
-              if(await page.locator('[data-show-iphone]:visible').count()!==31)errors.push(name+': filtro Todos não restitui os 31 iPhones');
+              if(await page.locator('[data-show-iphone]:visible').count()!==14)errors.push(name+': filtro Todos não restitui os 14 iPhones');
               await page.locator('[data-phone-era="intermediarios"]').click();
               await page.locator('#mdPhoneModel').selectOption('iphone-13-pro');
               if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 13 Pro'))errors.push(name+': troca do modelo falhou');
