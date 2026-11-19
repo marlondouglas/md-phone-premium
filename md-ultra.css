@@ -196,3 +196,38 @@ body{background:var(--ultra-bg)!important;color:#f6fff8!important;font-family:"M
 .md-ultra-trust-points small{color:#a9c8b0;font-size:13px;line-height:1.65}
 .md-ultra-google{display:inline-flex;margin-top:25px;color:#07220e!important;background:#62fb83;border-radius:99px;padding:15px 22px;font-size:12px;font-weight:850;text-decoration:none}
 @media(max-width:740px){#md-ultra-trust{padding:65px 0}.md-ultra-trust-points{grid-template-columns:1fr}.md-ultra-trust-head{margin-bottom:25px}}
+
+/* CATÁLOGO EDITORIAL / UM APARELHO POR CENA
+   Elimina o efeito de "telefone pequeno dentro de card grande". */
+#vitrine .shell.section-gap{max-width:1380px!important}
+#products.products{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:32px!important;max-width:1360px!important;margin:35px auto 0!important}
+#products .md-family-card.product-card{display:grid!important;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr)!important;align-items:stretch!important;min-height:540px!important;max-width:none!important;width:100%!important;background:linear-gradient(115deg,#0b2a19,#07160e)!important;border:1px solid rgba(117,231,142,.20)!important;border-radius:29px!important;overflow:hidden!important}
+#products .md-family-card .product-art,#products .md-family-card .md-family-art{height:100%!important;min-height:540px!important;padding:0!important;border:0!important}
+#products .md-family-card .product-art img.catalog-device-photo{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;transform:scale(1.46)!important;object-fit:contain!important}
+#products .md-family-card:hover .product-art img.catalog-device-photo:not([hidden]){transform:scale(1.52)!important}
+#products .md-family-card .product-body{display:flex!important;flex-direction:column!important;justify-content:center!important;padding:55px clamp(32px,5vw,73px)!important;min-width:0!important}
+#products .md-family-card .product-name{font-size:clamp(33px,3.4vw,52px)!important;letter-spacing:-.06em!important;line-height:1.08!important;margin:12px 0 9px!important}
+#products .md-family-card .md-card-model-details{font-size:13px!important;line-height:1.5!important}
+#products .md-family-card .md-variant-area{margin-top:18px!important}
+#products .md-family-card .md-variant-choices{gap:9px!important;flex-wrap:wrap!important}
+#products .md-family-card .product-actions{display:flex!important;gap:10px!important;flex-wrap:wrap!important}
+#products .md-family-card .md-buy-button{padding:12px 18px!important}
+#products .md-family-card:nth-child(even) .product-art{order:2!important}
+#products .md-family-card:nth-child(even) .product-body{order:1!important}
+@media(max-width:1040px){
+ #products .md-family-card.product-card{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;min-height:470px!important}
+ #products .md-family-card .product-art,#products .md-family-card .md-family-art{min-height:470px!important}
+ #products .md-family-card .product-body{padding:32px!important}
+}
+@media(max-width:740px){
+ #products.products{gap:20px!important;margin-top:30px!important}
+ #products .md-family-card.product-card{display:flex!important;flex-direction:column!important;min-height:0!important;border-radius:24px!important}
+ #products .md-family-card .product-art,#products .md-family-card .md-family-art{width:100%!important;height:395px!important;min-height:395px!important;order:0!important}
+ #products .md-family-card .product-art img.catalog-device-photo{transform:scale(1.49)!important}
+ #products .md-family-card .product-body{order:1!important;padding:28px 25px 32px!important}
+ #products .md-family-card .product-name{font-size:31px!important}
+}
+@media(max-width:380px){
+ #products .md-family-card .product-art,#products .md-family-card .md-family-art{height:340px!important;min-height:340px!important}
+ #products .md-family-card .product-body{padding:25px 20px!important}
+}
