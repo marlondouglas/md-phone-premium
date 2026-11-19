@@ -81,3 +81,24 @@ main{min-height:60vh}.hero{height:min(900px,100svh);min-height:690px;position:re
 @keyframes md-light-shift{from{opacity:.28;transform:translateX(-12%) scale(.9)}to{opacity:.75;transform:translateX(12%) scale(1.12)}}
 @media(max-width:700px){.md-offer{margin:15px 0 10px;padding:16px 19px}.md-offer-price{font-size:43px}.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img{animation-name:md-iphone-showcase-mobile}@keyframes md-iphone-showcase-mobile{0%,100%{transform:perspective(1600px) rotateY(-10deg) translateY(3px) scale(1.28)}50%{transform:perspective(1600px) rotateY(10deg) translateY(-11px) scale(1.31)}}}
 @media(prefers-reduced-motion:reduce){.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img,.model-stage .model-art.md-iphone-motion::before,.product-hero .product-photo.md-iphone-motion::before{animation:none!important;transform:scale(1.2)}}
+
+/* Gerações do iPhone e tabela de preços editorial, sem repetir os grandes cards. */
+.phone-eras{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 18px}
+.phone-era{border:1px solid #49825c;background:#0d2618;color:#d6f2df;padding:11px 18px;border-radius:99px;font-size:12px;font-weight:850;min-height:43px;transition:background .2s,transform .2s}
+.phone-era:hover{border-color:#80ff9c;transform:translateY(-2px)}
+.phone-era.active{background:#62fa83;color:#05240c;border-color:#62fa83}
+.model-tab[hidden]{display:none!important}
+.price-list{max-width:100%;margin:38px 0 24px;border:1px solid #376a49;border-radius:21px;background:linear-gradient(130deg,#112b1b,#07170d);overflow:hidden;text-align:left}
+.price-list summary{cursor:pointer;list-style:none;padding:23px clamp(18px,3vw,34px);color:#e7fbed;font-size:clamp(16px,2vw,22px);font-weight:850;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.price-list summary::-webkit-details-marker{display:none}
+.price-list summary span{color:#85ff9f;font-size:29px;line-height:1;transition:transform .3s}
+.price-list[open] summary span{transform:rotate(45deg)}
+.price-list-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+.price-list table{border-collapse:collapse;width:100%;min-width:560px;font-size:12px}
+.price-list th{text-align:left;font-size:10px;letter-spacing:.12em;color:#9ce4af;text-transform:uppercase;background:#0f2f1c}
+.price-list td,.price-list th{padding:15px clamp(12px,2vw,25px);border-bottom:1px solid #ffffff18}
+.price-list td{color:#dbeadf}
+.price-list tbody tr:hover{background:#ffffff0b}
+.price-list td:last-child{font-weight:900;color:#8bffa9;font-size:14px;white-space:nowrap}
+.price-list>p{padding:0 23px 20px;margin:15px 0 0;color:#b6cabb;font-size:11px;line-height:1.6}
+@media(max-width:700px){.phone-eras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 18px}.phone-era{font-size:10px;padding:10px;min-height:40px}.price-list{margin:28px 0}.price-list table{font-size:11px}.price-list td:last-child{font-size:12px}.price-list summary{padding:19px 17px}}
