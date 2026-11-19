@@ -49,6 +49,8 @@ jobs:
               let count=await page.locator('.category-tile').count();
               if(count!==7)errors.push(name+': 7 categorias esperadas, recebidas '+count);
               if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+4))errors.push(name+': rolagem horizontal na home');
+              const catsVisible=await page.locator('.category-tile').first().evaluate(el=>getComputedStyle(el).opacity);
+              if(catsVisible==='0')errors.push(name+': cartões de categoria invisíveis');
               if(name==='mobile'){
                 await page.locator('#hamburger').click();
                 if(!(await page.locator('#mobileMenu').isVisible()))errors.push('menu celular não abre');
@@ -68,6 +70,17 @@ jobs:
               await page.locator('#mdPhoneModel').selectOption('iphone-13-pro');
               if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 13 Pro'))errors.push(name+': troca do modelo falhou');
               if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+4))errors.push(name+': rolagem horizontal na vitrine iPhone');
+              const vitrine=await page.evaluate(()=>{
+                const photo=document.querySelector('.model-art img');
+                const title=document.querySelector('.model-info h3');
+                const nameSelect=document.querySelector('#mdPhoneModel');
+                return {photoFit:photo?getComputedStyle(photo).objectFit:null,
+                  titleWidth:title?.scrollWidth||0,titleVisible:title?.clientWidth||0,
+                  modelSelectVisible:!!nameSelect&&nameSelect.getClientRects().length>0};
+              });
+              if(vitrine.photoFit!=='contain')errors.push(name+': foto não usa enquadramento contain');
+              if(vitrine.titleWidth>vitrine.titleVisible+5)errors.push(name+': título da vitrine ultrapassa a coluna');
+              if(!vitrine.modelSelectVisible)errors.push(name+': seletor compacto oculto');
               await page.screenshot({path:'qa-screenshots/'+name+'-iphone.png',fullPage:true});
               await page.goto(u+'?produto=iphone-18-pro-max',{waitUntil:'domcontentloaded'});
               await page.waitForSelector('.product-hero',{timeout:20000});
