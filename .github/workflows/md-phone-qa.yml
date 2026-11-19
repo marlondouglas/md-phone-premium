@@ -10,6 +10,7 @@ on:
       - scripts/prepare-catalog-media.cjs
       - scripts/clean-product-photography.py
       - scripts/render-elevate-film.py
+      - scripts/render-elevate-stories.py
       - .github/workflows/md-phone-qa.yml
   workflow_dispatch:
 permissions:
@@ -44,8 +45,17 @@ jobs:
           python3 -m venv /tmp/md-elevate-py
           /tmp/md-elevate-py/bin/python -m pip install --quiet pillow imageio-ffmpeg
           /tmp/md-elevate-py/bin/python scripts/clean-product-photography.py
-          /tmp/md-elevate-py/bin/python scripts/render-elevate-film.py
-          test -s _site/assets/md-elevate-film.mp4
+          /tmp/md-elevate-py/bin/python scripts/render-elevate-stories.py
+          test -s _site/md-stories-manifest.js
+          test -s _site/md-photo-audit.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('_site/md-photo-audit.json')
+          result=json.loads(p.read_text())
+          print('MD PHOTO AUDIT:', json.dumps(result,ensure_ascii=False))
+          PY
+
           python3 -m http.server 8765 --directory _site >/tmp/md-elevate-server.log 2>&1 &
       - name: Auditar o resultado no desktop e iPhone
         shell: bash
@@ -65,7 +75,7 @@ jobs:
             await page.locator('.product-card').first().waitFor({timeout:30000});
             const models=await page.locator('.product-card').count();
             if(models!==14)errors.push(device+': esperado 14 cards, encontrado '+models);
-            const ids=await page.locator('.product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.product));
+            const ids=await page.locator('.product-card').evaluateAll(nodes=>nodes.map(n=>n.querySelector('[data-product]')?.dataset.product));
             if(JSON.stringify(ids)!==JSON.stringify(expected))errors.push(device+': modelos não correspondem à lista da loja');
             const variantCount=await page.evaluate(()=>window.MD_UNIVERSE.products.filter(p=>p.category==='iphone').reduce((n,p)=>n+p.variants.filter(v=>Number.isFinite(v.price)).length,0));
             if(variantCount!==20)errors.push(device+': deveria haver 20 versões com preço');
@@ -89,12 +99,22 @@ jobs:
             const photos=await page.locator('.product-card img').evaluateAll(nodes=>nodes.map(img=>({loaded:img.complete&&img.naturalWidth>150,src:img.currentSrc})));
             const loaded=photos.filter(p=>p.loaded).length;
             console.log(device,'fotos carregadas:',loaded,'de',photos.length,'falhas:',JSON.stringify(photos.filter(p=>!p.loaded).slice(0,6)));
-            if(loaded<7)errors.push(device+': menos de 7 fotos de produto carregadas (encontradas '+loaded+')');
+            if(loaded<9)errors.push(device+': menos de 9 fotos de produto carregadas (encontradas '+loaded+')');
+            const buyCount=await page.locator('.product-card a.button.primary').count();
+            if(buyCount!==14)errors.push(device+': esperado botão Comprar em cada um dos 14 aparelhos, encontrado '+buyCount);
+            const buyUrl=await page.locator('.product-card a.button.primary').first().getAttribute('href');
+            if(!buyUrl?.startsWith('https://wa.me/5533987044866?text='))errors.push(device+': Comprar não abre a loja no WhatsApp');
             if(await page.locator('.assistant-launcher img').count()!==1)errors.push(device+': mascote original ausente');
-            const film=await page.locator('#studioVideo source').getAttribute('src');
-            if(film!=='assets/md-elevate-film.mp4')errors.push(device+': filme novo não foi integrado');
-            const filmResponse=await page.request.get('http://127.0.0.1:8765/assets/md-elevate-film.mp4');
-            if(!filmResponse.ok())errors.push(device+': filme não existe na versão montada');
+            if(await page.locator('.studio-story').count()!==3)errors.push(device+': deveriam existir três cards de vídeos');
+            const storyMedia=await page.evaluate(()=>window.MD_STORIES||{});
+            console.log(device,'studio stories:',JSON.stringify(storyMedia));
+            const availableStories=Object.values(storyMedia).filter(Boolean).length;
+            if(availableStories<2)errors.push(device+': faltam vídeos editoriais para os produtos (disponíveis '+availableStories+')');
+            const filmResponse=await page.request.get('http://127.0.0.1:8765/md-stories-manifest.js');
+            if(!filmResponse.ok())errors.push(device+': lista de vídeos indisponível');
+            await page.locator('#studioNext').click();
+            if(!await page.locator('.studio-story[data-story-index="1"]').evaluate(n=>n.classList.contains('active')))errors.push(device+': carrossel de vídeos não avança');
+            await page.locator('#studioPrev').click();
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-home-viewport.png',fullPage:false,animations:'disabled'});
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-home.png',fullPage:true,animations:'disabled'});
             await page.locator('[data-filter="old"]').click();
@@ -112,6 +132,19 @@ jobs:
             if(!decodeURIComponent(link).includes('1.450'))errors.push(device+': WhatsApp não inclui preço escolhido');
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-product.png',animations:'disabled'});
             await page.locator('[data-close="productDialog"]').click();
+            await page.locator('[data-product="iphone-14-pro"]').first().click();
+            if(!await page.locator('#productWhatsapp').innerText().then(v=>v.includes('Comprar')))errors.push(device+': detalhe não tem Comprar');
+            const colorPhotos=await page.evaluate(()=>Object.keys(window.MD_PHOTOS||{}).filter(k=>k.startsWith('iphone-14-pro::color::')));
+            console.log(device,'fotos iPhone 14 Pro por cor:',JSON.stringify(colorPhotos));
+            const startSrc=await page.locator('#detailVisual img').getAttribute('src');
+            await page.locator('[data-color="Dourado"]').click();
+            const colorText=await page.locator('#selectedColor').innerText();
+            if(colorText!=='Dourado')errors.push(device+': cor selecionada não mudou');
+            const nextSrc=await page.locator('#detailVisual img').getAttribute('src');
+            if(colorPhotos.some(k=>k.endsWith('::Dourado'))&&startSrc===nextSrc)errors.push(device+': imagem do iPhone 14 Pro não mudou ao escolher Dourado');
+            if(!await page.locator('#colorPreviewInfo').innerText().then(t=>t.includes('Dourado')))errors.push(device+': mensagem de cor selecionada não mudou');
+            await page.screenshot({path:'qa-snapshots/elevate-'+device+'-colors.png',animations:'disabled'});
+            await page.locator('[data-close="productDialog"]').click();
             await page.locator('#assistantLauncher').click();
             if(!await page.locator('#assistantDialog').evaluate(e=>e.open))errors.push(device+': Assistente MD não abriu');
             if(await page.locator('#helpModel option').count()!==15)errors.push(device+': Assistente não tem 14 modelos e orientação');
@@ -119,7 +152,7 @@ jobs:
               if(await page.locator('#'+id).count()!==1)errors.push(device+': faltou a opção '+id);
             }
             await page.screenshot({path:'qa-snapshots/elevate-'+device+'-assistant.png',animations:'disabled'});
-            results.push({device,models,loaded,overflow,composition,oldCount,variantCount,video:filmResponse.status()});
+            results.push({device,models,loaded,overflow,composition,oldCount,variantCount,videoCards:availableStories,buyCount,colorPhotos:colorPhotos.length});
             await page.close();
           }
           await browser.close();
