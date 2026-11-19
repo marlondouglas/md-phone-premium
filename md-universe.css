@@ -53,3 +53,31 @@ main{min-height:60vh}.hero{height:min(900px,100svh);min-height:690px;position:re
 .hero-media.photo-light{background:transparent!important}.hero-media.photo-light img,.category-photo.photo-light img,.product-photo.photo-light img{mix-blend-mode:multiply!important}
 .hero-media.photo-dark img,.category-photo.photo-dark img,.product-photo.photo-dark img{mix-blend-mode:screen!important}
 .category-tile:not(.image-iphone) .tile-visual img{mix-blend-mode:multiply!important}
+
+
+/* MD PHONE / Vitrine de preços e movimento fotográfico suave para toda a linha iPhone. */
+.md-offer{display:flex;flex-direction:column;gap:8px;margin:22px 0 14px;padding:19px 22px;border:1px solid #76ff9144;border-radius:18px;background:linear-gradient(120deg,#103923c9,#06170de8);box-shadow:inset 0 1px 0 #d9ffe916}
+.md-offer-caption{font-size:10px;font-weight:850;letter-spacing:.14em;color:#9de9b0}
+.md-offer-price{display:block;font-size:clamp(36px,4.4vw,61px);line-height:1.07;letter-spacing:-.07em;color:#fff;font-weight:900;font-variant-numeric:tabular-nums}
+.md-offer-warning{font-size:12px;color:#ffda9a;line-height:1.5;display:block;font-weight:800}
+.product-details .md-offer-warning{border-left:3px solid #ffa548;padding:12px 14px;background:#3e291966}
+.model-info .md-offer{max-width:435px}
+.model-stage .model-info .model-specs{margin-top:18px}
+.product-copy .variant-list button{white-space:normal;line-height:1.35;min-height:46px;text-align:left}
+.product-copy .variant-list button.active{background:#62fa83;color:#05250e;border-color:#62fa83;box-shadow:0 5px 22px #59ff8730}
+.model-stage .model-art.md-iphone-motion,.product-hero .product-photo.md-iphone-motion{perspective:1600px;transform-style:preserve-3d;isolation:isolate}
+.model-stage .model-art.md-iphone-motion::before,.product-hero .product-photo.md-iphone-motion::before{content:"";position:absolute;z-index:0;inset:10% 12%;background:radial-gradient(ellipse at 51% 45%,#70ff9860,transparent 60%);filter:blur(40px);animation:md-light-shift 8s ease-in-out infinite alternate}
+.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img{
+  animation:md-iphone-showcase 12s cubic-bezier(.45,0,.55,1) infinite;
+  transform-origin:50% 50%;transform-style:preserve-3d;
+  backface-visibility:visible;will-change:transform,filter;
+}
+@keyframes md-iphone-showcase{
+  0%,100%{transform:perspective(1600px) rotateY(-11deg) rotateZ(-2deg) translate3d(-2%,1%,0) scale(1.34);filter:drop-shadow(30px 29px 38px #0008)}
+  25%{transform:perspective(1600px) rotateY(1deg) rotateZ(0deg) translate3d(0,-3%,20px) scale(1.39);filter:drop-shadow(0 41px 40px #0008)}
+  50%{transform:perspective(1600px) rotateY(12deg) rotateZ(2deg) translate3d(2%,0,0) scale(1.34);filter:drop-shadow(-25px 34px 38px #0008)}
+  75%{transform:perspective(1600px) rotateY(0deg) rotateZ(0deg) translate3d(0,-2%,10px) scale(1.37);filter:drop-shadow(0 37px 40px #0008)}
+}
+@keyframes md-light-shift{from{opacity:.28;transform:translateX(-12%) scale(.9)}to{opacity:.75;transform:translateX(12%) scale(1.12)}}
+@media(max-width:700px){.md-offer{margin:15px 0 10px;padding:16px 19px}.md-offer-price{font-size:43px}.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img{animation-name:md-iphone-showcase-mobile}@keyframes md-iphone-showcase-mobile{0%,100%{transform:perspective(1600px) rotateY(-10deg) translateY(3px) scale(1.28)}50%{transform:perspective(1600px) rotateY(10deg) translateY(-11px) scale(1.31)}}}
+@media(prefers-reduced-motion:reduce){.model-stage .model-art.md-iphone-motion img,.product-hero .product-photo.md-iphone-motion img,.model-stage .model-art.md-iphone-motion::before,.product-hero .product-photo.md-iphone-motion::before{animation:none!important;transform:scale(1.2)}}
