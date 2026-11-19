@@ -64,6 +64,12 @@ jobs:
               await page.waitForSelector('.model-stage',{timeout:20000});
               const modelCount=await page.locator('#mdPhoneModel option').count();
               if(modelCount!==31)errors.push(name+': esperado 31 modelos no seletor, encontrado '+modelCount);
+              const galleryCount=await page.locator('[data-show-iphone]').count();
+              if(galleryCount!==31)errors.push(name+': esperado 31 miniaturas no catálogo completo, encontrado '+galleryCount);
+              if(await page.locator('[data-show-iphone]:visible').count()!==31)errors.push(name+': nem todos os modelos aparecem no catálogo inicial');
+              await page.locator('[data-show-iphone="iphone-14-plus"]').click();
+              if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 14 Plus'))errors.push(name+': tocar no cartão não abre o aparelho grande');
+              if((await page.locator('#mdPhoneModel').inputValue())!=='iphone-14-plus')errors.push(name+': seletor e galeria não ficaram sincronizados');
               if(await page.locator('.model-stage').count()!==1)errors.push(name+': deveria haver apenas um iPhone em destaque');
               if(await page.locator('.model-tab').count()!==0)errors.push(name+': faixa de 31 modelos deveria estar oculta');
               if(await page.locator('[data-phone-era]').count()!==4)errors.push(name+': filtros por geração ausentes');
@@ -71,6 +77,11 @@ jobs:
               if((await page.locator('.md-color-swatch').count())!==6)errors.push(name+': cores do iPhone XR incompletas');
               await page.locator('[data-color-name="Coral"]').click();
               if((await page.locator('.md-color-current').innerText())!=='Coral')errors.push(name+': cor Coral não foi selecionada');
+              await page.locator('[data-phone-era="intermediarios"]').click();
+              const visibleModels=await page.locator('[data-show-iphone]:visible').count();
+              if(visibleModels<7||visibleModels>13)errors.push(name+': filtro 13 ao 15 incorreto, encontrados '+visibleModels);
+              await page.locator('[data-phone-era="todos"]').click();
+              if(await page.locator('[data-show-iphone]:visible').count()!==31)errors.push(name+': filtro Todos não restitui os 31 iPhones');
               await page.locator('[data-phone-era="intermediarios"]').click();
               await page.locator('#mdPhoneModel').selectOption('iphone-13-pro');
               if(!(await page.locator('.model-stage h3').innerText()).includes('iPhone 13 Pro'))errors.push(name+': troca do modelo falhou');
