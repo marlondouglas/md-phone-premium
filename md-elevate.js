@@ -83,14 +83,35 @@ function catalog(){
  '<div class="product-grid" id="productGrid">'+phones.map(productCard).join('')+'</div>'+
  '<p class="catalog-note">Fotografias de referência, não das unidades seminovas. Cores de fábrica não representam disponibilidade na loja. Preço, configuração, estado de bateria, histórico de peças e garantia são confirmados antes da compra.</p></div></section>';
 }
-function film(){
- return '<section class="film-section" id="filme"><div class="shell"><div class="film-head">'+
- '<div><span class="eyebrow">MD PHONE / STUDIO FILM</span><h2>Design em destaque.<br><em>Movimento de verdade.</em></h2></div>'+
- '<p>Detalhes, luz e movimento. Descubra uma nova forma de explorar o design Apple.</p></div>'+
- '<div class="film-frame" id="filmFrame"><div class="film-poster">'+img(phone,'','Foto ilustrativa do filme')+'<span>Seu iPhone.<br>Em foco.</span></div>'+
- '<video id="studioVideo" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-label="Filme editorial original MD PHONE"><source src="assets/md-elevate-film.mp4" type="video/mp4"></video>'+
- '<div class="film-watermark"><img src="assets/md-phone-brand-mark.svg" alt=""> MD PHONE</div></div>'+
- '<div class="film-foot"><span>MD PHONE / STUDIO</span><span>TECNOLOGIA & DESIGN</span></div></div></section>';
+function studioStories(){
+ var presentations=[
+  {key:'iphone-18',title:'iPhone 18 Pro Max',lead:'Design de outra geração.',kind:'iphone-18-pro-max',link:'https://www.apple.com/br/apple-events/',label:'Ver lançamento oficial'},
+  {key:'iphone-17',title:'iPhone 17 Pro Max',lead:'Cada detalhe impressiona.',kind:'iphone-17-pro-max',link:'https://www.apple.com/br/apple-events/',label:'Ver lançamento oficial'},
+  {key:'airpods-pro',title:'AirPods Pro 3',lead:'Uma experiência sonora envolvente.',kind:'airpods-pro',link:'https://www.apple.com/br/airpods-pro/',label:'Conhecer na Apple'}
+ ];
+ return '<section class="section studio-section" id="filme"><div class="shell">'+
+ '<div class="chapter-head"><div><span class="eyebrow">MD PHONE / EXPERIÊNCIAS</span><h2>Descubra. Explore.<br><em>Surpreenda-se.</em></h2></div>'+
+ '<p>Uma coleção de apresentações em movimento. Explore o design do iPhone e conheça outras experiências Apple.</p></div>'+
+ '<div class="studio-shell" id="studioStories">'+
+ '<div class="studio-story-list">'+presentations.map(function(c,i){
+   var p=phones.find(function(x){return x.id===c.kind});
+   var photo=c.key==='airpods-pro'?(M['media::airpods-pro-3']||'https://www.apple.com/newsroom/images/2025/09/introducing-airpods-pro-3-the-ultimate-audio-experience/article/Apple-AirPods-Pro-3-hero-250909_inline.jpg.large.jpg'):(p?imageSrc(p):'');
+   var hasVideo=Boolean(window.MD_STORIES?.[c.key]);
+   var asset='assets/md-story-'+c.key+'.mp4';
+   var image='<img loading="lazy" src="'+safe(photo)+'" alt="Imagem oficial de referência de '+safe(c.title)+'">';
+   return '<article class="studio-story '+(i===0?'active':'')+'" data-story-index="'+i+'" aria-hidden="'+(i!==0)+'">'+
+     '<div class="studio-screen">'+image+
+     (hasVideo?'<video muted loop playsinline preload="'+(i===0?'metadata':'none')+'" aria-label="Apresentação editorial de '+safe(c.title)+'"><source src="'+asset+'" type="video/mp4"></video>':'')+
+     '<span class="studio-mark">MD PHONE / STUDIO</span></div>'+
+     '<div class="studio-story-info"><div><span class="studio-ordinal">0'+(i+1)+' / 03</span><h3>'+safe(c.title)+'</h3><p>'+safe(c.lead)+'</p></div>'+
+     '<div class="studio-story-links"><a href="'+safe(c.link)+'" target="_blank" rel="noopener noreferrer" class="button dark">'+safe(c.label)+' ↗</a>'+
+     (p?'<button class="button ghost" type="button" data-product="'+safe(p.id)+'">Ver na loja</button>':'')+
+     '</div></div></article>';
+ }).join('')+'</div>'+
+ '<div class="studio-controls" aria-label="Navegar pelas apresentações"><button type="button" id="studioPrev" aria-label="Vídeo anterior">←</button>'+
+ '<div id="studioDots" class="studio-dots">'+presentations.map(function(c,i){return '<button type="button" aria-label="Exibir '+safe(c.title)+'" aria-pressed="'+(i===0)+'" data-story-dot="'+i+'" class="'+(i===0?'active':'')+'"></button>'}).join('')+'</div>'+
+ '<button type="button" id="studioNext" aria-label="Próximo vídeo">→</button></div>'+
+ '</div><p class="studio-legal">Filmes editoriais da MD PHONE. Para assistir aos vídeos e eventos oficiais completos, acesse a Apple pelos links acima.</p></div></section>';
 }
 function promises(){
 return '<section class="section promise-section" id="porque"><div class="shell"><div class="chapter-head">'+
@@ -240,16 +261,41 @@ el.style.visibility='hidden';
 if(!$('.image-unavailable',wrap))wrap.insertAdjacentHTML('beforeend','<div class="image-unavailable">Imagem em atualização. Solicite fotos reais pelo WhatsApp.</div>');
 },true);
 }
-function startFilm(){
-var video=$('#studioVideo'),frame=$('#filmFrame');if(!video)return;
-video.muted=true;video.addEventListener('playing',function(){frame.classList.add('playing')});
-video.addEventListener('error',function(){frame.classList.remove('playing')});
-if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)video.play().catch(function(){frame.classList.remove('playing')});
+function startStories(){
+ var slides=$$('.studio-story');
+ var dots=$$('[data-story-dot]');
+ if(!slides.length)return;
+ var current=0,interval=null;
+ var enabled=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function activate(index){
+  current=(index+slides.length)%slides.length;
+  slides.forEach(function(el,i){
+    var active=i===current;
+    el.classList.toggle('active',active);
+    el.setAttribute('aria-hidden',String(!active));
+    el.querySelectorAll('a,button').forEach(function(link){link.tabIndex=active?0:-1});
+    var video=$('video',el);
+    if(video){if(active&&enabled){video.play().catch(function(){})}else video.pause()}
+  });
+  dots.forEach(function(b,i){var active=i===current;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ }
+ function stop(){if(interval){clearInterval(interval);interval=null}}
+ function begin(){stop();if(enabled&&!document.hidden)interval=setInterval(function(){activate(current+1)},8500)}
+ $('#studioPrev').addEventListener('click',function(){activate(current-1);begin()});
+ $('#studioNext').addEventListener('click',function(){activate(current+1);begin()});
+ dots.forEach(function(dot){dot.addEventListener('click',function(){activate(Number(dot.dataset.storyDot));begin()})});
+ var shell=$('#studioStories');
+ shell.addEventListener('mouseenter',stop);
+ shell.addEventListener('mouseleave',begin);
+ shell.addEventListener('focusin',stop);
+ shell.addEventListener('focusout',begin);
+ document.addEventListener('visibilitychange',function(){if(document.hidden){stop();slides.forEach(function(el){$('video',el)?.pause()})}else{activate(current);begin()}});
+ activate(0);begin();
 }
 function init(){
 if(!phones.length){document.getElementById('app').innerHTML='<p>Catálogo em atualização.</p>';return}
-$('#app').innerHTML=header()+'<main id="conteudo">'+hero()+highlights()+catalog()+film()+promises()+'</main>'+footer()+dialogs();
-events();applyFilter();startFilm();
+$('#app').innerHTML=header()+'<main id="conteudo">'+hero()+highlights()+catalog()+studioStories()+promises()+'</main>'+footer()+dialogs();
+events();applyFilter();startStories();
 var previousLink=new URLSearchParams(location.search);
 var requested=previousLink.get('produto');
 if(requested&&phones.some(function(p){return p.id===requested})){
