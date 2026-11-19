@@ -227,6 +227,13 @@ function init(){
 if(!phones.length){document.getElementById('app').innerHTML='<p>Catálogo em atualização.</p>';return}
 $('#app').innerHTML=header()+'<main id="conteudo">'+hero()+highlights()+catalog()+film()+promises()+'</main>'+footer()+dialogs();
 events();applyFilter();startFilm();
+var previousLink=new URLSearchParams(location.search);
+var requested=previousLink.get('produto');
+if(requested&&phones.some(function(p){return p.id===requested})){
+ setTimeout(function(){openProduct(requested)},120);
+}else if(previousLink.get('categoria')==='iphone'||previousLink.has('comparar')){
+ setTimeout(function(){$('#catalogo')?.scrollIntoView({behavior:'auto',block:'start'})},120);
+}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
